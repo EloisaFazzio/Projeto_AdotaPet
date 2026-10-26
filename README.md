@@ -69,7 +69,7 @@ O modelo prevê oito entidades principais:
 - `Adocao`
 - `VisitaAcompanhamento`
 
-Os relacionamentos incluem associação entre voluntários e abrigos, histórico de vacinação por meio de `VacinacaoAnimal`, solicitações vinculadas a adotantes e animais e visitas vinculadas a adoções.
+Para facilitar a leitura, o diagrama agrupa visualmente as responsabilidades em seis blocos conceituais: **Abrigo**, **Animal**, **Vacinação do Animal**, **Usuário**, **Processo de Adoção** e **Acompanhamento Pós-Adoção**. Esses grupos não fundem as oito entidades persistidas. `Vacina` e `VacinacaoAnimal` continuam separadas, assim como `SolicitacaoAdocao` e `Adocao`. Os estados de referência incluem `DISPONIVEL`, `EM_TRATAMENTO`, `EM_PROCESSO_ADOCAO` e `ADOTADO` para animais; e `PENDENTE`, `EM_ANALISE`, `APROVADA`, `REJEITADA` e `CANCELADA` para solicitações.
 
 ## 📋 Regras de negócio consideradas
 
@@ -138,7 +138,7 @@ A documentação acadêmica da Etapa 1 está organizada na pasta [`docs/`](docs/
 - **[Atualização da Modelagem](docs/Atualizacao-da-Modelagem.md)** — explica os agrupamentos do diagrama e sua compatibilidade com o modelo persistente.
 - **[Mapeamento de Entidades JPA](docs/Mapeamento%20de%20Entidades%20JPA.md)** — entidades, tabelas, chaves e relacionamentos.
 - **[Dicionário de Dados](docs/Dicion%C3%A1rio%20de%20Dados.md)** — campos, tipos, obrigatoriedade e restrições.
-- **[Documentação acadêmica — Etapa 1](docs/documentacao-etapa1.docx)** — documento acadêmico de referência.
+- **[Documentação acadêmica — Etapa 1 (`PROJETO_ADOTAPET_PARTE_01.docx`)](docs/PROJETO_ADOTAPET_PARTE_01.docx)** — documento acadêmico de referência.
 
 ## 👩‍💻 Equipe
 
