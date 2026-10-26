@@ -134,7 +134,12 @@ O protótipo inclui apresentação do projeto, catálogo demonstrativo de animai
 
 ## 📚 Documentação
 
-A documentação acadêmica da Etapa 1 está na pasta [`docs/`](docs/). Ela reúne a visão geral do produto, requisitos funcionais e não funcionais, regras de negócio, matriz de rastreabilidade, diagrama de classes UML, mapeamento JPA e dicionário de dados.
+A documentação acadêmica da Etapa 1 está na pasta [`docs/`](docs/).
+
+- **[Diagrama de Classe](docs/Diagrama%20de%20Classe.svg)** — diagrama UML do modelo de domínio.
+- **[Mapeamento de Entidades JPA](docs/Mapeamento%20de%20Entidades%20JPA.md)** — tabelas, chaves, relacionamentos e anotações de persistência.
+- **[Dicionário de Dados](docs/Dicion%C3%A1rio%20de%20Dados.md)** — descrição dos campos, tipos, obrigatoriedade e restrições.
+- **[Documentação acadêmica — Etapa 1](docs/documentacao-etapa1.docx)** — documento completo do projeto.
 
 ## 👩‍💻 Equipe
 
