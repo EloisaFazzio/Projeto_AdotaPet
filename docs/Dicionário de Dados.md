@@ -4,6 +4,8 @@
 **Escopo:** entidades persistentes do domínio e tabelas relacionadas  
 **Tipos:** tipos Java e tipos SQL abaixo são indicativos; o tipo SQL exato pode variar entre H2 e PostgreSQL e conforme o Hibernate.
 
+> **Nota de consistência:** este dicionário descreve as entidades persistidas no modelo JPA, não apenas os grupos visuais do diagrama conceitual. Assim, `Vacina` e `VacinacaoAnimal`, bem como `SolicitacaoAdocao` e `Adocao`, possuem descrições próprias por representarem dados e etapas diferentes.
+
 ## 1. Tabela `abrigo`
 
 | Campo | Tipo lógico | Obrigatório | Restrições / descrição |
