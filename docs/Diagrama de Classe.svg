@@ -4,8 +4,8 @@
 .t{font:700 19px Arial,sans-serif;fill:#30234f}.p{font:16px Arial,sans-serif;fill:#342b48}.s{font:13px Arial,sans-serif;fill:#6d5a9b}.l{fill:none;stroke:#8064c7;stroke-width:2}
 </style></defs>
 <rect class="bg" width="1400" height="900"/>
-<text class="t" x="700" y="36" text-anchor="middle" style="font-size:25px">AdotaPet — Diagrama de Classe Simplificado</text>
-<text class="s" x="700" y="60" text-anchor="middle">Classes agrupadas por responsabilidade para facilitar a leitura</text>
+<text class="t" x="700" y="36" text-anchor="middle" style="font-size:25px">AdotaPet — Diagrama de Classe</text>
+<text class="s" x="700" y="60" text-anchor="middle">Visão conceitual das principais responsabilidades do sistema</text>
 <!-- relations behind -->
 <path class="l" d="M340 170 H410"/><text class="s" x="345" y="157">1</text><text class="s" x="386" y="157">0..*</text><text class="s" x="350" y="145">abriga</text>
 <path class="l" d="M740 170 H810"/><text class="s" x="745" y="157">1</text><text class="s" x="785" y="157">0..*</text><text class="s" x="748" y="145">registra</text>
@@ -41,5 +41,5 @@
 <rect class="box" x="40" y="750" width="400" height="95"/><text class="t" x="60" y="777">Perfil</text><text class="p" x="60" y="806">ADMIN · VOLUNTARIO · ADOTANTE</text>
 <rect class="box" x="460" y="750" width="400" height="95"/><text class="t" x="480" y="777">Status do animal</text><text class="p" x="480" y="806">DISPONIVEL · EM_TRATAMENTO · ADOTADO</text>
 <rect class="box" x="880" y="750" width="450" height="95"/><text class="t" x="900" y="777">Status da solicitação</text><text class="p" x="900" y="806">PENDENTE · EM_ANALISE · APROVADA · REJEITADA</text>
-<text class="s" x="700" y="880" text-anchor="middle">Visão conceitual resumida. Classes agrupadas no desenho podem continuar separadas na implementação.</text>
+<text class="s" x="700" y="880" text-anchor="middle">Diagrama conceitual. O mapeamento JPA detalha as oito entidades persistidas.</text>
 </svg>
