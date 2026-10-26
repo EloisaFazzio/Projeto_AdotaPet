@@ -1,47 +1,151 @@
-# AdotaPet
+# AdotaPet 🐾
 
-Plataforma de adoção de animais para ONGs. Projeto Final, Etapa 1: backend, modelagem e requisitos.
+> Plataforma web para apoiar ONGs de proteção animal na gestão de abrigos, animais, vacinação e processos de adoção.
 
-Backend em Java 17, Spring Boot 3 e Spring Data JPA.
+O **AdotaPet** é um projeto acadêmico de Engenharia de Software desenvolvido para centralizar informações e tornar o processo de adoção mais organizado, rastreável e seguro — do acolhimento do animal ao acompanhamento pós-adoção.
 
-## Equipe
+## 📌 Status do projeto
 
-| Integrante | Função |
-|---|---|
-| Fabrício da Silva | Líder |
-| Eloisa Fazzio da Silva Rocha | Integrante |
-| Eric Eduardo Lange | Integrante |
+**Etapa atual:** modelagem, requisitos e estrutura inicial do backend.
 
-## Documentação
+O repositório contém as entidades de domínio, os repositórios Spring Data JPA e a configuração inicial da aplicação. A interface web está disponível na branch `feat/site-adotapet` como protótipo visual; seus dados e formulários ainda não estão integrados à API.
 
-O documento formal da Etapa 1 está em [`docs/`](docs/) (`documentacao-etapa1.docx`), com requisitos, matriz de rastreabilidade, diagrama de classes UML e dicionário de dados.
+## 🎯 Objetivos
 
-## Estrutura
+- Centralizar o cadastro de abrigos, voluntários, adotantes e animais.
+- Consultar animais disponíveis com filtros.
+- Manter o catálogo de vacinas e o histórico de vacinação.
+- Registrar, analisar e acompanhar solicitações de adoção.
+- Formalizar adoções com termo de responsabilidade.
+- Registrar visitas ou contatos de acompanhamento pós-adoção.
+- Apoiar a gestão da ONG com informações e relatórios.
 
+## 👥 Perfis de usuário
+
+| Perfil | Responsabilidades previstas |
+| --- | --- |
+| **Administrador (ADMIN)** | Gerenciar usuários, abrigos, vacinas e relatórios. |
+| **Voluntário (VOLUNTARIO)** | Cadastrar animais, registrar vacinações, analisar solicitações e realizar acompanhamentos. |
+| **Adotante (ADOTANTE)** | Consultar animais disponíveis e solicitar adoção. |
+
+## 🧰 Tecnologias
+
+- **Java 17**
+- **Spring Boot 3.3.5**
+- **Spring Data JPA / Hibernate**
+- **Maven**
+- **H2** para execução local por padrão
+- **PostgreSQL** para ambiente configurado, incluindo Supabase
+- **Bean Validation**
+- **JUnit / Spring Boot Test** para testes
+
+## 🏗️ Estrutura do projeto
+
+```text
+src/
+└── main/
+    ├── java/br/edu/catolicasc/adotapet/
+    │   ├── AdotaPetApplication.java
+    │   ├── model/
+    │   │   └── enums/
+    │   └── repository/
+    └── resources/
+        └── application.properties
+docs/
+pom.xml
+README.md
 ```
-src/main/java/br/edu/catolicasc/adotapet/
-├── AdotaPetApplication.java
-├── model/          # 8 entidades JPA com regras de domínio
-│   └── enums/      # Perfil, Especie, Sexo, Porte, StatusAnimal, StatusSolicitacao
-└── repository/     # 8 interfaces JpaRepository (Spring Data JPA)
+
+### Modelo de domínio
+
+O modelo prevê oito entidades principais:
+
+- `Usuario`
+- `Abrigo`
+- `Animal`
+- `Vacina`
+- `VacinacaoAnimal`
+- `SolicitacaoAdocao`
+- `Adocao`
+- `VisitaAcompanhamento`
+
+Os relacionamentos incluem associação entre voluntários e abrigos, histórico de vacinação por meio de `VacinacaoAnimal`, solicitações vinculadas a adotantes e animais e visitas vinculadas a adoções.
+
+## 📋 Regras de negócio consideradas
+
+- Somente animais com status **DISPONIVEL** podem receber solicitações.
+- Um adotante não pode manter solicitações ativas duplicadas para o mesmo animal.
+- A análise e a decisão sobre solicitações dependem do perfil autorizado.
+- A aprovação de uma solicitação deve tratar as demais solicitações ativas do mesmo animal.
+- A adoção só pode ser formalizada após aprovação e assinatura do termo de responsabilidade.
+- O limite de capacidade do abrigo deve ser respeitado.
+- A próxima dose, quando informada, deve ser posterior à data de aplicação.
+- O acesso a dados pessoais deve respeitar os princípios de privacidade e a LGPD.
+
+> As regras acima fazem parte da especificação do sistema; nem todas estão implementadas na camada de serviço/API nesta etapa.
+
+## 🚀 Como executar localmente
+
+### Pré-requisitos
+
+- JDK **17**
+- Maven **3.9 ou superior**
+
+Confira as instalações:
+
+```bash
+java -version
+mvn -version
 ```
 
-## Relacionamentos mapeados
-
-| Tipo | Onde |
-|---|---|
-| 1:N (`@ManyToOne` / `@OneToMany`) | Abrigo→Animal, Usuario→SolicitacaoAdocao, Animal→SolicitacaoAdocao, Adocao→VisitaAcompanhamento, entre outros |
-| N:M direto (`@ManyToMany` + `@JoinTable`) | Usuario (voluntário) ↔ Abrigo, tabela `voluntario_abrigo` |
-| N:M com atributos (entidade associativa) | Animal ↔ Vacina, por `VacinacaoAnimal` |
-| 1:1 (`@OneToOne`) | SolicitacaoAdocao ↔ Adocao |
-
-## Executar
-
-Requisitos: JDK 17 e Maven 3.9+.
+Na raiz do projeto, execute:
 
 ```bash
 mvn spring-boot:run
 ```
 
-Por padrão usa H2 em memória (modo PostgreSQL). Para PostgreSQL/Supabase, defina `DB_URL`, `DB_USER` e `DB_PASSWORD`
-(exemplo: `DB_URL=jdbc:postgresql://host:5432/postgres`).
+Por padrão, a aplicação utiliza um banco **H2 em memória** no modo de compatibilidade com PostgreSQL. A configuração é definida em `src/main/resources/application.properties`.
+
+### Usar PostgreSQL ou Supabase
+
+Configure as variáveis de ambiente antes de iniciar a aplicação:
+
+| Variável | Descrição |
+| --- | --- |
+| `DB_URL` | URL JDBC do banco PostgreSQL |
+| `DB_USER` | Usuário do banco |
+| `DB_PASSWORD` | Senha do banco |
+
+Exemplo de formato para `DB_URL`:
+
+```text
+jdbc:postgresql://<host>:5432/<database>
+```
+
+Não inclua senhas, tokens ou outras credenciais no repositório. Use variáveis de ambiente e mantenha os dados de acesso privados.
+
+## 🖥️ Protótipo da interface
+
+A branch [`feat/site-adotapet`](https://github.com/EloisaFazzio/Projeto_AdotaPet/tree/feat/site-adotapet) contém uma página inicial responsiva em `src/main/resources/static/index.html`.
+
+O protótipo inclui apresentação do projeto, catálogo demonstrativo de animais, filtros, favoritos locais e formulários ilustrativos. **Os dados são de demonstração e os formulários ainda não enviam informações para o backend.** Para consultar o protótipo, abra o arquivo `index.html` em um navegador.
+
+## 📚 Documentação
+
+A documentação acadêmica da Etapa 1 está na pasta [`docs/`](docs/). Ela reúne a visão geral do produto, requisitos funcionais e não funcionais, regras de negócio, matriz de rastreabilidade, diagrama de classes UML, mapeamento JPA e dicionário de dados.
+
+## 👩‍💻 Equipe
+
+| Integrante | Função |
+| --- | --- |
+| Fabrício da Silva | Líder da equipe |
+| Eloisa Fazzio da Silva Rocha | Integrante |
+| Eric Eduardo Lange | Integrante |
+
+## 🎓 Contexto acadêmico
+
+Projeto Final — Etapa 1, do curso de **Engenharia de Software** do Centro Universitário Católica de Santa Catarina, em Jaraguá do Sul (2026).
+
+---
+
+Desenvolvido com o propósito de apoiar a adoção responsável e o bem-estar animal. 💚
