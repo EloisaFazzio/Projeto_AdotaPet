@@ -134,10 +134,11 @@ O protótipo inclui apresentação do projeto, catálogo demonstrativo de animai
 
 A documentação acadêmica da Etapa 1 está organizada na pasta [`docs/`](docs/).
 
-- **[Diagrama de Classe](docs/Diagrama%20de%20Classe.svg)** — diagrama UML do modelo de domínio.
-- **[Mapeamento de Entidades JPA](docs/Mapeamento%20de%20Entidades%20JPA.md)** — tabelas, chaves, relacionamentos e anotações de persistência.
-- **[Dicionário de Dados](docs/Dicion%C3%A1rio%20de%20Dados.md)** — descrição dos campos, tipos, obrigatoriedade e restrições.
-- **[Documentação acadêmica — Etapa 1](docs/documentacao-etapa1.docx)** — documento completo do projeto.
+- **[Diagrama de Classe](docs/Diagrama%20de%20Classe.svg)** — visão conceitual das principais responsabilidades do domínio.
+- **[Atualização da Modelagem](docs/Atualizacao-da-Modelagem.md)** — explica os agrupamentos do diagrama e sua compatibilidade com o modelo persistente.
+- **[Mapeamento de Entidades JPA](docs/Mapeamento%20de%20Entidades%20JPA.md)** — entidades, tabelas, chaves e relacionamentos.
+- **[Dicionário de Dados](docs/Dicion%C3%A1rio%20de%20Dados.md)** — campos, tipos, obrigatoriedade e restrições.
+- **[Documentação acadêmica — Etapa 1](docs/documentacao-etapa1.docx)** — documento acadêmico de referência.
 
 ## 👩‍💻 Equipe
 
