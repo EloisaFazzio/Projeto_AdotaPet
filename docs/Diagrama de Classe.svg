@@ -1,104 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
-<defs>
-  <style>
-    .bg{fill:#fbf9ff}.box{fill:#fff;stroke:#8064c7;stroke-width:2}.head{fill:#e9e1f8;stroke:#8064c7;stroke-width:2}
-    .title{font:700 18px Arial,sans-serif;fill:#30234f}.txt{font:15px Arial,sans-serif;fill:#342b48}
-    .small{font:13px Arial,sans-serif;fill:#4e4564}.line{fill:none;stroke:#8064c7;stroke-width:2}
-    .label{font:italic 13px Arial,sans-serif;fill:#6d5a9b}.multi{font:13px Arial,sans-serif;fill:#30234f}
-  </style>
-</defs>
-<rect class="bg" width="1600" height="1120"/>
-<text x="800" y="32" text-anchor="middle" class="title" style="font-size:24px">AdotaPet — Diagrama de Classe (versão simplificada)</text>
-
-<!-- Relationships behind the classes -->
-<path class="line" d="M330 135 H410"/>
-<text class="multi" x="338" y="124">1</text><text class="multi" x="390" y="124">0..*</text><text class="label" x="350" y="115">abriga</text>
-
-<path class="line" d="M750 135 H810"/>
-<text class="multi" x="755" y="124">1</text><text class="multi" x="785" y="124">0..*</text><text class="label" x="756" y="115">histórico</text>
-
-<path class="line" d="M1110 135 H1170"/>
-<text class="multi" x="1115" y="124">0..*</text><text class="multi" x="1145" y="124">1</text><text class="label" x="1118" y="115">usa</text>
-
-<!-- Animal to request -->
-<path class="line" d="M580 310 V455"/>
-<text class="multi" x="590" y="330">1</text><text class="multi" x="590" y="445">0..*</text><text class="label" x="592" y="390">alvo de</text>
-
-<!-- User to shelter volunteers: routed around left -->
-<path class="line" d="M170 250 V390 H45 V495 H170"/>
-<text class="multi" x="178" y="270">0..*</text><text class="multi" x="178" y="485">0..*</text><text class="label" x="53" y="380">voluntários</text>
-
-<!-- User requests -->
-<path class="line" d="M330 555 H410"/>
-<text class="multi" x="337" y="544">1</text><text class="multi" x="390" y="544">0..*</text><text class="label" x="350" y="535">solicita</text>
-
-<!-- User analyzes requests -->
-<path class="line" d="M330 635 H410"/>
-<text class="multi" x="337" y="624">0..1</text><text class="multi" x="385" y="624">0..*</text><text class="label" x="343" y="615">analisa</text>
-
-<!-- Request formalizes adoption -->
-<path class="line" d="M750 555 H810"/>
-<text class="multi" x="755" y="544">1</text><text class="multi" x="785" y="544">0..1</text><text class="label" x="754" y="535">formaliza</text>
-
-<!-- Adoption follow-ups -->
-<path class="line" d="M1110 555 H1170"/>
-<text class="multi" x="1115" y="544">1</text><text class="multi" x="1145" y="544">0..*</text><text class="label" x="1113" y="535">acompanhada</text>
-
-<!-- Volunteer records visits -->
-<path class="line" d="M270 735 V800 H1320 V615"/>
-<text class="multi" x="280" y="755">1</text><text class="multi" x="1330" y="635">0..*</text><text class="label" x="730" y="790">voluntário realiza visitas</text>
-
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<defs><style>
+.bg{fill:#fbf9ff}.box{fill:#fff;stroke:#8064c7;stroke-width:2}.head{fill:#e9e1f8;stroke:#8064c7;stroke-width:2}
+.t{font:700 19px Arial,sans-serif;fill:#30234f}.p{font:16px Arial,sans-serif;fill:#342b48}.s{font:13px Arial,sans-serif;fill:#6d5a9b}.l{fill:none;stroke:#8064c7;stroke-width:2}
+</style></defs>
+<rect class="bg" width="1400" height="900"/>
+<text class="t" x="700" y="36" text-anchor="middle" style="font-size:25px">AdotaPet — Diagrama de Classe Simplificado</text>
+<text class="s" x="700" y="60" text-anchor="middle">Classes agrupadas por responsabilidade para facilitar a leitura</text>
+<!-- relations behind -->
+<path class="l" d="M340 170 H410"/><text class="s" x="345" y="157">1</text><text class="s" x="386" y="157">0..*</text><text class="s" x="350" y="145">abriga</text>
+<path class="l" d="M740 170 H810"/><text class="s" x="745" y="157">1</text><text class="s" x="785" y="157">0..*</text><text class="s" x="748" y="145">registra</text>
+<path class="l" d="M340 535 H410"/><text class="s" x="345" y="522">1</text><text class="s" x="385" y="522">0..*</text><text class="s" x="350" y="510">solicita</text>
+<path class="l" d="M740 535 H810"/><text class="s" x="745" y="522">1</text><text class="s" x="785" y="522">0..*</text><text class="s" x="748" y="510">acompanha</text>
+<path class="l" d="M575 300 V405"/><text class="s" x="585" y="320">1</text><text class="s" x="585" y="395">0..*</text><text class="s" x="590" y="360">animal</text>
 <!-- Abrigo -->
-<rect class="box" x="30" y="70" width="300" height="180" rx="3"/><rect class="head" x="30" y="70" width="300" height="38"/>
-<text class="title" x="180" y="95" text-anchor="middle">Abrigo</text>
-<text class="txt" x="45" y="130">id: Long</text><text class="txt" x="45" y="153">nome: String</text><text class="txt" x="45" y="176">cidade: String</text><text class="txt" x="45" y="199">capacidade: int</text><text class="txt" x="45" y="222">telefone: String</text>
-
+<rect class="box" x="40" y="90" width="300" height="210" rx="3"/><rect class="head" x="40" y="90" width="300" height="40"/>
+<text class="t" x="190" y="116" text-anchor="middle">Abrigo</text>
+<text class="p" x="58" y="158">id: Long</text><text class="p" x="58" y="184">nome: String</text><text class="p" x="58" y="210">cidade: String</text><text class="p" x="58" y="236">telefone: String</text><text class="p" x="58" y="262">capacidade: int</text>
 <!-- Animal -->
-<rect class="box" x="410" y="70" width="340" height="240" rx="3"/><rect class="head" x="410" y="70" width="340" height="38"/>
-<text class="title" x="580" y="95" text-anchor="middle">Animal</text>
-<text class="txt" x="425" y="130">id: Long</text><text class="txt" x="425" y="153">nome: String</text><text class="txt" x="425" y="176">especie: Especie</text><text class="txt" x="425" y="199">porte: Porte</text><text class="txt" x="425" y="222">status: StatusAnimal</text><text class="txt" x="425" y="245">dataNascimento: LocalDate</text><text class="txt" x="425" y="268">abrigo: Abrigo</text><text class="small" x="425" y="292">Métodos de estado omitidos para simplificar</text>
-
-<!-- Vaccination history -->
-<rect class="box" x="810" y="70" width="300" height="180" rx="3"/><rect class="head" x="810" y="70" width="300" height="38"/>
-<text class="title" x="960" y="95" text-anchor="middle">VacinacaoAnimal</text>
-<text class="txt" x="825" y="130">id: Long</text><text class="txt" x="825" y="153">dataAplicacao: LocalDate</text><text class="txt" x="825" y="176">proximaDose: LocalDate</text><text class="txt" x="825" y="199">veterinario: String</text><text class="small" x="825" y="226">Registra a vacina aplicada ao animal</text>
-
-<!-- Vaccine -->
-<rect class="box" x="1170" y="70" width="400" height="180" rx="3"/><rect class="head" x="1170" y="70" width="400" height="38"/>
-<text class="title" x="1370" y="95" text-anchor="middle">Vacina</text>
-<text class="txt" x="1185" y="130">id: Long</text><text class="txt" x="1185" y="153">nome: String</text><text class="txt" x="1185" y="176">especieAlvo: Especie</text><text class="txt" x="1185" y="199">intervaloDias: Integer</text><text class="small" x="1185" y="226">Define intervalo para próxima dose</text>
-
+<rect class="box" x="410" y="90" width="330" height="210" rx="3"/><rect class="head" x="410" y="90" width="330" height="40"/>
+<text class="t" x="575" y="116" text-anchor="middle">Animal</text>
+<text class="p" x="428" y="158">id: Long</text><text class="p" x="428" y="184">nome: String</text><text class="p" x="428" y="210">espécie e porte</text><text class="p" x="428" y="236">dataNascimento: LocalDate</text><text class="p" x="428" y="262">status: StatusAnimal</text>
+<!-- Saúde animal combined -->
+<rect class="box" x="810" y="90" width="520" height="210" rx="3"/><rect class="head" x="810" y="90" width="520" height="40"/>
+<text class="t" x="1070" y="116" text-anchor="middle">Vacinação do Animal</text>
+<text class="p" x="830" y="158">vacina: nome e espécie-alvo</text><text class="p" x="830" y="184">dataAplicacao: LocalDate</text><text class="p" x="830" y="210">proximaDose: LocalDate</text><text class="p" x="830" y="236">veterinario: String</text><text class="s" x="830" y="270">Agrupa os dados da vacina e o registro de aplicação</text>
 <!-- User -->
-<rect class="box" x="30" y="495" width="300" height="240" rx="3"/><rect class="head" x="30" y="495" width="300" height="38"/>
-<text class="title" x="180" y="520" text-anchor="middle">Usuario</text>
-<text class="txt" x="45" y="555">id: Long</text><text class="txt" x="45" y="578">nome: String</text><text class="txt" x="45" y="601">email: String</text><text class="txt" x="45" y="624">perfil: Perfil</text><text class="txt" x="45" y="647">ativo: boolean</text><text class="small" x="45" y="682">Pode atuar como adotante ou voluntário</text><text class="small" x="45" y="705">conforme o perfil autorizado.</text>
-
-<!-- Adoption request -->
-<rect class="box" x="410" y="455" width="340" height="250" rx="3"/><rect class="head" x="410" y="455" width="340" height="38"/>
-<text class="title" x="580" y="480" text-anchor="middle">SolicitacaoAdocao</text>
-<text class="txt" x="425" y="515">id: Long</text><text class="txt" x="425" y="538">justificativa: String</text><text class="txt" x="425" y="561">parecer: String</text><text class="txt" x="425" y="584">status: StatusSolicitacao</text><text class="txt" x="425" y="607">solicitadaEm: LocalDateTime</text><text class="small" x="425" y="650">Vincula adotante, animal e analista</text><text class="small" x="425" y="673">da solicitação.</text>
-
-<!-- Adoption -->
-<rect class="box" x="810" y="455" width="300" height="180" rx="3"/><rect class="head" x="810" y="455" width="300" height="38"/>
-<text class="title" x="960" y="480" text-anchor="middle">Adocao</text>
-<text class="txt" x="825" y="515">id: Long</text><text class="txt" x="825" y="538">dataAdocao: LocalDate</text><text class="txt" x="825" y="561">termoAssinado: boolean</text><text class="txt" x="825" y="584">observacoes: String</text><text class="small" x="825" y="615">Formaliza uma solicitação aprovada</text>
-
-<!-- Visit -->
-<rect class="box" x="1170" y="455" width="400" height="160" rx="3"/><rect class="head" x="1170" y="455" width="400" height="38"/>
-<text class="title" x="1370" y="480" text-anchor="middle">VisitaAcompanhamento</text>
-<text class="txt" x="1185" y="515">id: Long</text><text class="txt" x="1185" y="538">dataVisita: LocalDate</text><text class="txt" x="1185" y="561">observacoes: String</text><text class="txt" x="1185" y="584">animalBemCuidado: boolean</text>
-
-<!-- Enums -->
-<text class="title" x="30" y="870" style="font-size:19px">Enumerações principais</text>
-<rect class="box" x="30" y="890" width="230" height="160"/><rect class="head" x="30" y="890" width="230" height="34"/><text class="title" x="145" y="913" text-anchor="middle">Perfil</text>
-<text class="txt" x="45" y="948">ADMIN</text><text class="txt" x="45" y="971">VOLUNTARIO</text><text class="txt" x="45" y="994">ADOTANTE</text>
-<rect class="box" x="280" y="890" width="230" height="160"/><rect class="head" x="280" y="890" width="230" height="34"/><text class="title" x="395" y="913" text-anchor="middle">Especie</text>
-<text class="txt" x="295" y="948">CAO</text><text class="txt" x="295" y="971">GATO</text><text class="txt" x="295" y="994">OUTRA</text>
-<rect class="box" x="530" y="890" width="230" height="160"/><rect class="head" x="530" y="890" width="230" height="34"/><text class="title" x="645" y="913" text-anchor="middle">Porte</text>
-<text class="txt" x="545" y="948">PEQUENO</text><text class="txt" x="545" y="971">MEDIO</text><text class="txt" x="545" y="994">GRANDE</text>
-<rect class="box" x="780" y="890" width="330" height="160"/><rect class="head" x="780" y="890" width="330" height="34"/><text class="title" x="945" y="913" text-anchor="middle">StatusAnimal</text>
-<text class="txt" x="795" y="948">DISPONIVEL · EM_TRATAMENTO</text><text class="txt" x="795" y="971">EM_PROCESSO_ADOCAO</text><text class="txt" x="795" y="994">ADOTADO</text>
-<rect class="box" x="1130" y="890" width="440" height="160"/><rect class="head" x="1130" y="890" width="440" height="34"/><text class="title" x="1350" y="913" text-anchor="middle">StatusSolicitacao</text>
-<text class="txt" x="1145" y="948">PENDENTE · EM_ANALISE · APROVADA</text><text class="txt" x="1145" y="971">REJEITADA · CANCELADA</text>
-<text class="small" x="800" y="1090" text-anchor="middle">Versão resumida: atributos e operações secundárias foram omitidos para facilitar a leitura.</text>
+<rect class="box" x="40" y="405" width="300" height="260" rx="3"/><rect class="head" x="40" y="405" width="300" height="40"/>
+<text class="t" x="190" y="431" text-anchor="middle">Usuário</text>
+<text class="p" x="58" y="473">id: Long</text><text class="p" x="58" y="499">nome: String</text><text class="p" x="58" y="525">email: String</text><text class="p" x="58" y="551">perfil: Perfil</text><text class="p" x="58" y="577">ativo: boolean</text><text class="s" x="58" y="615">Adotante, voluntário ou administrador</text>
+<!-- Adoption process combined -->
+<rect class="box" x="410" y="405" width="330" height="260" rx="3"/><rect class="head" x="410" y="405" width="330" height="40"/>
+<text class="t" x="575" y="431" text-anchor="middle">Processo de Adoção</text>
+<text class="p" x="428" y="473">id: Long</text><text class="p" x="428" y="499">justificativa: String</text><text class="p" x="428" y="525">parecer: String</text><text class="p" x="428" y="551">status: StatusSolicitacao</text><text class="p" x="428" y="577">dataAdocao: LocalDate</text><text class="p" x="428" y="603">termoAssinado: boolean</text><text class="s" x="428" y="635">Reúne solicitação e formalização da adoção</text>
+<!-- Follow-up -->
+<rect class="box" x="810" y="405" width="520" height="260" rx="3"/><rect class="head" x="810" y="405" width="520" height="40"/>
+<text class="t" x="1070" y="431" text-anchor="middle">Acompanhamento Pós-Adoção</text>
+<text class="p" x="830" y="473">dataVisita: LocalDate</text><text class="p" x="830" y="499">observacoes: String</text><text class="p" x="830" y="525">animalBemCuidado: boolean</text><text class="p" x="830" y="551">voluntário responsável</text><text class="s" x="830" y="595">Registra visitas e verifica o bem-estar do animal</text>
+<!-- enum row -->
+<text class="t" x="40" y="730">Valores de referência</text>
+<rect class="box" x="40" y="750" width="400" height="95"/><text class="t" x="60" y="777">Perfil</text><text class="p" x="60" y="806">ADMIN · VOLUNTARIO · ADOTANTE</text>
+<rect class="box" x="460" y="750" width="400" height="95"/><text class="t" x="480" y="777">Status do animal</text><text class="p" x="480" y="806">DISPONIVEL · EM_TRATAMENTO · ADOTADO</text>
+<rect class="box" x="880" y="750" width="450" height="95"/><text class="t" x="900" y="777">Status da solicitação</text><text class="p" x="900" y="806">PENDENTE · EM_ANALISE · APROVADA · REJEITADA</text>
+<text class="s" x="700" y="880" text-anchor="middle">Visão conceitual resumida. Classes agrupadas no desenho podem continuar separadas na implementação.</text>
 </svg>
