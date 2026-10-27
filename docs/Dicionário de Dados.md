@@ -4,9 +4,9 @@
 **Escopo:** entidades persistentes do domínio e tabelas relacionadas  
 **Tipos:** tipos Java e tipos SQL abaixo são indicativos; o tipo SQL exato pode variar entre H2 e PostgreSQL e conforme o Hibernate.
 
-> **Nota de consistência:** este dicionário descreve as entidades persistidas no modelo JPA, não apenas os grupos visuais do diagrama conceitual. Assim, `Vacina` e `VacinacaoAnimal`, bem como `SolicitacaoAdocao` e `Adocao`, possuem descrições próprias por representarem dados e etapas diferentes.
+> **Organização conforme o diagrama de classes:** o conteúdo está organizado pelos seis grupos conceituais apresentados no diagrama: Abrigo, Animal, Vacinação do Animal, Usuário, Processo de Adoção e Acompanhamento Pós-Adoção. Quando um grupo reúne mais de uma entidade no desenho, as entidades e suas tabelas continuam descritas separadamente para preservar todos os campos e relacionamentos do modelo JPA. Os atributos exibidos no diagrama são uma visão resumida, portanto este dicionário detalha os campos persistidos e os valores completos usados pela aplicação.
 
-## 1. Tabela `abrigo`
+## 1. Abrigo — tabela `abrigo`
 
 | Campo | Tipo lógico | Obrigatório | Restrições / descrição |
 | --- | --- | --- | --- |
@@ -20,7 +20,7 @@
 
 **Relacionamentos:** um abrigo pode estar associado a vários animais; possui associação muitos-para-muitos com usuários que atuam como voluntários.
 
-## 2. Tabela `usuario`
+## 4. Usuário — tabela `usuario`
 
 | Campo | Tipo lógico | Obrigatório | Restrições / descrição |
 | --- | --- | --- | --- |
@@ -35,7 +35,7 @@
 
 **Relacionamentos:** um usuário adotante pode registrar várias solicitações; um usuário voluntário pode estar vinculado a vários abrigos; usuários também podem aparecer como analistas de solicitações e voluntários em visitas.
 
-## 3. Tabela `animal`
+## 2. Animal — tabela `animal`
 
 | Campo | Tipo lógico | Obrigatório | Restrições / descrição |
 | --- | --- | --- | --- |
@@ -54,7 +54,7 @@
 
 **Relacionamentos:** pertence a um abrigo; pode ter várias vacinações e solicitações de adoção.
 
-## 4. Tabela `vacina`
+## 3. Vacinação do Animal — tabela `vacina`
 
 | Campo | Tipo lógico | Obrigatório | Restrições / descrição |
 | --- | --- | --- | --- |
@@ -65,7 +65,7 @@
 
 **Relacionamentos:** pode estar vinculada a vários registros de vacinação.
 
-## 5. Tabela `vacinacao_animal`
+### Registro de aplicação — tabela `vacinacao_animal`
 
 | Campo | Tipo lógico | Obrigatório | Restrições / descrição |
 | --- | --- | --- | --- |
@@ -78,7 +78,7 @@
 
 **Observação:** a regra de domínio exige que a próxima dose, quando informada, seja posterior à data de aplicação.
 
-## 6. Tabela `solicitacao_adocao`
+## 5. Processo de Adoção — tabela `solicitacao_adocao`
 
 | Campo | Tipo lógico | Obrigatório | Restrições / descrição |
 | --- | --- | --- | --- |
@@ -94,7 +94,7 @@
 
 **Relacionamentos:** pertence a um adotante e a um animal; pode ter um analista e pode originar uma adoção formalizada.
 
-## 7. Tabela `adocao`
+### Formalização da adoção — tabela `adocao`
 
 | Campo | Tipo lógico | Obrigatório | Restrições / descrição |
 | --- | --- | --- | --- |
@@ -106,7 +106,7 @@
 
 **Relacionamentos:** uma adoção está associada a uma solicitação; pode possuir várias visitas de acompanhamento.
 
-## 8. Tabela `visita_acompanhamento`
+## 6. Acompanhamento Pós-Adoção — tabela `visita_acompanhamento`
 
 | Campo | Tipo lógico | Obrigatório | Restrições / descrição |
 | --- | --- | --- | --- |
@@ -117,7 +117,7 @@
 | `observacoes` | String / VARCHAR(1000) | Sim | Registro do acompanhamento |
 | `animal_bem_cuidado` | boolean / BOOLEAN | Sim | Avaliação dos cuidados; padrão inicial `true` |
 
-## 9. Tabela de associação `voluntario_abrigo`
+## 7. Tabela de associação `voluntario_abrigo`
 
 | Campo | Tipo lógico | Obrigatório | Descrição |
 | --- | --- | --- | --- |
@@ -126,7 +126,9 @@
 
 A tabela é configurada por `@JoinTable` em `Usuario.abrigos`. A definição explícita de uma chave primária composta não aparece no código atual.
 
-## 10. Enumerações
+## 8. Enumerações
+
+O diagrama mostra valores de referência para facilitar a leitura. A tabela abaixo registra todos os valores previstos no modelo da aplicação, inclusive os que não aparecem no resumo visual.
 
 | Enumeração | Valores permitidos |
 | --- | --- |
@@ -137,7 +139,7 @@ A tabela é configurada por `@JoinTable` em `Usuario.abrigos`. A definição exp
 | `StatusAnimal` | `DISPONIVEL`, `EM_TRATAMENTO`, `EM_PROCESSO_ADOCAO`, `ADOTADO` |
 | `StatusSolicitacao` | `PENDENTE`, `EM_ANALISE`, `APROVADA`, `REJEITADA`, `CANCELADA` |
 
-## 11. Segurança e qualidade dos dados
+## 9. Segurança e qualidade dos dados
 
 - O campo `senha_hash` deve armazenar somente o hash da senha, nunca a senha original.
 - Dados pessoais devem ser acessados somente por perfis autorizados e tratados de acordo com a LGPD.
