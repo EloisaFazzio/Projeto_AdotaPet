@@ -20,21 +20,6 @@
 
 **Relacionamentos:** um abrigo pode estar associado a vários animais; possui associação muitos-para-muitos com usuários que atuam como voluntários.
 
-## 4. Usuário — tabela `usuario`
-
-| Campo | Tipo lógico | Obrigatório | Restrições / descrição |
-| --- | --- | --- | --- |
-| `id` | Long / BIGINT | Sim | Chave primária, gerada automaticamente |
-| `nome` | String / VARCHAR(120) | Sim | Nome do usuário |
-| `email` | String / VARCHAR(160) | Sim | E-mail válido e único |
-| `senha_hash` | String / VARCHAR(100) | Sim | Hash da senha; nunca armazenar senha em texto puro |
-| `telefone` | String / VARCHAR(20) | Não | Telefone de contato |
-| `cidade` | String / VARCHAR(80) | Não | Cidade de residência |
-| `perfil` | Enum / VARCHAR(20) | Sim | `ADMIN`, `VOLUNTARIO` ou `ADOTANTE`; persistido como texto |
-| `ativo` | boolean / BOOLEAN | Sim | Indica se a conta está ativa; padrão inicial `true` |
-
-**Relacionamentos:** um usuário adotante pode registrar várias solicitações; um usuário voluntário pode estar vinculado a vários abrigos; usuários também podem aparecer como analistas de solicitações e voluntários em visitas.
-
 ## 2. Animal — tabela `animal`
 
 | Campo | Tipo lógico | Obrigatório | Restrições / descrição |
@@ -77,6 +62,21 @@
 | `veterinario` | String / VARCHAR(120) | Não | Nome ou identificação do veterinário |
 
 **Observação:** a regra de domínio exige que a próxima dose, quando informada, seja posterior à data de aplicação.
+
+## 4. Usuário — tabela `usuario`
+
+| Campo | Tipo lógico | Obrigatório | Restrições / descrição |
+| --- | --- | --- | --- |
+| `id` | Long / BIGINT | Sim | Chave primária, gerada automaticamente |
+| `nome` | String / VARCHAR(120) | Sim | Nome do usuário |
+| `email` | String / VARCHAR(160) | Sim | E-mail válido e único |
+| `senha_hash` | String / VARCHAR(100) | Sim | Hash da senha; nunca armazenar senha em texto puro |
+| `telefone` | String / VARCHAR(20) | Não | Telefone de contato |
+| `cidade` | String / VARCHAR(80) | Não | Cidade de residência |
+| `perfil` | Enum / VARCHAR(20) | Sim | `ADMIN`, `VOLUNTARIO` ou `ADOTANTE`; persistido como texto |
+| `ativo` | boolean / BOOLEAN | Sim | Indica se a conta está ativa; padrão inicial `true` |
+
+**Relacionamentos:** um usuário adotante pode registrar várias solicitações; um usuário voluntário pode estar vinculado a vários abrigos; usuários também podem aparecer como analistas de solicitações e voluntários em visitas.
 
 ## 5. Processo de Adoção — tabela `solicitacao_adocao`
 
