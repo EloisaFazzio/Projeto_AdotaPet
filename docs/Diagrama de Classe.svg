@@ -41,5 +41,5 @@
 <rect class="box" x="40" y="750" width="400" height="95"/><text class="t" x="60" y="777">Perfil</text><text class="p" x="60" y="806">ADMIN · VOLUNTARIO · ADOTANTE</text>
 <rect class="box" x="460" y="750" width="400" height="95"/><text class="t" x="480" y="777">Status do animal</text><text class="p" x="480" y="806">DISPONIVEL · EM_TRATAMENTO · ADOTADO</text>
 <rect class="box" x="880" y="750" width="450" height="95"/><text class="t" x="900" y="777">Status da solicitação</text><text class="p" x="900" y="806">PENDENTE · EM_ANALISE · APROVADA · REJEITADA</text>
-<text class="s" x="700" y="880" text-anchor="middle">Diagrama conceitual. O mapeamento JPA detalha as oito entidades persistidas.</text>
+
 </svg>
