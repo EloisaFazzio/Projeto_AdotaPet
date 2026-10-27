@@ -63,13 +63,11 @@ O modelo prevê oito entidades principais:
 - `Usuario`
 - `Abrigo`
 - `Animal`
-- `Vacina`
 - `VacinacaoAnimal`
-- `SolicitacaoAdocao`
-- `Adocao`
-- `VisitaAcompanhamento`
+- `Processodeadoção`
+- `VisitapósAdoção`
 
-Para facilitar a leitura, o diagrama agrupa visualmente as responsabilidades em seis blocos conceituais: **Abrigo**, **Animal**, **Vacinação do Animal**, **Usuário**, **Processo de Adoção** e **Acompanhamento Pós-Adoção**. Esses grupos não fundem as oito entidades persistidas. `Vacina` e `VacinacaoAnimal` continuam separadas, assim como `SolicitacaoAdocao` e `Adocao`. Os estados de referência incluem `DISPONIVEL`, `EM_TRATAMENTO`, `EM_PROCESSO_ADOCAO` e `ADOTADO` para animais; e `PENDENTE`, `EM_ANALISE`, `APROVADA`, `REJEITADA` e `CANCELADA` para solicitações.
+Para facilitar a leitura, o diagrama agrupa visualmente as responsabilidades em seis blocos conceituais: **Abrigo**, **Animal**, **Vacinação do Animal**, **Usuário**, **Processo de Adoção** e **Acompanhamento Pós-Adoção**. 
 
 ## 📋 Regras de negócio consideradas
 
