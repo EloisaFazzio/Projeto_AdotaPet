@@ -1,4 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { mkdirSync } from 'node:fs';
+
+const pastaCapturas = 'test-results/capturas';
+mkdirSync(pastaCapturas, { recursive: true });
 
 // Os testes usam um servidor local com H2 temporário e contas sem dados reais.
 // O backend é iniciado pelo GitHub Actions com conta ADMIN gerada para a execução.
@@ -10,6 +14,7 @@ test('site público abre, oferece filtros e navegação responsiva', async ({ pa
   await expect(page).toHaveTitle(/AdotaPet/);
   await expect(page.locator('#filter-form')).toBeVisible();
   await expect(page.locator('#btn-account')).toBeVisible();
+  await page.screenshot({ path: pastaCapturas + '/site-desktop.png', fullPage: true, animations: 'disabled' });
 
   // O catálogo só mostra animais cadastrados: não inventamos fichas de pets.
   await expect(page.locator('#catalog-feedback')).not.toContainText('Carregando');
@@ -24,6 +29,7 @@ test('site público abre, oferece filtros e navegação responsiva', async ({ pa
   await expect(page.locator('#main-menu a[href="#animais"]')).toBeVisible();
   await page.locator('#menu-toggle').click();
   await expect(page.locator('#main-menu')).toBeHidden();
+  await page.screenshot({ path: pastaCapturas + '/site-mobile.png', fullPage: true, animations: 'disabled' });
 });
 
 test('painel não revela dados administrativos a visitante sem login', async ({ page }) => {
@@ -77,6 +83,7 @@ test('adotante solicita e ONG formaliza adoção pelo navegador', async ({ page 
   await page.locator('#operation-form button[type="submit"]').click();
   await expect(page.locator('#form-dialog')).toBeHidden();
   await expect(page.locator('#panel-content')).toContainText(animal);
+  await page.screenshot({ path: pastaCapturas + '/painel-ong-animais.png', fullPage: true, animations: 'disabled' });
 
   // Volta à home; encerra sessão do ADMIN.
   await page.goto('/');
