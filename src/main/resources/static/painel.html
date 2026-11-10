@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#083c34">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Painel da ONG — AdotaPet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/painel.css">
+  <script src="/painel.js" defer></script>
+</head>
+<body class="dashboard-body">
+  <header class="dashboard-topbar">
+    <div class="container dashboard-top-content">
+      <a class="logo" href="/" aria-label="Página inicial do AdotaPet"><span class="logo-icon">🐾</span> adota<span>pet</span><span class="logo-dot">.</span></a>
+      <div class="dashboard-top-actions">
+        <span class="dashboard-user" id="current-user">Verificando acesso...</span>
+        <a class="btn btn-outline btn-small" href="/">Voltar ao site</a>
+        <button class="btn btn-outline btn-small" id="logout" type="button">Sair</button>
+      </div>
+    </div>
+  </header>
+  <div class="container panel-shell">
+    <aside class="panel-sidebar">
+      <div class="panel-sidebar-heading"><small>PAINEL DA ONG</small><strong>Gestão AdotaPet</strong></div>
+      <nav aria-label="Seções do painel" id="panel-nav">
+        <button type="button" data-view="resumo" class="active">⌂ <span>Visão geral</span></button>
+        <button type="button" data-view="animais">🐾 <span>Animais</span></button>
+        <button type="button" data-view="solicitacoes">♡ <span>Solicitações</span></button>
+        <button type="button" data-view="vacinas">✚ <span>Vacinas</span></button>
+        <button type="button" data-view="aplicacoes">◷ <span>Vacinações</span></button>
+        <button type="button" data-view="abrigos">⌂ <span>Abrigos</span></button>
+        <button type="button" data-view="usuarios" data-admin-only>♙ <span>Usuários</span></button>
+        <button type="button" data-view="relatorios" data-admin-only>▥ <span>Relatórios</span></button>
+      </nav>
+      <div class="sidebar-tip"><span>✳</span><p>Transparência e cuidado em cada etapa da adoção.</p></div>
+    </aside>
+    <main class="panel-main" id="panel-main">
+      <div class="panel-heading">
+        <div><span class="eyebrow">SISTEMA DE GESTÃO</span><h1 id="view-title">Visão geral</h1><p id="view-description">Informações atualizadas pela API do AdotaPet.</p></div>
+        <div id="view-actions"></div>
+      </div>
+      <div class="panel-alert" id="panel-alert" role="alert" hidden></div>
+      <div class="panel-content" id="panel-content" aria-live="polite"><p class="panel-placeholder">Carregando informações...</p></div>
+    </main>
+  </div>
+  <footer class="dashboard-footer"><div class="container">© <span id="year"></span> AdotaPet · Projeto acadêmico de Engenharia de Software · Dados operacionais restritos à equipe autorizada.</div></footer>
+  <dialog class="panel-dialog" id="form-dialog" aria-labelledby="form-title">
+    <button type="button" class="dialog-close" id="close-dialog" aria-label="Fechar">×</button>
+    <div id="form-container"></div>
+  </dialog>
+  <div id="panel-toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
