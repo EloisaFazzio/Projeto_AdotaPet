@@ -1,5 +1,7 @@
 name: Frontend — verificação
 on:
+  push:
+    branches: [feat/painel-ong-vacinas-relatorios]
   pull_request:
     branches: [main, feat/frontend-integrado-adotapet]
 jobs:
