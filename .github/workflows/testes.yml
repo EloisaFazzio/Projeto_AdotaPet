@@ -1,7 +1,7 @@
 name: Backend Java — testes
 on:
   push:
-    branches: [main]
+    branches: [main, feat/api-catalogo-autenticacao-adocao]
   pull_request:
     branches: [main]
 jobs:
