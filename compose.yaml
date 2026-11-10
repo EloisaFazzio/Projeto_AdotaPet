@@ -1,0 +1,37 @@
+# Somente homologação local (não é deploy de produção).
+services:
+  banco:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: adotapet
+      POSTGRES_USER: ${DB_USER:?Configure DB_USER no .env}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Configure DB_PASSWORD no .env}
+    volumes:
+      - dados_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  aplicacao:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      banco:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_URL: jdbc:postgresql://banco:5432/adotapet
+      DB_USER: ${DB_USER:?Configure DB_USER no .env}
+      DB_PASSWORD: ${DB_PASSWORD:?Configure DB_PASSWORD no .env}
+      JWT_SECRET: ${JWT_SECRET:?Configure JWT_SECRET no .env}
+      ADOTAPET_ADMIN_EMAIL: ${ADOTAPET_ADMIN_EMAIL:?Configure ADOTAPET_ADMIN_EMAIL no .env}
+      ADOTAPET_ADMIN_PASSWORD: ${ADOTAPET_ADMIN_PASSWORD:?Configure ADOTAPET_ADMIN_PASSWORD no .env}
+      ADOTAPET_ADMIN_NAME: ${ADOTAPET_ADMIN_NAME:-Administrador}
+
+volumes:
+  dados_postgres:
