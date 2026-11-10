@@ -24,9 +24,14 @@ import org.springframework.web.server.ResponseStatusException;
 public class AnimalController {
     private final AnimalRepository animais;
     private final AbrigoRepository abrigos;
+    private final SolicitacaoAdocaoRepository solicitacoes;
+    private final VacinacaoAnimalRepository vacinacoes;
 
-    public AnimalController(AnimalRepository animais, AbrigoRepository abrigos) {
+    public AnimalController(AnimalRepository animais, AbrigoRepository abrigos,
+                            SolicitacaoAdocaoRepository solicitacoes,
+                            VacinacaoAnimalRepository vacinacoes) {
         this.animais = animais; this.abrigos = abrigos;
+        this.solicitacoes = solicitacoes; this.vacinacoes = vacinacoes;
     }
 
     public record AnimalResumo(Long id, String nome, Especie especie, String raca, Sexo sexo, Porte porte,
@@ -118,8 +123,8 @@ public class AnimalController {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Animal não encontrado."));
         if (animal.getStatus() == StatusAnimal.ADOTADO
                 || animal.getStatus() == StatusAnimal.EM_PROCESSO_ADOCAO
-                || !animal.getSolicitacoes().isEmpty()
-                || !animal.getVacinacoes().isEmpty()) {
+                || solicitacoes.existsByAnimalId(id)
+                || vacinacoes.existsByAnimalId(id)) {
             throw new IllegalStateException("Não é possível remover um animal com histórico de adoção ou vacinação.");
         }
         animais.delete(animal);
