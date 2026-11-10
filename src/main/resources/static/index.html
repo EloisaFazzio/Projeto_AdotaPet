@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AdotaPet: encontre animais disponíveis e acompanhe sua solicitação de adoção responsável.">
+  <meta name="theme-color" content="#083c34">
+  <title>AdotaPet — encontros que mudam vidas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="announcement"><span>🐾</span> Um lar transforma uma história. A adoção é um compromisso para toda a vida.</div>
+  <header class="site-header">
+    <div class="container navigation">
+      <a class="logo" href="#inicio" aria-label="AdotaPet, página inicial"><span class="logo-icon">🐾</span> adota<span>pet</span><span class="logo-dot">.</span></a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menu">☰</button>
+      <nav class="main-menu" id="main-menu" aria-label="Navegação principal">
+        <a href="#animais">Encontrar um pet</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#sobre">Nossa missão</a>
+        <button class="nav-link" id="btn-requests" type="button" hidden>Meus pedidos</button>
+        <button class="nav-link" id="btn-staff" type="button" hidden>Área da ONG</button>
+      </nav>
+      <div class="account-actions">
+        <span id="account-name" class="account-name" hidden></span>
+        <button class="btn btn-outline btn-small" id="btn-account" type="button">Entrar / Criar conta</button>
+        <button class="btn btn-outline btn-small" id="btn-logout" type="button" hidden>Sair</button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-paw">✳</span> BEM-VINDO AO ADOTAPET</div>
+          <h1>Um novo amigo.<br><em>Um amor</em> para a vida inteira.</h1>
+          <p>Conectamos animais acolhidos por ONGs a pessoas prontas para oferecer carinho, cuidado e um lar seguro.</p>
+          <div class="hero-actions">
+            <a class="btn btn-lime" href="#animais">Conhecer os animais <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-plain" href="#como-funciona">Como adotar <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-note"><span class="star">✦</span><span>Adoção responsável, transparência e cuidado em cada etapa.</span></div>
+        </div>
+        <div class="hero-art" aria-label="Imagem ilustrativa de um animal de estimação">
+          <div class="hero-shape"></div>
+          <img class="hero-photo" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Fotografia ilustrativa de cachorro. Não representa um animal cadastrado." loading="eager">
+          <div class="floating-pill pill-top">♥ <strong>Lar com amor</strong></div>
+          <div class="floating-pill pill-bottom"><span>🐾</span> Seu próximo amigo pode estar aqui</div>
+          <div class="photo-credit">Foto ilustrativa</div>
+          <span class="decor star-one">✳</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="impact">
+      <div class="container impact-grid">
+        <div class="impact-intro"><span class="eyebrow eyebrow-light">NOSSA REDE</span><h2>Pequenos encontros.<br><strong>Grandes histórias.</strong></h2></div>
+        <div class="impact-stat"><span class="impact-value" id="count-animals">—</span><span>animais disponíveis cadastrados</span></div>
+        <div class="impact-stat"><span class="impact-value" id="count-shelters">—</span><span>abrigos cadastrados</span></div>
+        <div class="impact-tag">Cuidar também é<br><b>um ato de amor.</b> <span>♡</span></div>
+      </div>
+    </section>
+
+    <section class="section catalog-section" id="animais">
+      <div class="container">
+        <div class="section-heading center"><span class="eyebrow">ENCONTRE UM AMIGO</span><h2>Descubra seu novo <span>melhor amigo!</span></h2><p>Veja os animais realmente cadastrados e disponíveis para adoção.</p></div>
+        <form id="filter-form" class="filters" aria-label="Filtrar animais">
+          <label><span>Espécie</span><select id="filter-species"><option value="">Todos</option><option value="CAO">Cachorros</option><option value="GATO">Gatos</option><option value="OUTRA">Outros</option></select></label>
+          <label><span>Porte</span><select id="filter-size"><option value="">Todos</option><option value="PEQUENO">Pequeno</option><option value="MEDIO">Médio</option><option value="GRANDE">Grande</option></select></label>
+          <label><span>Sexo</span><select id="filter-sex"><option value="">Todos</option><option value="MACHO">Macho</option><option value="FEMEA">Fêmea</option></select></label>
+          <label class="filter-city"><span>Cidade</span><input id="filter-city" type="search" placeholder="Ex.: Jaraguá do Sul" maxlength="80"></label>
+          <button type="button" class="clear-filters" id="btn-clear">Limpar filtros ↺</button>
+        </form>
+        <div id="catalog-feedback" class="feedback" role="status" aria-live="polite">Carregando animais disponíveis...</div>
+        <div id="pet-grid" class="pet-grid" aria-live="polite"></div>
+        <div class="pagination" id="pagination" hidden>
+          <button type="button" class="btn btn-outline" id="prev-page">← Anterior</button>
+          <span id="page-label" aria-live="polite"></span>
+          <button type="button" class="btn btn-outline" id="next-page">Próximo →</button>
+        </div>
+        <p class="catalog-disclaimer">As ilustrações dos cartões indicam a espécie; fotos individuais serão disponibilizadas quando cadastradas pela ONG.</p>
+      </div>
+    </section>
+
+    <section class="section steps-section" id="como-funciona">
+      <div class="container">
+        <div class="section-heading"><span class="eyebrow">SIMPLES, SEGURO E COM CARINHO</span><h2>Como funciona<br><span>a adoção?</span></h2><p>Da primeira conexão ao acompanhamento pós-adoção, cada passo importa.</p></div>
+        <div class="steps-grid">
+          <article class="step"><span class="step-number">01</span><span class="step-icon">🔎</span><h3>Encontre seu amigo</h3><p>Explore os animais disponíveis e escolha aquele que combina com sua rotina.</p></article>
+          <article class="step"><span class="step-number">02</span><span class="step-icon">💌</span><h3>Envie sua solicitação</h3><p>Crie sua conta de adotante e conte por que deseja oferecer um lar.</p></article>
+          <article class="step"><span class="step-number">03</span><span class="step-icon">🫶</span><h3>Análise responsável</h3><p>A equipe da ONG avalia o pedido e registra o resultado com transparência.</p></article>
+          <article class="step"><span class="step-number">04</span><span class="step-icon">🏡</span><h3>Um novo começo</h3><p>Após a aprovação e formalização, o cuidado continua no acompanhamento.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section mission-section" id="sobre">
+      <div class="container mission-grid">
+        <div class="mission-visual"><img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Fotografia ilustrativa de cachorro" loading="lazy"><div class="mission-sticker">Cada patinha merece <b>um lar! ♡</b></div><span class="mission-credit">Foto ilustrativa</span></div>
+        <div class="mission-copy"><span class="eyebrow">MAIS QUE UM SITE</span><h2>Acreditamos em<br><span>segundas chances.</span></h2><p>O AdotaPet ajuda organizações de proteção animal a organizar cadastros, pedidos, históricos de vacinação e o acompanhamento de animais adotados.</p><div class="mission-line"><span>✓</span><div><b>Informações organizadas</b><small>Mais transparência para a equipe da ONG e para quem quer adotar.</small></div></div><div class="mission-line"><span>✓</span><div><b>Adoção com responsabilidade</b><small>Solicitações acompanhadas e avaliadas por pessoas autorizadas.</small></div></div><div class="mission-line"><span>✓</span><div><b>Cuidado que continua</b><small>O bem-estar dos animais permanece importante após a adoção.</small></div></div><a class="btn btn-deep" href="#animais">Conhecer animais ↗</a></div>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="container"><div class="cta-card"><div><span class="eyebrow eyebrow-light">JUNTOS PELO BEM-ESTAR ANIMAL</span><h2>Existe espaço para mais<br><em>amor</em> na sua história?</h2><p>Um gesto de cuidado pode transformar duas vidas.</p></div><a class="btn btn-lime" href="#animais">Encontre um amigo ↗</a><div class="cta-paw">🐾</div></div></div>
+    </section>
+  </main>
+  <footer><div class="container footer-grid"><div><a class="logo footer-logo" href="#inicio"><span class="logo-icon">🐾</span> adota<span>pet</span><span class="logo-dot">.</span></a><p>Uma plataforma de adoção de animais desenvolvida para apoiar ONGs e a adoção responsável.</p></div><div><h3>Explore</h3><a href="#animais">Animais disponíveis</a><a href="#como-funciona">Etapas da adoção</a><a href="#sobre">Nossa missão</a></div><div><h3>Projeto acadêmico</h3><p>Engenharia de Software · Católica de Santa Catarina</p><a href="https://github.com/EloisaFazzio/Projeto_AdotaPet" target="_blank" rel="noopener noreferrer">Repositório no GitHub ↗</a></div></div><div class="container footer-bottom">© <span id="year"></span> AdotaPet · Com carinho, responsabilidade e respeito aos animais.</div></footer>
+  <dialog id="app-dialog" class="app-dialog" aria-labelledby="dialog-title"><button type="button" class="dialog-close" id="dialog-close" aria-label="Fechar janela">×</button><div id="dialog-content"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
