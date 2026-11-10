@@ -6,6 +6,19 @@ mkdirSync(pastaCapturas, { recursive: true });
 
 // Os testes usam um servidor local com H2 temporário e contas sem dados reais.
 // O backend é iniciado pelo GitHub Actions com conta ADMIN gerada para a execução.
+async function prepararFotoAbaixoDaDobra(page) {
+  // O scroll simula a visita real e inicia o download da foto com loading=lazy.
+  const imagem = page.locator('.mission-visual img');
+  await imagem.scrollIntoViewIfNeeded();
+  await imagem.evaluate(img => new Promise(resolve => {
+    if (img.complete) return resolve();
+    img.addEventListener('load', resolve, { once: true });
+    img.addEventListener('error', resolve, { once: true });
+    setTimeout(resolve, 2500); // a foto externa é ilustrativa e não deve travar a CI
+  }));
+  await page.locator('#inicio').scrollIntoViewIfNeeded();
+}
+
 const adminEmail = process.env.ADOTAPET_ADMIN_EMAIL;
 const adminPassword = process.env.ADOTAPET_ADMIN_PASSWORD;
 
@@ -14,6 +27,7 @@ test('site público abre, oferece filtros e navegação responsiva', async ({ pa
   await expect(page).toHaveTitle(/AdotaPet/);
   await expect(page.locator('#filter-form')).toBeVisible();
   await expect(page.locator('#btn-account')).toBeVisible();
+  await prepararFotoAbaixoDaDobra(page);
   await page.screenshot({ path: pastaCapturas + '/site-desktop.png', fullPage: true, animations: 'disabled' });
 
   // O catálogo só mostra animais cadastrados: não inventamos fichas de pets.
@@ -29,6 +43,7 @@ test('site público abre, oferece filtros e navegação responsiva', async ({ pa
   await expect(page.locator('#main-menu a[href="#animais"]')).toBeVisible();
   await page.locator('#menu-toggle').click();
   await expect(page.locator('#main-menu')).toBeHidden();
+  await prepararFotoAbaixoDaDobra(page);
   await page.screenshot({ path: pastaCapturas + '/site-mobile.png', fullPage: true, animations: 'disabled' });
 });
 
