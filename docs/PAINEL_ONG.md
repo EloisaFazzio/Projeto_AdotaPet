@@ -10,22 +10,22 @@ Esta interface está em um Pull Request empilhado e depende de outros incremento
 4. PR #10 — site público integrado à API;
 5. PR #15 — painel da ONG.
 
-Após a integração de cada PR pai, atualize a base dos PRs dependentes para \`main\` e aguarde a nova execução da CI. **Não integre o protótipo antigo do PR #1 em paralelo sem resolver os conflitos.**
+Após a integração de cada PR pai, atualize a base dos PRs dependentes para `main` e aguarde a nova execução da CI. **Não integre o protótipo antigo do PR #1 em paralelo sem resolver os conflitos.**
 
 ## Executar o projeto
 
 Pré-requisitos: Java 17 e Maven. Configure uma conta inicial em variáveis de ambiente **sem publicar senhas**, por exemplo no terminal PowerShell (substitua pelos seus valores privados):
 
-\`\`\`powershell
+```powershell
 $env:ADOTAPET_ADMIN_EMAIL = "admin@exemplo.com"
 $env:ADOTAPET_ADMIN_PASSWORD = "<defina-uma-senha-forte-com-12-ou-mais-caracteres>"
 $env:ADOTAPET_ADMIN_NAME = "Administradora"
 mvn spring-boot:run
-\`\`\`
+```
 
-Esses valores são **exemplos**, não credenciais reais. Em produção também defina \`JWT_SECRET\` (Base64 de 32 ou mais bytes) e use HTTPS + banco PostgreSQL com migrações versionadas.
+Esses valores são **exemplos**, não credenciais reais. Em produção também defina `JWT_SECRET` (Base64 de 32 ou mais bytes) e use HTTPS + banco PostgreSQL com migrações versionadas.
 
-Acesse \`http://localhost:8080\`, faça login como ADMIN e clique em **Área da ONG** para abrir \`/painel.html\`.
+Acesse `http://localhost:8080`, faça login como ADMIN e clique em **Área da ONG** para abrir `/painel.html`.
 
 ## Fluxo de uso recomendado
 
@@ -42,7 +42,7 @@ Acesse \`http://localhost:8080\`, faça login como ADMIN e clique em **Área da 
 ## Proteções e limitações conhecidas
 
 - Apenas o **backend** efetivamente autoriza os acessos; ocultar uma aba no frontend não substitui o controle de permissões.
-- O frontend usa \`sessionStorage\` para a sessão da aba; uma estratégia mais segura de armazenamento/renovação de tokens deve ser avaliada antes da produção (Issue #13).
+- O frontend usa `sessionStorage` para a sessão da aba; uma estratégia mais segura de armazenamento/renovação de tokens deve ser avaliada antes da produção (Issue #13).
 - Fotos da página pública são apenas ilustrações; o modelo JPA acadêmico ainda não persiste mídia de animais.
 - O painel exibe até **36 animais por status**; criar consulta paginada própria para grandes volumes.
 - A listagem de solicitações e adoções ainda não é paginada.
@@ -51,4 +51,4 @@ Acesse \`http://localhost:8080\`, faça login como ADMIN e clique em **Área da 
 
 ## Endpoints de apoio
 
-Em desenvolvimento, a documentação OpenAPI está acessível em \`/swagger-ui.html\` após integração do PR #17. Use o token obtido em \`POST /api/auth/login\` para testar rotas protegidas.
+Em desenvolvimento, a documentação OpenAPI está acessível em `/swagger-ui.html` após integração do PR #17. Use o token obtido em `POST /api/auth/login` para testar rotas protegidas.
