@@ -109,6 +109,22 @@ O script smoke_fullstack.py exige um servidor já iniciado em http://localhost:8
 
 No GitHub Actions, a pipeline de homologação realiza os testes Maven e JavaScript e sobe o servidor para executar o teste HTTP com credenciais efêmeras geradas pela própria pipeline.
 
-## 8. Limitações importantes
+## 8. Testes automatizados de navegador
+
+A branch de homologação possui testes end-to-end com Playwright e Chromium. Eles verificam a página inicial, a navegação em tela pequena, o bloqueio do painel para visitantes e o fluxo de cadastro, solicitação e formalização de adoção pela interface.
+
+Para executar no Windows, instale Node.js e npm, inicie o servidor Java e execute:
+
+~~~powershell
+npm install
+npx playwright install chromium
+npm run test:e2e
+~~~
+
+O teste completo de gestão usa as mesmas variáveis de ambiente do administrador de homologação (`ADOTAPET_ADMIN_EMAIL` e `ADOTAPET_ADMIN_PASSWORD`). Se essas variáveis não estiverem configuradas no terminal, apenas o cenário de gestão será ignorado; não use contas reais ou de produção.
+
+**Capturas do design:** após uma homologação bem-sucedida no GitHub, acesse **Actions → AdotaPet — homologação full stack → última execução aprovada → Artifacts → adotapet-capturas-navegador**. O pacote contém screenshots do site desktop, do site mobile e da tela de animais do painel. Os cadastros usados são fictícios, gerados pelo teste.
+
+## 9. Limitações importantes
 
 Este ambiente **não é um deploy de produção**. Ainda faltam revisão LGPD, HTTPS na internet, migrações versionadas para PostgreSQL (o projeto usa ddl-auto=update no momento), limites de tentativas de login, testes em navegador com vários dispositivos, armazenamento seguro de fotos reais e avaliações de desempenho. Essas tarefas estão nas Issues #13 e #18. Não exponha a porta 8080 em uma rede pública sem essas medidas.
