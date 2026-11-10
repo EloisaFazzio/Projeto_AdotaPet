@@ -1,0 +1,30 @@
+name: Frontend — verificação
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  verificar-interface:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar sintaxe JavaScript
+        run: node --check src/main/resources/static/app.js
+      - name: Conferir arquivos e elementos essenciais da interface
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          raiz = Path('src/main/resources/static')
+          html = (raiz / 'index.html').read_text()
+          js = (raiz / 'app.js').read_text()
+          css = (raiz / 'styles.css').read_text()
+          for id in ['pet-grid', 'filter-form', 'app-dialog', 'btn-account',
+                     'btn-requests', 'btn-staff']:
+              assert f'id="{id}"' in html, f'Elemento ausente: {id}'
+          for endpoint in ['/api/animais', '/api/abrigos', '/api/auth/',
+                           '/api/solicitacoes']:
+              assert endpoint in js, f'Endpoint não referenciado: {endpoint}'
+          assert '--lime' in css and '--deep' in css
+          print('Verificação estática da interface concluída')
+          PY
