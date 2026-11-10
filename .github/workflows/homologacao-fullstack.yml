@@ -73,6 +73,14 @@ jobs:
           fi
           python3 scripts/smoke_fullstack.py
           npx playwright test
+      - name: Publicar capturas das telas para revisão visual
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: adotapet-capturas-navegador
+          path: test-results/capturas/
+          if-no-files-found: error
+          retention-days: 14
       - name: Anexar evidências do navegador se falhar
         if: failure()
         uses: actions/upload-artifact@v4
