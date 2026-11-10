@@ -29,7 +29,7 @@ test('site público abre, oferece filtros e navegação responsiva', async ({ pa
 test('painel não revela dados administrativos a visitante sem login', async ({ page }) => {
   await page.goto('/painel.html');
   await expect(page.locator('#panel-content')).toContainText('Acesso restrito');
-  await expect(page.getByRole('link', { name: 'Voltar ao site' })).toBeVisible();
+  await expect(page.locator('#panel-content').getByRole('link', { name: 'Voltar ao site' })).toBeVisible();
 });
 
 test('adotante solicita e ONG formaliza adoção pelo navegador', async ({ page }) => {
