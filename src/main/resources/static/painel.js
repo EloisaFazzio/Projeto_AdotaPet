@@ -91,13 +91,14 @@ const titles={
   resumo:["Visão geral","Acompanhe a rotina da ONG com informações do banco de dados."],
   animais:["Animais","Consulte os animais por situação e registre novas entradas."],
   solicitacoes:["Solicitações","Analise pedidos e formalize adoções com responsabilidade."],
+  adocoes:["Adoções","Consulte os processos formalizados e o acompanhamento pós-adoção."],
   vacinas:["Vacinas","Gerencie o catálogo de vacinas conforme a espécie."],
   aplicacoes:["Vacinações","Registre aplicações, consulte o histórico e acompanhe doses vencidas."],
   abrigos:["Abrigos","Cadastre abrigos, atualize informações e organize voluntários."],
   usuarios:["Usuários","Administre perfis e desative contas mantendo o histórico."],
   relatorios:["Relatórios","Consulte os resultados reais de adoção e saúde animal."]
 };
-const views={resumo,animais,solicitacoes,vacinas,aplicacoes,abrigos,usuarios,relatorios};
+const views={resumo,animais,solicitacoes,adocoes,vacinas,aplicacoes,abrigos,usuarios,relatorios};
 async function render() {
   if(!equipe()) {
     $("panel-content").innerHTML=sec("Acesso restrito",
@@ -181,32 +182,37 @@ async function todosAnimais() {
 async function animais() {
   const dados=await todosAnimais();
   if(dados.excedidos.length) toast("Exibidos até 36 animais por status. A paginação administrativa ainda será ampliada.");
-  if(admin()||sessao.usuario.perfil==="VOLUNTARIO") action("+ Cadastrar animal",()=>formAnimal());
+  action("+ Cadastrar animal",()=>formAnimal());
   $("panel-content").innerHTML=sec("Animais registrados",
-    '<p class="panel-muted">É possível visualizar os principais status. O cadastro completo de animais também fica disponível na página inicial da ONG.</p>')+
-    table(["Nome","Espécie/porte","Abrigo/cidade","Status","Ação"],
+    '<p class="panel-muted">Os animais com histórico de adoção ou vacinação não podem ser excluídos. O status é gerenciado pelo fluxo de adoção.</p>')+
+    table(["Nome","Espécie/porte","Abrigo/cidade","Status","Ações"],
       dados.animais.map(a=>row([
         "<b>"+esc(a.nome)+"</b>",
         esc(label(a.especie))+" · "+esc(label(a.porte)),
         esc(a.abrigo)+"<span class='sub'>"+esc(a.cidade)+"</span>",
         badge(a.status),
-        btn("Vacinar","vacinar",a.id)
+        '<div class="table-actions">'+btn("Editar","editar-animal",a.id)+
+        btn("Vacinar","vacinar",a.id)+btn("Excluir","excluir-animal",a.id,"action-danger")+'</div>'
       ])));
 }
-async function formAnimal() {
-  const abrigos=await api(f("abrigos"));
+async function formAnimal(id) {
+  const [abrigos,a] = await Promise.all([
+    api(f("abrigos")),
+    id ? api(f("animais/"+id)) : Promise.resolve(null)
+  ]);
   if(!abrigos.length){toast("Cadastre um abrigo antes de cadastrar um animal.");return;}
-  openForm("Cadastrar animal",
-    '<div class="panel-form-row">'+field("nome","Nome", "text",{required:true,maxlength:80})+
-    select("abrigoId","Abrigo",abrigos.map(a=>[a.id,a.nome+" — "+a.cidade]))+'</div>'+
-    '<div class="panel-form-row">'+select("especie","Espécie",[["CAO","Cachorro"],["GATO","Gato"],["OUTRA","Outro"]])+
-    select("sexo","Sexo",[["FEMEA","Fêmea"],["MACHO","Macho"]])+'</div>'+
-    '<div class="panel-form-row">'+select("porte","Porte",[["PEQUENO","Pequeno"],["MEDIO","Médio"],["GRANDE","Grande"]])+
-    field("dataNascimento","Data de nascimento","date")+'</div>'+
-    field("raca","Raça (opcional)")+
-    '<label><input type="checkbox" name="castrado" value="true"> Castrado</label>'+
-    '<div class="panel-field"><label for="f-descricao">Descrição (opcional)</label><textarea name="descricao" id="f-descricao" maxlength="1000"></textarea></div>',
-    d=>api(f("animais"),{method:"POST",body:JSON.stringify({
+  openForm(id ? "Editar animal" : "Cadastrar animal",
+    '<div class="panel-form-row">'+field("nome","Nome", "text",{required:true,maxlength:80,value:a?.nome})+
+    select("abrigoId","Abrigo",abrigos.map(b=>[b.id,b.nome+" — "+b.cidade]),a?.abrigoId)+'</div>'+
+    '<div class="panel-form-row">'+select("especie","Espécie",[["CAO","Cachorro"],["GATO","Gato"],["OUTRA","Outro"]],a?.especie)+
+    select("sexo","Sexo",[["FEMEA","Fêmea"],["MACHO","Macho"]],a?.sexo)+'</div>'+
+    '<div class="panel-form-row">'+select("porte","Porte",[["PEQUENO","Pequeno"],["MEDIO","Médio"],["GRANDE","Grande"]],a?.porte)+
+    field("dataNascimento","Data de nascimento","date",{value:a?.dataNascimento})+'</div>'+
+    field("raca","Raça (opcional)","text",{maxlength:80,value:a?.raca})+
+    '<label><input type="checkbox" name="castrado" value="true"'+(a?.castrado?' checked':'')+'> Castrado</label>'+
+    '<div class="panel-field"><label for="f-descricao">Descrição (opcional)</label><textarea name="descricao" id="f-descricao" maxlength="1000">'+
+    esc(a?.descricao||"")+'</textarea></div>',
+    d=>api(f("animais"+(id?"/"+id:"")),{method:id?"PUT":"POST",body:JSON.stringify({
       nome:d.nome,abrigoId:Number(d.abrigoId),especie:d.especie,sexo:d.sexo,
       porte:d.porte,dataNascimento:d.dataNascimento||null,raca:d.raca||null,
       castrado:d.castrado==="true",descricao:d.descricao||null
@@ -234,6 +240,44 @@ async function solicitacoes() {
       '<div class="table-actions">'+
       (admin() ? '' : '<button type="button" class="btn btn-outline" data-open="visita">Registrar visita</button>')+
       '<button type="button" class="btn btn-outline" data-open="historico-visitas">Consultar visitas</button></div>');
+}
+async function adocoes() {
+  const lista=await api(f("adocoes"));
+  function cards(itens) {
+    return table(["ID","Animal","Data da adoção","Termo","Ações"],
+      itens.map(a=>row([
+        "<b>#"+Number(a.id)+"</b><span class='sub'>Solicitação #"+Number(a.solicitacaoId)+"</span>",
+        esc(a.animal),
+        esc(a.dataAdocao),
+        badge(a.termoAssinado?"ASSINADO":"NÃO ASSINADO"),
+        '<div class="table-actions">'+
+        btn("Visitas","visitas-adocao",a.id)+
+        (admin()?"":btn("Registrar visita","visitar-adocao",a.id))+'</div>'
+      ])));
+  }
+  $("panel-content").innerHTML=sec("Consultar adoções",
+    '<p class="panel-muted">Somente adoções formalizadas aparecem nesta lista. Filtre por intervalo, quando necessário.</p>'+
+    '<form class="inline-filters" id="adoption-period">'+
+    field("de","Data inicial","date")+field("ate","Data final","date")+
+    '<button class="btn btn-outline" type="submit">Filtrar</button>'+
+    '<button class="btn btn-outline" type="reset" id="adoption-reset">Limpar</button></form>')+
+    '<div id="adoption-results">'+cards(lista)+'</div>';
+  $("adoption-period").addEventListener("submit",async e=>{
+    e.preventDefault();
+    const d=new FormData(e.target);
+    if((!!d.get("de")) !== (!!d.get("ate"))) {
+      error(new Error("Informe a data inicial e a final, ou deixe ambas vazias."));
+      return;
+    }
+    clearError();
+    try {
+      const params=new URLSearchParams();
+      if(d.get("de")) {params.set("de",d.get("de"));params.set("ate",d.get("ate"));}
+      const resultado=await api(f("adocoes")+(params.size?"?"+params.toString():""));
+      $("adoption-results").innerHTML=cards(resultado);
+    } catch(err) {error(err);}
+  });
+  $("adoption-reset").addEventListener("click",()=>{$("adoption-results").innerHTML=cards(lista);clearError();});
 }
 async function vacinas() {
   const dados=await api(f("vacinas"));
@@ -444,9 +488,9 @@ function formFormalizar(id) {
       return {message:"Adoção #"+resultado.id+" formalizada. Guarde esse ID para registrar visitas."};
     });
 }
-function formVisita() {
+function formVisita(adocaoId) {
   openForm("Registrar visita pós-adoção",
-    field("adocaoId","ID da adoção","number",{required:true,min:1})+
+    field("adocaoId","ID da adoção","number",{required:true,min:1,value:adocaoId||""})+
     field("dataVisita","Data da visita","date",{required:true,value:hojeISO()})+
     textArea("observacoes","Observações da visita")+
     '<label><input type="checkbox" name="animalBemCuidado" checked value="true"> O animal está bem cuidado.</label>',
@@ -455,9 +499,9 @@ function formVisita() {
         observacoes:d.observacoes.trim(),animalBemCuidado:d.animalBemCuidado==="true"})
     }));
 }
-function formHistoricoVisitas() {
+function formHistoricoVisitas(adocaoId) {
   openForm("Consultar visitas",
-    field("adocaoId","ID da adoção","number",{required:true,min:1}),
+    field("adocaoId","ID da adoção","number",{required:true,min:1,value:adocaoId||""}),
     async d=>{
       const dados=await api(f("adocoes/"+Number(d.adocaoId)+"/visitas"));
       $("panel-content").insertAdjacentHTML("afterbegin",sec("Histórico da adoção #"+Number(d.adocaoId),
@@ -489,6 +533,10 @@ $("panel-content").addEventListener("click",async e=>{
   const id=Number(b.dataset.id);
   try {
     switch(b.dataset.action) {
+      case "editar-animal": return formAnimal(id);
+      case "excluir-animal": return deletar("animais",id,"Excluir este animal? Se houver vacinação ou solicitações, o backend impedirá a exclusão.");
+      case "visitas-adocao": return formHistoricoVisitas(id);
+      case "visitar-adocao": return formVisita(id);
       case "vacinar": return formAplicacao(id);
       case "analisar":
         if(confirm("Iniciar análise desta solicitação?")) {
