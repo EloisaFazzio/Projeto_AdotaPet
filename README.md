@@ -6,9 +6,9 @@ O **AdotaPet** é um projeto acadêmico de Engenharia de Software desenvolvido p
 
 ## 📌 Status do projeto
 
-**Etapa atual:** implementação incremental full stack proposta nos Pull Requests #9 (API) e #10 (interface).
+**Etapa atual:** homologação da versão integrada no **[Pull Request #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20)**; os PRs funcionais permanecem independentes e a branch `main` não foi alterada.
 
-O repositório mantém oito entidades JPA e os repositórios correspondentes. A evolução de API REST e frontend está em branches separadas para revisão. Consulte `docs/IMPLEMENTACAO_FULLSTACK.md` para os endpoints implementados e as funcionalidades ainda em desenvolvimento.
+A branch `feat/integracao-homologacao-adotapet` reúne **site responsivo, painel da ONG, API Java, autenticação, cadastro de animais, vacinação, fluxo de adoção e relatórios**. Possui 19 testes Java e CI de integração HTTP com H2; consulte o [guia de homologação local](docs/HOMOLOGACAO_LOCAL.md). O código ainda requer revisão e testes manuais antes de produção.
 
 ## 🎯 Objetivos
 
@@ -48,9 +48,18 @@ src/
     │   ├── AdotaPetApplication.java
     │   ├── model/
     │   │   └── enums/
-    │   └── repository/
+    │   ├── repository/
+    │   ├── api/
+    │   └── security/
     └── resources/
-        └── application.properties
+        ├── application.properties
+        └── static/
+            ├── index.html
+            ├── app.js
+            ├── styles.css
+            ├── painel.html
+            ├── painel.js
+            └── painel.css
 docs/
 pom.xml
 README.md
@@ -81,9 +90,11 @@ Para facilitar a leitura, o diagrama agrupa visualmente as responsabilidades em 
 - A próxima dose, quando informada, deve ser posterior à data de aplicação.
 - O acesso a dados pessoais deve respeitar os princípios de privacidade e a LGPD.
 
-> As regras acima fazem parte da especificação do sistema; nem todas estão implementadas na camada de serviço/API nesta etapa.
+> A branch de homologação implementa os principais fluxos e verifica os cenários centrais na CI; permanecem pendentes os testes completos em navegador, migrações versionadas, políticas de privacidade e hardening para produção.
 
 ## 🚀 Como executar localmente
+
+**Recomendado no Windows:** [Guia com Docker Compose, PostgreSQL e conta administradora](docs/HOMOLOGACAO_LOCAL.md). Para começar, crie seu arquivo `.env` a partir de `.env.example`, configure credenciais privadas e execute `docker compose up --build -d` na branch de homologação.
 
 ### Pré-requisitos
 
@@ -125,10 +136,11 @@ Não inclua senhas, tokens ou outras credenciais no repositório. Use variáveis
 
 ## 🖥️ Interface web e integração
 
-- A branch `feat/frontend-integrado-adotapet` contém a interface responsiva integrada às rotas REST.
-- A branch `feat/api-catalogo-autenticacao-adocao` fornece os controllers, autenticação, autorizações e fluxo de adoção.
-- O frontend deve ser integrado **após o backend**; não há animais pré-cadastrados para evitar demonstrações confundidas com dados reais.
-- Consulte as Issues abertas para acompanhar etapas pendentes, como gestão completa de usuários, hardening de segurança e testes ponta-a-ponta.
+- **Site público:** http://localhost:8080 (animais disponíveis, filtros, login e solicitações).
+- **Painel da ONG:** http://localhost:8080/painel.html (gestão de animais, abrigos, vacinação, pedidos, visitas e relatórios).
+- **Swagger/OpenAPI:** http://localhost:8080/swagger-ui.html (somente em desenvolvimento).
+- A integração dos PRs #9, #14, #17, #10 e #15 foi consolidada no PR #20. O catálogo não usa registros fictícios por padrão; a equipe precisa cadastrar animais e abrigos.
+- Os testes de API e de HTTP foram automatizados. A revisão visual em navegador e os requisitos de produção ainda estão pendentes.
 
 ## 📚 Documentação
 
@@ -138,7 +150,10 @@ A documentação acadêmica da Etapa 1 está organizada na pasta [`docs/`](docs/
 - **[Atualização da Modelagem](docs/Atualizacao-da-Modelagem.md)** — explica os agrupamentos do diagrama e sua compatibilidade com o modelo persistente.
 - **[Mapeamento de Entidades JPA](docs/Mapeamento%20de%20Entidades%20JPA.md)** — entidades, tabelas, chaves e relacionamentos.
 - **[Dicionário de Dados](docs/Dicion%C3%A1rio%20de%20Dados.md)** — campos, tipos, obrigatoriedade e restrições.
-- **[Implementação full stack](docs/IMPLEMENTACAO_FULLSTACK.md)** — endpoints, execução e limitações da Etapa 2. O PDF acadêmico da Etapa 1 foi entregue separadamente e ainda não está versionado neste repositório.
+- **[Implementação full stack](docs/IMPLEMENTACAO_FULLSTACK.md)** — endpoints e etapas da API.
+- **[Painel da ONG](docs/PAINEL_ONG.md)** — operações administrativas e limitações.
+- **[Rastreabilidade e Swagger](docs/API_RASTREABILIDADE_E_SWAGGER.md)** — endpoints adicionais da matriz.
+- **[Homologação local](docs/HOMOLOGACAO_LOCAL.md)** — como iniciar o site completo com Docker Compose no Windows. O PDF acadêmico da Etapa 1 foi entregue separadamente e ainda não está versionado neste repositório.
 
 ## 👩‍💻 Equipe
 
