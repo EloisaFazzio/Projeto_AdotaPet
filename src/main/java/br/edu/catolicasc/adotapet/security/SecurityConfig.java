@@ -22,7 +22,7 @@ public class SecurityConfig {
             .exceptionHandling(e -> e.authenticationEntryPoint(
                 (request, response, ex) -> response.sendError(401, "Autenticação necessária")))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/index.html", "/styles.css", "/app.js", "/favicon.ico", "/error").permitAll()
+                .requestMatchers("/", "/index.html", "/styles.css", "/app.js", "/painel.html", "/painel.css", "/painel.js", "/favicon.ico", "/error").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/login", "/api/auth/registrar").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/animais", "/api/animais/**", "/api/abrigos").permitAll()
                 .anyRequest().authenticated())
