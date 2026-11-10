@@ -367,7 +367,13 @@ $("pet-grid").addEventListener("click", async event => {
     await carregarCatalogo();
   } finally { botao.disabled = false; }
 });
-$("filter-form").addEventListener("change", () => {paginaAtual = 0; carregarCatalogo();});
+$("filter-form").addEventListener("change", event => {
+  // Campo Cidade já usa debounce no evento input. Ao perder o foco, o evento change
+  // não deve recriar os cartões durante o clique em "Conhecer".
+  if (event.target.id === "filter-city") return;
+  paginaAtual = 0;
+  carregarCatalogo();
+});
 let filtroTimer;
 $("filter-city").addEventListener("input", () => {
   clearTimeout(filtroTimer);
