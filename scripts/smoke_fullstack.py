@@ -19,7 +19,7 @@ ADMIN_PASSWORD = os.environ.get("ADOTAPET_ADMIN_PASSWORD")
 
 
 def request(method, path, data=None, token=None, expected=200, response_json=True):
-    headers = {"Accept": "application/json"}
+    headers = {"Accept": "application/json" if response_json else "*/*"}
     if data is not None:
         headers["Content-Type"] = "application/json"
     if token:
