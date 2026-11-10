@@ -84,6 +84,36 @@ public class SolicitacaoController {
                 .map(PedidoResumo::of).toList();
     }
 
+    /** RF08: adotante só pode consultar o próprio pedido; equipe pode consultar qualquer pedido. */
+    @GetMapping("/solicitacoes/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','VOLUNTARIO','ADOTANTE')")
+    @Transactional(readOnly = true)
+    public PedidoResumo consultar(@PathVariable Long id, Authentication auth) {
+        SolicitacaoAdocao s = pedido(id);
+        Usuario atual = usuario(auth);
+        if (atual.getPerfil() == Perfil.ADOTANTE && !s.getAdotante().getId().equals(atual.getId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Solicitação pertence a outro adotante.");
+        }
+        return PedidoResumo.of(s);
+    }
+
+    /** RF08: evita que alguém consulte solicitações de outro adotante via ID de usuário. */
+    @GetMapping("/usuarios/{id}/solicitacoes")
+    @PreAuthorize("hasAnyRole('ADMIN','VOLUNTARIO','ADOTANTE')")
+    @Transactional(readOnly = true)
+    public List<PedidoResumo> porUsuario(@PathVariable Long id, Authentication auth) {
+        Usuario atual = usuario(auth);
+        if (atual.getPerfil() == Perfil.ADOTANTE && !atual.getId().equals(id)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Não é permitido consultar pedidos de outro adotante.");
+        }
+        if (!usuarios.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.");
+        }
+        return solicitacoes.findByAdotanteId(id).stream()
+                .sorted(Comparator.comparing(SolicitacaoAdocao::getSolicitadaEm).reversed())
+                .map(PedidoResumo::of).toList();
+    }
+
     @PatchMapping("/solicitacoes/{id}/cancelar")
     @PreAuthorize("hasRole('ADOTANTE')")
     @Transactional

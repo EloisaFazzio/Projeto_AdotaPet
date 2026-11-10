@@ -24,9 +24,14 @@ import org.springframework.web.server.ResponseStatusException;
 public class AnimalController {
     private final AnimalRepository animais;
     private final AbrigoRepository abrigos;
+    private final SolicitacaoAdocaoRepository solicitacoes;
+    private final VacinacaoAnimalRepository vacinacoes;
 
-    public AnimalController(AnimalRepository animais, AbrigoRepository abrigos) {
+    public AnimalController(AnimalRepository animais, AbrigoRepository abrigos,
+                            SolicitacaoAdocaoRepository solicitacoes,
+                            VacinacaoAnimalRepository vacinacoes) {
         this.animais = animais; this.abrigos = abrigos;
+        this.solicitacoes = solicitacoes; this.vacinacoes = vacinacoes;
     }
 
     public record AnimalResumo(Long id, String nome, Especie especie, String raca, Sexo sexo, Porte porte,
@@ -106,6 +111,24 @@ public class AnimalController {
         if (!a.getAbrigo().getId().equals(abrigo.getId()) && a.getStatus() != StatusAnimal.ADOTADO) conferirVaga(abrigo);
         aplicar(a, entrada, abrigo);
         return AnimalResumo.of(animais.saveAndFlush(a));
+    }
+
+    /** RF04: protege o histórico; animais com pedidos ou vacinações não podem ser apagados. */
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAnyRole('ADMIN','VOLUNTARIO')")
+    @Transactional
+    public void remover(@PathVariable Long id) {
+        Animal animal = animais.bloquearPorId(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Animal não encontrado."));
+        if (animal.getStatus() == StatusAnimal.ADOTADO
+                || animal.getStatus() == StatusAnimal.EM_PROCESSO_ADOCAO
+                || solicitacoes.existsByAnimalId(id)
+                || vacinacoes.existsByAnimalId(id)) {
+            throw new IllegalStateException("Não é possível remover um animal com histórico de adoção ou vacinação.");
+        }
+        animais.delete(animal);
+        animais.flush();
     }
 
     private void conferirVaga(Abrigo abrigo) {
