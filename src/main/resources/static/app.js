@@ -19,6 +19,7 @@ catch { sessionStorage.removeItem("adotapet-sessao"); }
 let paginaAtual = 0;
 let totalPaginas = 0;
 let animaisVisiveis = [];
+let catalogoRequisicaoAtual = 0;
 let abrigosCache = [];
 let petPendente = null;
 let avisoTimer = null;
@@ -118,6 +119,7 @@ function cartaoPet(p) {
 }
 
 async function carregarCatalogo() {
+  const numeroRequisicao = ++catalogoRequisicaoAtual;
   const feedback = $("catalog-feedback");
   feedback.hidden = false;
   feedback.textContent = "Buscando animais disponíveis...";
@@ -133,6 +135,7 @@ async function carregarCatalogo() {
   campos.forEach(([chave,valor]) => { if (valor) params.set(chave,valor); });
   try {
     const dados = await api("/api/animais?" + params.toString());
+    if (numeroRequisicao !== catalogoRequisicaoAtual) return; // resposta de filtro anterior
     animaisVisiveis = dados.content || [];
     totalPaginas = dados.totalPages || 0;
     $("count-animals").textContent = dados.totalElements ?? 0;
@@ -149,6 +152,7 @@ async function carregarCatalogo() {
       $("next-page").disabled = paginaAtual >= totalPaginas - 1;
     }
   } catch (erro) {
+    if (numeroRequisicao !== catalogoRequisicaoAtual) return;
     feedback.textContent = erro.message;
     $("count-animals").textContent = "—";
   }
@@ -347,11 +351,21 @@ async function modalEquipe() {
 }
 
 // Navegação e interações.
-$("pet-grid").addEventListener("click", event => {
+$("pet-grid").addEventListener("click", async event => {
   const botao = event.target.closest("[data-adopt]");
-  if (!botao) return;
-  const animal = animaisVisiveis.find(a => a.id === Number(botao.dataset.adopt));
-  if (animal) modalAdocao(animal);
+  if (!botao || botao.disabled) return;
+  const id = Number(botao.dataset.adopt);
+  if (!Number.isSafeInteger(id) || id <= 0) return;
+  botao.disabled = true;
+  try {
+    // O animal pode ter sido adotado enquanto os filtros atualizavam o catálogo.
+    // Sempre consultamos o registro atual antes de abrir a solicitação.
+    const animal = await api("/api/animais/" + id);
+    modalAdocao(animal);
+  } catch (erro) {
+    avisar(erro.message);
+    await carregarCatalogo();
+  } finally { botao.disabled = false; }
 });
 $("filter-form").addEventListener("change", () => {paginaAtual = 0; carregarCatalogo();});
 let filtroTimer;
