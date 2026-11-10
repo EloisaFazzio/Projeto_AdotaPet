@@ -1,9 +1,9 @@
 name: Backend Java — testes
 on:
   push:
-    branches: [main, feat/api-catalogo-autenticacao-adocao]
+    branches: [main, feat/api-catalogo-autenticacao-adocao, feat/admin-usuarios-abrigos-voluntarios]
   pull_request:
-    branches: [main, feat/admin-usuarios-abrigos-voluntarios]
+    branches: [main, feat/api-catalogo-autenticacao-adocao, feat/admin-usuarios-abrigos-voluntarios]
 jobs:
   maven-test:
     runs-on: ubuntu-latest
