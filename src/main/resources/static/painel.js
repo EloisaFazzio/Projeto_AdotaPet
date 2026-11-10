@@ -135,10 +135,10 @@ function openForm(title,markup,submit) {
     const dados=Object.fromEntries(new FormData(form).entries());
     botao.disabled=true;
     try {
-      await submit(dados,form);
+      const resultado=await submit(dados,form);
       $("form-dialog").close();
-      toast("Operação concluída com sucesso.");
-      await render();
+      toast(resultado && resultado.message ? resultado.message : "Operação concluída com sucesso.");
+      if(!resultado || !resultado.skipRender) await render();
     } catch(err) {
       const el=$("form-error");el.textContent=err.message;el.hidden=false;
     } finally {botao.disabled=false;}
@@ -191,7 +191,7 @@ async function animais() {
         esc(a.abrigo)+"<span class='sub'>"+esc(a.cidade)+"</span>",
         badge(a.status),
         btn("Vacinar","vacinar",a.id)
-      ]))));
+      ])));
 }
 async function formAnimal() {
   const abrigos=await api(f("abrigos"));
@@ -228,10 +228,11 @@ async function solicitacoes() {
         (["PENDENTE","EM_ANALISE"].includes(p.status)?btn("Rejeitar","rejeitar",p.id,"action-danger"):"")+
         (p.status==="APROVADA"?btn("Formalizar","formalizar",p.id):"")+
         '</div>'
-      ]))))+
+      ])))+
     sec("Acompanhamento pós-adoção",
       '<p class="panel-muted">A formalização da adoção retorna o número da adoção. Informe esse número para registrar uma visita de acompanhamento.</p>'+
-      '<div class="table-actions"><button type="button" class="btn btn-outline" data-open="visita">Registrar visita</button>'+
+      '<div class="table-actions">'+
+      (admin() ? '' : '<button type="button" class="btn btn-outline" data-open="visita">Registrar visita</button>')+
       '<button type="button" class="btn btn-outline" data-open="historico-visitas">Consultar visitas</button></div>');
 }
 async function vacinas() {
@@ -244,7 +245,7 @@ async function vacinas() {
       v.intervaloDias!=null?esc(v.intervaloDias)+" dias":"Dose única",
       admin()?'<div class="table-actions">'+btn("Editar","editar-vacina",v.id)+
         btn("Excluir","excluir-vacina",v.id,"action-danger")+'</div>':"—"
-    ]))));
+    ])));
 }
 async function formVacina(id) {
   const v=id?await api(f("vacinas/"+id)):null;
@@ -269,7 +270,7 @@ async function aplicacoes() {
       vencidas.map(v=>row([
         "<b>"+esc(v.animal)+"</b><span class='sub'>ID "+Number(v.animalId)+"</span>",
         esc(v.vacina),esc(v.dataAplicacao),badge("VENCIDA")+" "+esc(v.proximaDose)
-      ]))))+
+      ])))+
     sec("Consultar histórico de vacinação",'<form class="inline-filters" id="history-form">'+
       field("animalId","ID do animal","number",{required:true,min:1})+
       '<button type="submit" class="btn btn-outline">Consultar</button></form>'+
@@ -309,7 +310,7 @@ async function abrigos() {
       "<b>"+esc(a.nome)+"</b>",esc(a.cidade),esc(a.uf),esc(a.capacidade),
       admin()?'<div class="table-actions">'+btn("Editar","editar-abrigo",a.id)+
         btn("Voluntários","voluntarios",a.id)+btn("Excluir","excluir-abrigo",a.id,"action-danger")+'</div>':"—"
-    ]))));
+    ])));
 }
 async function formAbrigo(id) {
   const a=id?await api(f("abrigos/"+id)):null;
@@ -364,7 +365,7 @@ async function usuarios() {
       '<div class="table-actions">'+btn("Editar","editar-usuario",u.id)+
       (u.ativo?btn("Desativar","desativar-usuario",u.id,"action-danger"):
       btn("Reativar","reativar-usuario",u.id))+'</div>'
-    ]))));
+    ])));
 }
 async function formUsuario(id) {
   const u=id?await api(f("usuarios/"+id)):null;
@@ -440,7 +441,7 @@ function formFormalizar(id) {
         method:"POST",body:JSON.stringify({solicitacaoId:id,
           termoAssinado:d.termoAssinado==="true",observacoes:d.observacoes||null})
       });
-      toast("Adoção #"+resultado.id+" formalizada. Use esse ID para registrar visitas.");
+      return {message:"Adoção #"+resultado.id+" formalizada. Guarde esse ID para registrar visitas."};
     });
 }
 function formVisita() {
@@ -459,11 +460,11 @@ function formHistoricoVisitas() {
     field("adocaoId","ID da adoção","number",{required:true,min:1}),
     async d=>{
       const dados=await api(f("adocoes/"+Number(d.adocaoId)+"/visitas"));
-      closeDialog();
       $("panel-content").insertAdjacentHTML("afterbegin",sec("Histórico da adoção #"+Number(d.adocaoId),
         table(["Data","Bem-estar","Observações"],dados.map(v=>row([
           esc(v.dataVisita),badge(v.animalBemCuidado?"BEM CUIDADO":"ATENÇÃO"),esc(v.observacoes)
         ])))));
+      return {skipRender:true,message:"Histórico carregado."};
     });
 }
 async function deletar(recurso,id,mensagem) {
