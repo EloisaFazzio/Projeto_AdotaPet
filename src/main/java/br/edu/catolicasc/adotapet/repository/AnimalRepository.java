@@ -14,6 +14,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface AnimalRepository extends JpaRepository<Animal, Long>, JpaSpecificationExecutor<Animal> {
     List<Animal> findByStatus(StatusAnimal status);
+    long countByStatus(StatusAnimal status);
     List<Animal> findByEspecieAndStatus(Especie especie, StatusAnimal status);
     List<Animal> findByAbrigoId(Long abrigoId);
     long countByAbrigoIdAndStatusNot(Long abrigoId, StatusAnimal status);
