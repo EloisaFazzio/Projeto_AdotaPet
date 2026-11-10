@@ -66,6 +66,23 @@ public class AdocaoController {
         return AdocaoResumo.of(a);
     }
 
+    /** RF10: consulta adoções formalizadas, opcionalmente por período. */
+    @GetMapping
+    @Transactional(readOnly = true)
+    public List<AdocaoResumo> listar(@RequestParam(required = false) LocalDate de,
+                                     @RequestParam(required = false) LocalDate ate) {
+        if ((de == null) != (ate == null)) {
+            throw new IllegalArgumentException("Informe as duas datas (de e ate) ou nenhuma.");
+        }
+        if (de != null && ate.isBefore(de)) {
+            throw new IllegalArgumentException("Data final anterior à inicial.");
+        }
+        List<Adocao> resultado = de == null ? adocoes.findAll() : adocoes.findByDataAdocaoBetween(de, ate);
+        return resultado.stream()
+                .sorted(java.util.Comparator.comparing(Adocao::getDataAdocao).reversed())
+                .map(AdocaoResumo::of).toList();
+    }
+
     @PostMapping("/{id}/visitas")
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasRole('VOLUNTARIO')")
