@@ -108,6 +108,24 @@ public class AnimalController {
         return AnimalResumo.of(animais.saveAndFlush(a));
     }
 
+    /** RF04: protege o histórico; animais com pedidos ou vacinações não podem ser apagados. */
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAnyRole('ADMIN','VOLUNTARIO')")
+    @Transactional
+    public void remover(@PathVariable Long id) {
+        Animal animal = animais.bloquearPorId(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Animal não encontrado."));
+        if (animal.getStatus() == StatusAnimal.ADOTADO
+                || animal.getStatus() == StatusAnimal.EM_PROCESSO_ADOCAO
+                || !animal.getSolicitacoes().isEmpty()
+                || !animal.getVacinacoes().isEmpty()) {
+            throw new IllegalStateException("Não é possível remover um animal com histórico de adoção ou vacinação.");
+        }
+        animais.delete(animal);
+        animais.flush();
+    }
+
     private void conferirVaga(Abrigo abrigo) {
         long ocupados = animais.countByAbrigoIdAndStatusNot(abrigo.getId(), StatusAnimal.ADOTADO);
         if (!abrigo.possuiVaga(ocupados)) throw new IllegalStateException("Capacidade do abrigo esgotada.");
