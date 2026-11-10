@@ -11,20 +11,20 @@ Este incremento complementa a API do PR #9 com endpoints que constam na matriz R
 | GET | /api/usuarios/{id}/solicitacoes | ADOTANTE titular ou equipe | Evita exposição de solicitações de terceiros. |
 | GET | /api/adocoes?de=&ate= | ADMIN/VOLUNTARIO | Parâmetros opcionais, mas ambos devem estar presentes ou ambos ausentes. O período deve ser válido. |
 
-O cadastro público de adotantes permanece em \`POST /api/auth/registrar\` para evitar escalonamento de privilégios.
+O cadastro público de adotantes permanece em `POST /api/auth/registrar` para evitar escalonamento de privilégios.
 
 ## OpenAPI / Swagger
 
-- Dependência: \`springdoc-openapi-starter-webmvc-ui:2.6.0\` para Spring Boot 3.3.x.
-- Em desenvolvimento: \`http://localhost:8080/swagger-ui.html\`.
-- Esquema JSON: \`http://localhost:8080/v3/api-docs\`.
+- Dependência: `springdoc-openapi-starter-webmvc-ui:2.6.0` para Spring Boot 3.3.x.
+- Em desenvolvimento: `http://localhost:8080/swagger-ui.html`.
+- Esquema JSON: `http://localhost:8080/v3/api-docs`.
 - No Swagger, use **Authorize** com o token JWT obtido no login para operações protegidas.
-- O acesso anônimo ao navegador Swagger é habilitado apenas quando o perfil \`prod\` **não** estiver ativo. As rotas reais da API continuam protegidas por Spring Security.
+- O acesso anônimo ao navegador Swagger é habilitado apenas quando o perfil `prod` **não** estiver ativo. As rotas reais da API continuam protegidas por Spring Security.
 - Em produção, proteja também o acesso à documentação de acordo com a política da organização.
 
 ## Testes automatizados
 
-\`RastreabilidadeApiTest\` verifica:
+`RastreabilidadeApiTest` verifica:
 1. geração da especificação OpenAPI sem login em desenvolvimento;
 2. exclusão de animal sem histórico somente com perfil autorizado;
 3. bloqueio da exclusão quando há vacinação;
