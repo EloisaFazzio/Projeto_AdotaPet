@@ -368,7 +368,7 @@ $("prev-page").addEventListener("click", () => {if (paginaAtual > 0) {paginaAtua
 $("next-page").addEventListener("click", () => {if (paginaAtual < totalPaginas - 1) {paginaAtual++;carregarCatalogo();}});
 $("btn-account").addEventListener("click", () => modalAutenticacao("login"));
 $("btn-requests").addEventListener("click", modalMeusPedidos);
-$("btn-staff").addEventListener("click", modalEquipe);
+$("btn-staff").addEventListener("click", () => { window.location.href = "/painel.html"; });
 $("btn-logout").addEventListener("click", () => {
   sessao = null;
   sessionStorage.removeItem("adotapet-sessao");
