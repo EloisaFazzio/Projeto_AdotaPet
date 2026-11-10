@@ -1,7 +1,7 @@
 name: Frontend — verificação
 on:
   pull_request:
-    branches: [main]
+    branches: [main, feat/frontend-integrado-adotapet]
 jobs:
   verificar-interface:
     runs-on: ubuntu-latest
@@ -10,7 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Verificar sintaxe JavaScript
-        run: node --check src/main/resources/static/app.js
+        run: |
+          node --check src/main/resources/static/app.js
+          node --check src/main/resources/static/painel.js
       - name: Conferir arquivos e elementos essenciais da interface
         run: |
           python3 - <<'PY'
@@ -26,5 +28,11 @@ jobs:
                            '/api/solicitacoes']:
               assert endpoint in js, f'Endpoint não referenciado: {endpoint}'
           assert '--lime' in css and '--deep' in css
+          dashboard = (raiz / 'painel.html').read_text()
+          dashboard_js = (raiz / 'painel.js').read_text()
+          for id in ['panel-content','panel-nav','form-dialog','panel-alert']:
+              assert f'id="{id}"' in dashboard, f'ID ausente no painel: {id}'
+          for rota in ['vacinas','vacinacoes/vencidas','relatorios/animais-por-status','solicitacoes','usuarios','abrigos']:
+              assert rota in dashboard_js, f'Rota não referenciada: {rota}'
           print('Verificação estática da interface concluída')
           PY
