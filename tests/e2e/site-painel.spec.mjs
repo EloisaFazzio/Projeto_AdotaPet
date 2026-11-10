@@ -96,7 +96,12 @@ test('adotante solicita e ONG formaliza adoção pelo navegador', async ({ page 
 
   // Filtra catálogo e envia justificativa de adoção.
   await page.locator('#filter-species').selectOption('CAO');
+  const filtroCidade = page.waitForResponse(
+    response => response.url().includes('cidade=Jaragu') &&
+      response.url().includes('/api/animais?') && response.ok()
+  );
   await page.locator('#filter-city').fill('Jaraguá do Sul');
+  await filtroCidade;
   const card = page.locator('.pet-card').filter({ hasText: animal });
   await expect(card).toBeVisible();
   await card.locator('[data-adopt]').click();
