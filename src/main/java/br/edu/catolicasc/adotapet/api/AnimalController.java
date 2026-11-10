@@ -88,7 +88,7 @@ public class AnimalController {
     @PreAuthorize("hasAnyRole('ADMIN','VOLUNTARIO')")
     @Transactional
     public AnimalResumo criar(@Valid @RequestBody AnimalEntrada entrada) {
-        Abrigo abrigo = abrigos.findById(entrada.abrigoId())
+        Abrigo abrigo = abrigos.bloquearPorId(entrada.abrigoId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Abrigo não encontrado."));
         conferirVaga(abrigo);
         Animal a = new Animal();
@@ -101,7 +101,7 @@ public class AnimalController {
     @Transactional
     public AnimalResumo atualizar(@PathVariable Long id, @Valid @RequestBody AnimalEntrada entrada) {
         Animal a = animais.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Animal não encontrado."));
-        Abrigo abrigo = abrigos.findById(entrada.abrigoId())
+        Abrigo abrigo = abrigos.bloquearPorId(entrada.abrigoId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Abrigo não encontrado."));
         if (!a.getAbrigo().getId().equals(abrigo.getId()) && a.getStatus() != StatusAnimal.ADOTADO) conferirVaga(abrigo);
         aplicar(a, entrada, abrigo);
