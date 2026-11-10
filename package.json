@@ -1,0 +1,13 @@
+{
+  "name": "adotapet-e2e",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Testes de navegador para homologação acadêmica do AdotaPet",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0"
+  }
+}
