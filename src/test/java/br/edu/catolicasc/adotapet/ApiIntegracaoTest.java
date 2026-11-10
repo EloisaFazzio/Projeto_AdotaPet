@@ -45,7 +45,9 @@ class ApiIntegracaoTest {
                 .andReturn().getResponse().getContentAsString();
         String token = mapper.readTree(resposta).get("token").asText();
         mvc.perform(post("/api/abrigos").header("Authorization", "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON).content("{}"))
+                .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(Map.of(
+                        "nome", "Abrigo de Teste", "endereco", "Rua das Flores, 42",
+                        "cidade", "Jaraguá do Sul", "uf", "SC", "capacidade", 5))))
                 .andExpect(status().isForbidden());
     }
 
