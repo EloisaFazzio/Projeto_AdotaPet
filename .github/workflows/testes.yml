@@ -3,7 +3,7 @@ on:
   push:
     branches: [main, feat/api-catalogo-autenticacao-adocao]
   pull_request:
-    branches: [main]
+    branches: [main, feat/admin-usuarios-abrigos-voluntarios]
 jobs:
   maven-test:
     runs-on: ubuntu-latest
