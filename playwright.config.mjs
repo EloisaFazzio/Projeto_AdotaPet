@@ -11,6 +11,7 @@ export default defineConfig({
   use: {
     baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://127.0.0.1:8080',
     browserName: 'chromium',
+    channel: process.env.CI ? 'chrome' : undefined, // Chrome já disponível nos runners GitHub
     headless: true,
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
