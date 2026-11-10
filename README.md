@@ -6,9 +6,9 @@ O **AdotaPet** é um projeto acadêmico de Engenharia de Software desenvolvido p
 
 ## 📌 Status do projeto
 
-**Etapa atual:** modelagem, requisitos e estrutura inicial do backend.
+**Etapa atual:** implementação incremental full stack proposta nos Pull Requests #9 (API) e #10 (interface).
 
-O repositório contém as entidades de domínio, os repositórios Spring Data JPA e a configuração inicial da aplicação. A interface web está disponível na branch `feat/site-adotapet` como protótipo visual; seus dados e formulários ainda não estão integrados à API.
+O repositório mantém oito entidades JPA e os repositórios correspondentes. A evolução de API REST e frontend está em branches separadas para revisão. Consulte `docs/IMPLEMENTACAO_FULLSTACK.md` para os endpoints implementados e as funcionalidades ainda em desenvolvimento.
 
 ## 🎯 Objetivos
 
@@ -58,14 +58,15 @@ README.md
 
 ### Modelo de domínio
 
-O modelo prevê oito entidades principais:
-
+O modelo possui oito entidades JPA independentes:
 - `Usuario`
 - `Abrigo`
 - `Animal`
+- `Vacina`
 - `VacinacaoAnimal`
-- `Processodeadoção`
-- `VisitapósAdoção`
+- `SolicitacaoAdocao`
+- `Adocao`
+- `VisitaAcompanhamento`
 
 Para facilitar a leitura, o diagrama agrupa visualmente as responsabilidades em seis blocos conceituais: **Abrigo**, **Animal**, **Vacinação do Animal**, **Usuário**, **Processo de Adoção** e **Acompanhamento Pós-Adoção**. 
 
@@ -122,11 +123,12 @@ jdbc:postgresql://<host>:5432/<database>
 
 Não inclua senhas, tokens ou outras credenciais no repositório. Use variáveis de ambiente e mantenha os dados de acesso privados.
 
-## 🖥️ Protótipo da interface
+## 🖥️ Interface web e integração
 
-A branch [`feat/site-adotapet`](https://github.com/EloisaFazzio/Projeto_AdotaPet/tree/feat/site-adotapet) contém uma página inicial responsiva em `src/main/resources/static/index.html`.
-
-O protótipo inclui apresentação do projeto, catálogo demonstrativo de animais, filtros, favoritos locais e formulários ilustrativos. **Os dados são de demonstração e os formulários ainda não enviam informações para o backend.** Para consultar o protótipo, abra o arquivo `index.html` em um navegador.
+- A branch `feat/frontend-integrado-adotapet` contém a interface responsiva integrada às rotas REST.
+- A branch `feat/api-catalogo-autenticacao-adocao` fornece os controllers, autenticação, autorizações e fluxo de adoção.
+- O frontend deve ser integrado **após o backend**; não há animais pré-cadastrados para evitar demonstrações confundidas com dados reais.
+- Consulte as Issues abertas para acompanhar etapas pendentes, como gestão completa de usuários, hardening de segurança e testes ponta-a-ponta.
 
 ## 📚 Documentação
 
@@ -136,14 +138,14 @@ A documentação acadêmica da Etapa 1 está organizada na pasta [`docs/`](docs/
 - **[Atualização da Modelagem](docs/Atualizacao-da-Modelagem.md)** — explica os agrupamentos do diagrama e sua compatibilidade com o modelo persistente.
 - **[Mapeamento de Entidades JPA](docs/Mapeamento%20de%20Entidades%20JPA.md)** — entidades, tabelas, chaves e relacionamentos.
 - **[Dicionário de Dados](docs/Dicion%C3%A1rio%20de%20Dados.md)** — campos, tipos, obrigatoriedade e restrições.
-- **[Documentação acadêmica — Etapa 1 (`PROJETO_ADOTAPET_PARTE_01.docx`)](docs/PROJETO_ADOTAPET_PARTE_01.docx)** — documento acadêmico de referência.
+- **[Implementação full stack](docs/IMPLEMENTACAO_FULLSTACK.md)** — endpoints, execução e limitações da Etapa 2. O PDF acadêmico da Etapa 1 foi entregue separadamente e ainda não está versionado neste repositório.
 
 ## 👩‍💻 Equipe
 
 | Integrante | Função |
 | --- | --- |
-| Fabrício da Silva | Líder da equipe |
-| Eloisa Fazzio da Silva Rocha | Integrante |
+| Fabrício da Silva | Integrante |
+| Eloisa Fazzio da Silva Rocha | Líder da equipe |
 | Eric Eduardo Lange | Integrante |
 
 ## 🎓 Contexto acadêmico
