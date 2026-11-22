@@ -1,0 +1,55 @@
+name: AdotaPet - criar marco academico v1.0.0
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/release-academica.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publicar-marco-academico:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Compilar e validar testes Java
+        run: mvn --batch-mode --no-transfer-progress test
+      - name: Verificar sintaxe JavaScript
+        run: |
+          node --check site-demo/app.js
+          node --check src/main/resources/static/app.js
+          node --check src/main/resources/static/painel.js
+      - name: Publicar tag e release academica uma unica vez
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v1.0.0-academica >/dev/null 2>&1; then
+            echo "Release academica ja existe; nenhuma alteracao necessaria."
+            exit 0
+          fi
+          cat > /tmp/notas-academicas.md <<'NOTAS'
+          ## AdotaPet — entrega acadêmica 2026
+
+          **Site público:** https://adotapet.pages.dev/
+
+          Versão integrada para avaliação acadêmica com catálogo demonstrativo, interface responsiva, Java 17, Spring Boot, JPA, API REST, testes e documentação do modelo. A demonstração hospedada usa dados fictícios e **não** permite login, cadastros ou adoções reais.
+
+          **Documentação:** README, docs/ENTREGA_ACADEMICA_v1.0.0.md e docs/TRIAGEM_ISSUES_ENTREGA.md.
+
+          **Importante:** este marco não indica prontidão para produção. Segurança, privacidade/LGPD, migrações de banco e homologação do backend para uso real permanecem pendentes.
+          NOTAS
+          gh release create v1.0.0-academica \
+            --target "$GITHUB_SHA" \
+            --title "AdotaPet v1.0.0 — Entrega acadêmica" \
+            --notes-file /tmp/notas-academicas.md \
+            --prerelease
