@@ -1,6 +1,6 @@
 # AdotaPet — Marco da entrega acadêmica v1.0.0-academica
 
-**Situação:** versão acadêmica integrada, com demonstração visual pública gratuita. Este documento identifica um **marco de entrega**, não uma versão de produção. A tag e a Release no GitHub são verificadas separadamente.
+**Situação:** versão acadêmica integrada, com demonstração visual pública gratuita. A tag e a [Release acadêmica v1.0.0-academica](https://github.com/EloisaFazzio/Projeto_AdotaPet/releases/tag/v1.0.0-academica) foram criadas no GitHub após testes Java e verificação de sintaxe JavaScript aprovados. Trata-se de um marco acadêmico, **não** de uma versão de produção.
 
 ## Links oficiais
 
@@ -56,4 +56,4 @@ A equipe optou por **não gerar cobranças**. O domínio `adotapet.com.br` não 
 
 **Identificador documental:** `v1.0.0-academica`.
 
-A tag e a Release, quando publicadas, podem ser consultadas em [Releases do projeto](https://github.com/EloisaFazzio/Projeto_AdotaPet/releases/tag/v1.0.0-academica). A automação de publicação realiza testes Java antes de criar esse marco. **A versão acadêmica não é uma declaração de que o backend está pronto para produção.** Caso a automação falhe, esse endereço não deve ser apresentado como release existente.
+**Tag Git e Release publicadas:** [v1.0.0-academica](https://github.com/EloisaFazzio/Projeto_AdotaPet/releases/tag/v1.0.0-academica), associadas ao commit `e6ee3ed6d1aad5dee3b9fa8e8211b56590962978`. Os testes Java e a sintaxe JavaScript foram aprovados no [workflow da Release](https://github.com/EloisaFazzio/Projeto_AdotaPet/actions/runs/44982576842). Esta é uma **pré-release acadêmica**, não uma declaração de prontidão do backend para produção.
