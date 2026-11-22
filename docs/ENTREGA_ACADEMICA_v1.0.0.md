@@ -28,8 +28,8 @@ Cloudflare Pages e GitHub Pages, nesta configuração, servem arquivos estático
 ## Pendências honestamente preservadas
 
 - Revisão de segurança, privacidade, migrações e testes para produção: [Issue #13](https://github.com/EloisaFazzio/Projeto_AdotaPet/issues/13).
-- Foto individual, upload e tratamento definitivo de mídias de animais: [Issue #18](https://github.com/EloisaFazzio/Projeto_AdotaPet/issues/18).
-- Evidências manuais complementares da integração: [Issue #19](https://github.com/EloisaFazzio/Projeto_AdotaPet/issues/19).
+- Campos de imagem e rotas de upload/consulta já existem em código, porém o tratamento definitivo e a validação das mídias para uso real permanecem na [Issue #18](https://github.com/EloisaFazzio/Projeto_AdotaPet/issues/18).
+- Homologação manual adicional da integração (não exigida como anexo para esta entrega acadêmica, por decisão da responsável): [Issue #19](https://github.com/EloisaFazzio/Projeto_AdotaPet/issues/19).
 - Demais Issues de requisitos devem ser analisadas pelos responsáveis antes de encerrar, pois alguns critérios de aceite são mais amplos que os testes automatizados.
 
 ## Política de custos
@@ -41,8 +41,16 @@ A equipe optou por **não gerar cobranças**. O domínio `adotapet.com.br` não 
 - Link público principal: **https://adotapet.pages.dev/** (informado como funcionando pela responsável; conferir acessibilidade e recursos visuais no navegador antes da apresentação).
 - Código-fonte completo, documentação e testes automatizados mantidos no GitHub.
 - Pendências reais de segurança, privacidade e validação do backend continuam registradas em Issues abertas, sem divulgação indevida como produção.
-- Conferir no navegador desktop e celular se fotos, fontes, filtros, navegação e avisos de demonstração são apresentados corretamente.
+- Revisão visual do site em desktop e celular: **confirmada pela responsável**; símbolos e setas corrigidos e aprovados em 22/11/2026. Testes automatizados não substituem revisão de comportamento do backend.
 - Não compartilhar credenciais, banco de dados real ou links locais `localhost` como se fossem públicos.
+
+## Revisão de consistência do domínio — 22/11/2026
+
+- O diagrama apresenta **seis agrupamentos conceituais**, enquanto o código preserva **oito entidades JPA**. A diferença é intencional, não uma entidade omitida.
+- O Dicionário de Dados e o Mapeamento JPA foram alinhados aos campos opcionais `imagem_dados` e `imagem_mime` das entidades `Animal` e `Vacina`.
+- Os endpoints de rastreabilidade especificados estão presentes nos controladores, e testes de API constam de `RastreabilidadeApiTest`; permanecem evoluções de testes/performance antes da produção.
+- As 13 Issues anteriores à revisão foram triadas; itens pendentes para produção permanecem distintos dos critérios para entrega acadêmica.
+- A responsável **dispensou prints e anexos de evidências** nesta etapa; não afirmar que houve testes manuais além dos que ela confirmou.
 
 ## Identificação de versão
 
