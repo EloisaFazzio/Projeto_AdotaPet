@@ -49,3 +49,8 @@ footer .adotapet-redes-intro p{color:#b2d4c0;font-size:.83rem;line-height:1.5;ma
   object-fit:cover; object-position:center; z-index:20;
 }
 #pet-grid .pet-card .pet-portrait .pet-badge { position:absolute; z-index:21; }
+
+/* Icones vetoriais para navegacao: evita a renderizacao de emojis no iOS/Android. */
+.ui-arrow{display:inline-block;width:1.1em;height:1.1em;vertical-align:-.16em;flex:none;stroke:currentColor;fill:none}
+button .ui-arrow,a .ui-arrow{margin-left:.25em}
+.ui-arrow-left{margin-left:0;margin-right:.25em}

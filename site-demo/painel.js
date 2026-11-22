@@ -127,7 +127,7 @@ function openForm(title,markup,submit) {
   $("form-container").innerHTML='<span class="eyebrow">GESTÃO ADOTAPET</span><h2 id="form-title">'+esc(title)+'</h2>'+
     '<form id="operation-form" class="panel-form">'+markup+
     '<p class="panel-alert" id="form-error" role="alert" hidden></p>'+
-    '<button class="btn btn-deep" type="submit">Salvar alterações ↗</button></form>';
+    '<button class="btn btn-deep" type="submit">Salvar alterações <svg class="ui-arrow ui-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11"/></svg></button></form>';
   $("form-dialog").showModal();
   $("operation-form").addEventListener("submit",async e=>{
     e.preventDefault();

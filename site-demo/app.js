@@ -115,7 +115,7 @@ function cartaoPet(p) {
     '</span><span class="chip">' + escapeHtml(capitalize(p.porte)) + '</span></div>' +
     '<p class="desc">' + escapeHtml(p.descricao || "Conheça a história deste animal e converse com a equipe da ONG.") + '</p>' +
     '<div class="pet-footer"><span class="location">⌖ ' + escapeHtml(p.cidade || "Cidade não informada") +
-    '</span><button class="btn btn-deep" type="button" data-adopt="' + p.id + '">Conhecer ↗</button></div></div></article>';
+    '</span><button class="btn btn-deep" type="button" data-adopt="' + p.id + '">Conhecer <svg class="ui-arrow ui-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11"/></svg></button></div></div></article>';
 }
 
 async function carregarCatalogo() {
@@ -173,7 +173,7 @@ function modalAutenticacao(modo = "login") {
     (cadastro ? '<div class="form-grid"><div class="form-field"><label for="auth-city">Cidade (opcional)</label><input id="auth-city" maxlength="80"></div><div class="form-field"><label for="auth-phone">Telefone (opcional)</label><input id="auth-phone" maxlength="20"></div></div>' : "") +
     '<p class="dialog-msg">Nunca informe sua senha a outras pessoas. Somente contas criadas pela equipe podem administrar o sistema.</p>' +
     '<div class="form-actions"><button class="btn btn-deep" type="submit">' +
-    (cadastro ? "Criar conta" : "Entrar") + ' ↗</button><button class="text-button" type="button" id="switch-auth">' +
+    (cadastro ? "Criar conta" : "Entrar") + ' <svg class="ui-arrow ui-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11"/></svg></button><button class="text-button" type="button" id="switch-auth">' +
     (cadastro ? "Já tenho uma conta" : "Ainda não tenho conta") + '</button></div>' +
     '<p class="form-response dialog-msg" role="alert" hidden></p></form>');
   $("switch-auth").addEventListener("click", () => modalAutenticacao(cadastro ? "login" : "cadastro"));
@@ -225,7 +225,7 @@ function modalAdocao(pet) {
     '<form id="adoption-form"><div class="form-field"><label for="adoption-reason">Por que deseja adotar este animal?</label>' +
     '<textarea id="adoption-reason" maxlength="1000" minlength="15" required placeholder="Conte sobre seu lar, rotina e como pretende cuidar dele."></textarea></div>' +
     '<p class="dialog-msg">A solicitação fica registrada com o status PENDENTE. O envio não significa aprovação automática.</p>' +
-    '<button type="submit" class="btn btn-deep">Enviar solicitação ↗</button>' +
+    '<button type="submit" class="btn btn-deep">Enviar solicitação <svg class="ui-arrow ui-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M8 5h11v11"/></svg></button>' +
     '<p class="form-response dialog-msg" role="alert" hidden></p></form>');
   $("adoption-form").addEventListener("submit", async event => {
     event.preventDefault();
