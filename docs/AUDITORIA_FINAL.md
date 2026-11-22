@@ -46,12 +46,12 @@ Os arquivos de fotos utilizados pela aplicação (por exemplo `batmiau.webp`, `b
 ## Verificações e condições da entrega
 
 - A integração da PR #20 foi incorporada à `main`.
-- A demonstração HTTPS pública principal está em `https://adotapet.pages.dev/` (Cloudflare Pages), com espelho em `https://eloisafazzio.github.io/Projeto_AdotaPet/`. **É estática**: não oferece autenticação ou adoções reais.
+- A demonstração do repositório é publicada em `https://eloisafazzio.github.io/Projeto_AdotaPet/` (GitHub Pages). O endereço antigo do Cloudflare Pages foi retirado da indicação pública após relato de conteúdo divergente. **É estática**: não oferece autenticação ou adoções reais.
 - O sistema Java completo deve continuar sendo testado localmente pelo guia `docs/HOMOLOGACAO_LOCAL.md`.
 - Após a limpeza, validar CI do backend, frontend e GitHub Pages e inspecionar visualmente o site desktop e celular.
 - A publicação de dados reais ainda depende de segurança, LGPD, migrações e testes E2E, conforme Issue #13. Não declarar o backend pronto para produção.
 - O domínio `adotapet.com.br` não foi registrado; a hospedagem do site demonstrativo no Cloudflare Pages e o espelho no GitHub Pages permanecem gratuitos.
-- A integração com Cloudflare Pages foi configurada pela responsável, não por este repositório; verificar o painel Cloudflare para validar o histórico de builds e a implantação atual.
+- A integração do antigo Cloudflare Pages foi configurada fora deste repositório. Confirmar no painel Cloudflare a qual projeto o domínio foi atribuído antes de voltar a divulgá-lo.
 
 ## Histórico e manutenção
 

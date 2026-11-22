@@ -1,6 +1,6 @@
 # AdotaPet — Guia de homologação local (Windows)
 
-O frontend, o backend e o painel administrativo já estão integrados à branch **`main`** (PR #20 mesclada). Para avaliar a entrega final, baixe o ZIP da `main` ou faça clone do repositório. O endereço https://adotapet.pages.dev/ é somente a demonstração estática, sem backend Java ou banco de dados.
+O frontend, o backend e o painel administrativo já estão integrados à branch **`main`** (PR #20 mesclada). Para avaliar a entrega final, baixe o ZIP da `main` ou faça clone do repositório. O endereço https://eloisafazzio.github.io/Projeto_AdotaPet/ é uma demonstração estática do repositório, sem backend Java ou banco de dados. O link anterior do Cloudflare Pages está em revisão após apresentar conteúdo divergente.
 
 Este ambiente é apenas para **testes acadêmicos com dados fictícios**. Não use dados pessoais reais, fotos privadas ou senhas reutilizadas.
 

@@ -10,9 +10,9 @@ O **AdotaPet** é um projeto acadêmico de Engenharia de Software desenvolvido p
 
 ### 🌐 Demonstração online gratuita
 
-**🌐 [Acessar o AdotaPet — site público](https://adotapet.pages.dev/)**
+**🌐 [Acessar a demonstração do AdotaPet — GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)**
 
-O endereço público oficial da demonstração acadêmica é **https://adotapet.pages.dev/**, hospedado gratuitamente no **Cloudflare Pages** e conectado ao GitHub. A versão publicada usa o **frontend visual original** com dados fictícios, sem banco de dados, login, cadastros ou solicitações reais. Os arquivos de publicação ficam em [`site-demo/`](site-demo/); os arquivos do sistema completo continuam em `src/main/resources/static/`.
+O endereço da demonstração acadêmica vinculado ao repositório é **https://eloisafazzio.github.io/Projeto_AdotaPet/**, publicado pelo **GitHub Pages**. O endereço anterior do Cloudflare Pages foi retirado da divulgação após a responsável informar que está exibindo outro site. A versão publicada usa o **frontend visual original** com dados fictícios, sem banco de dados, login, cadastros ou solicitações reais. Os arquivos de publicação ficam em [`site-demo/`](site-demo/); os arquivos do sistema completo continuam em `src/main/resources/static/`.
 
 ### 🖥️ Sistema completo local
 
@@ -38,7 +38,7 @@ O **Spring Boot 3.3.5 + Java 17 + PostgreSQL/H2** está disponível na `main`: s
 
 ## 🧰 Tecnologias
 
-**Publicação da demonstração:** Cloudflare Pages (plano gratuito, HTTPS e integração com o repositório GitHub). Os arquivos estáticos estão em [`site-demo/`](site-demo/). O GitHub Pages é mantido como espelho/alternativa, não como endereço principal.
+**Publicação da demonstração:** GitHub Pages, usando o conteúdo estático de [`site-demo/`](site-demo/) pelo workflow `.github/workflows/pages-vitrine.yml`. O endereço anterior do Cloudflare Pages exige conferência no painel do serviço e não deve ser divulgado como link do AdotaPet até ser corrigido.
 
 
 - **Java 17**
@@ -181,12 +181,12 @@ Qualquer pessoa pode baixar o **código-fonte completo** da branch `main` para e
 
 **Privacidade e persistência:** nunca publique seu `.env`, senhas, tokens ou backups no GitHub. Para parar os serviços mantendo os dados cadastrados, use `docker compose down`. **Evite `docker compose down -v`**, pois o parâmetro `-v` remove os volumes do banco.
 
-> **Distinção importante:** https://adotapet.pages.dev/ é uma demonstração pública estática com dados fictícios; o download do GitHub permite executar o sistema Java completo **localmente**, mediante a configuração do ambiente e do banco de dados. A aplicação ainda não está homologada para uso público com dados pessoais reais.
+> **Distinção importante:** https://eloisafazzio.github.io/Projeto_AdotaPet/ é uma demonstração pública estática com dados fictícios; o download do GitHub permite executar o sistema Java completo **localmente**, mediante a configuração do ambiente e do banco de dados. A aplicação ainda não está homologada para uso público com dados pessoais reais.
 
 ## 🖥️ Interface web e integração
 
-- **Demonstração pública oficial (somente frontend):** https://adotapet.pages.dev/
-- **Espelho gratuito (GitHub Pages, mantido como alternativa):** https://eloisafazzio.github.io/Projeto_AdotaPet/
+- **Demonstração pública do repositório (somente frontend):** https://eloisafazzio.github.io/Projeto_AdotaPet/
+- **Cloudflare Pages:** endereço anterior em revisão, não divulgado por abrir conteúdo diferente do AdotaPet.
 - **Site público:** http://localhost:8080 (animais disponíveis, filtros, login e solicitações).
 - **Painel da ONG:** http://localhost:8080/painel.html (gestão de animais, abrigos, vacinação, pedidos, visitas e relatórios).
 - **Swagger/OpenAPI:** http://localhost:8080/swagger-ui.html (somente em desenvolvimento).
@@ -196,7 +196,7 @@ Qualquer pessoa pode baixar o **código-fonte completo** da branch `main` para e
 
 ## 📚 Documentação
 
-**Para avaliação:** acesse [o site público](https://adotapet.pages.dev/), consulte a [entrega acadêmica](docs/ENTREGA_ACADEMICA_v1.0.0.md) e execute o backend local usando o [guia de homologação](docs/HOMOLOGACAO_LOCAL.md). O ambiente online não executa Java nem permite adoções reais.
+**Para avaliação:** acesse [a demonstração do AdotaPet no GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/), consulte a [entrega acadêmica](docs/ENTREGA_ACADEMICA_v1.0.0.md) e execute o backend local usando o [guia de homologação](docs/HOMOLOGACAO_LOCAL.md). O ambiente online não executa Java nem permite adoções reais.
 
 
 A documentação acadêmica da Etapa 1 está organizada na pasta [`docs/`](docs/).

@@ -2,7 +2,7 @@
 
 **Objetivo:** diferenciar os requisitos já presentes no código das pendências para uso real. Esta triagem não substitui a conferência detalhada de todos os critérios de aceite, e **não exige prints ou anexos de evidência**, por orientação da responsável.
 
-**Escopo do produto público:** demonstração estática com dados fictícios, publicada em https://adotapet.pages.dev/. O backend Java e seu banco são executados localmente; login, administração e adoção reais não são oferecidos no site público.
+**Escopo do produto público:** demonstração estática com dados fictícios, disponibilizada pelo GitHub Pages em https://eloisafazzio.github.io/Projeto_AdotaPet/. O backend Java e seu banco são executados localmente; login, administração e adoção reais não são oferecidos no site público.
 
 ## Resultado da triagem
 
@@ -31,6 +31,6 @@
 
 ## Entrega e limitações
 
-Para avaliação: [site público](https://adotapet.pages.dev/), [README](../README.md), [documentação acadêmica](ENTREGA_ACADEMICA_v1.0.0.md) e [guia de execução local](HOMOLOGACAO_LOCAL.md).
+Para avaliação: [site demonstrativo no GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/), [README](../README.md), [documentação acadêmica](ENTREGA_ACADEMICA_v1.0.0.md) e [guia de execução local](HOMOLOGACAO_LOCAL.md).
 
 A responsável optou por **não reunir evidências em prints**. A conferência de requisitos e a automação de CI documentadas aqui não implicam que o backend está liberado para usuários reais ou que todas as Issues foram concluídas. Em particular, segurança, privacidade, migrações de banco e homologação de produção permanecem fora do escopo da apresentação do protótipo.
