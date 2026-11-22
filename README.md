@@ -175,7 +175,7 @@ Qualquer pessoa pode baixar o **código-fonte completo** da branch `main` para e
 
 **Banco de dados e catálogo:** o Docker Compose cria um PostgreSQL local independente, inicialmente sem os animais e abrigos de outra instalação. Cadastre registros fictícios no painel para realizar os testes. O código também contém `DemoDataBootstrap`, que oferece uma carga fictícia **opcional e desativada por padrão**; ela só deve ser ativada em ambiente isolado de desenvolvimento, conforme [guia e configuração do projeto](docs/HOMOLOGACAO_LOCAL.md). As imagens estáticas incluídas no repositório são diferentes dos registros do banco.
 
-**Porta utilizada:** `8080` é a porta padrão do projeto. Não é necessário utilizar `8081` ou restaurar backups para uma instalação normal. Se a porta `8080` já estiver ocupada por outra instalação, pare a aplicação anterior antes de iniciar a cópia — não execute as duas instâncias simultaneamente na mesma porta.
+**Porta utilizada:** `8080` é a porta padrão do projeto. Não é necessário configurar portas alternativas ou restaurar backups para uma instalação normal. Se a porta `8080` já estiver ocupada por outra instalação, pare a aplicação anterior antes de iniciar a cópia — não execute as duas instâncias simultaneamente na mesma porta.
 
 **Testes automatizados:** com Java 17 e Maven instalados no computador, execute `mvn test` na raiz do projeto. Os testes também são verificados pelo GitHub Actions.
 
