@@ -148,61 +148,40 @@ jdbc:postgresql://<host>:5432/<database>
 
 Não inclua senhas, tokens ou outras credenciais no repositório. Use variáveis de ambiente e mantenha os dados de acesso privados.
 
-## ✅ Executar uma cópia baixada do GitHub (Windows)
+## ✅ Baixar e executar o AdotaPet do GitHub (Windows)
 
-Este projeto já foi testado localmente com **Docker, PostgreSQL 16, Java 17 e Maven**. A aplicação original funcionou na porta `8080`; uma cópia obtida do GitHub pôde ser iniciada separadamente na porta `8081`, conectada a um banco PostgreSQL de teste na porta `55432`.
+Qualquer pessoa pode baixar o **código-fonte completo** da branch `main` para estudar e executar o projeto localmente. O download inclui frontend, backend Spring Boot, testes e documentação. **Não inclui os registros de um banco PostgreSQL já utilizado, credenciais ou arquivos privados**: cada pessoa inicia seu próprio ambiente.
 
-**Atenção: o download do repositório não inclui os dados armazenados no PostgreSQL.** Ao usar `mvn spring-boot:run` sem configurar `DB_URL`, a aplicação inicia por padrão com H2 em memória, que não contém os animais, ONGs ou usuários do ambiente original. Isso não significa que os registros foram apagados. As imagens estáticas versionadas também precisam estar presentes na pasta `src/main/resources/static/`; dados do banco e arquivos de imagem são recursos distintos.
+### Instalação recomendada — Docker Desktop
 
-### Opção A — Instalação independente (recomendada para novos avaliadores)
+1. Acesse [o repositório no GitHub](https://github.com/EloisaFazzio/Projeto_AdotaPet), selecione a branch `main` e clique em **Code → Download ZIP**.
+2. Extraia o ZIP e **abra a pasta que contém `pom.xml`, `compose.yaml` e `.env.example`**. Algumas extrações criam uma pasta `Projeto_AdotaPet-main` dentro de outra.
+3. Abra o PowerShell nessa pasta e crie seu arquivo local de configuração:
 
-1. Faça checkout da branch `main`, que contém a versão integrada.
-2. Na raiz, copie `.env.example` para `.env` e preencha `DB_USER`, `DB_PASSWORD`, `JWT_SECRET`, `ADOTAPET_ADMIN_EMAIL` e `ADOTAPET_ADMIN_PASSWORD` com **valores novos e privados**. Veja as exigências e como gerar o segredo JWT em [Homologação local](docs/HOMOLOGACAO_LOCAL.md).
-3. Com o Docker Desktop aberto, execute `docker compose up --build -d` e consulte `docker compose logs -f aplicacao`.
-4. Abra `http://localhost:8080` e acesse `http://localhost:8080/painel.html` para cadastrar os abrigos e os animais de teste. Se as portas já estiverem ocupadas, não inicie outra cópia do Compose sem ajustar o mapeamento.
-5. Execute `mvn test` para verificar os testes automatizados Java, se tiver o JDK e o Maven instalados.
+   ```powershell
+   Copy-Item .env.example .env
+   notepad .env
+   ```
 
-O provisionamento administrativo é **explícito**: quando as variáveis de administrador estão configuradas, a aplicação cria a conta **somente se o e-mail ainda não existir**. Não há senha administrativa universal no repositório. Alterar a variável de senha não redefine automaticamente a senha de uma conta existente.
+4. Preencha `DB_USER`, `DB_PASSWORD`, `JWT_SECRET`, `ADOTAPET_ADMIN_EMAIL`, `ADOTAPET_ADMIN_PASSWORD` e, se desejar, `ADOTAPET_ADMIN_NAME` com **valores próprios e privados**. O [guia de homologação](docs/HOMOLOGACAO_LOCAL.md) explica como gerar o segredo JWT e as exigências das credenciais.
+5. Abra o Docker Desktop e, no PowerShell, execute:
 
-### Dados demonstrativos opcionais (somente desenvolvimento)
+   ```powershell
+   docker compose up --build -d
+   docker compose logs -f aplicacao
+   ```
 
-O código já possui a classe `DemoDataBootstrap`, que pode cadastrar **4 abrigos fictícios e 16 animais fictícios**, além de exemplos de vacinação e solicitações. A carga é **desativada por padrão**; só é habilitada quando o perfil `dev` está ativo **e** a propriedade `adotapet.demo.seed=true` é informada. Para experimentar sem os dados pessoais do banco original, execute em uma instância H2 separada:
+6. Quando a aplicação iniciar, acesse **http://localhost:8080** (site) ou **http://localhost:8080/painel.html** (painel administrativo). Use as credenciais de administrador criadas no `.env`. Para encerrar a visualização dos logs, pressione **Ctrl+C**; os contêineres continuam em execução.
 
-```powershell
-mvn spring-boot:run "-Dspring-boot.run.arguments=--server.port=8081 --spring.profiles.active=dev --adotapet.demo.seed=true"
-```
+**Banco de dados e catálogo:** o Docker Compose cria um PostgreSQL local independente, inicialmente sem os animais e abrigos de outra instalação. Cadastre registros fictícios no painel para realizar os testes. O código também contém `DemoDataBootstrap`, que oferece uma carga fictícia **opcional e desativada por padrão**; ela só deve ser ativada em ambiente isolado de desenvolvimento, conforme [guia e configuração do projeto](docs/HOMOLOGACAO_LOCAL.md). As imagens estáticas incluídas no repositório são diferentes dos registros do banco.
 
-Não habilite essa carga em produção nem em bancos que contenham registros reais. Os tutores de demonstração recebem senhas aleatórias, **não** uma senha pública de acesso. A carga demonstrativa também **não cria uma conta ADMIN**: para configurar uma conta administrativa, utilize as variáveis `ADOTAPET_ADMIN_EMAIL` e `ADOTAPET_ADMIN_PASSWORD` conforme o guia de homologação. A presença dos registros fictícios não garante fotografias individuais, pois dados de animais e arquivos de mídia são recursos diferentes.
+**Porta utilizada:** `8080` é a porta padrão do projeto. Não é necessário utilizar `8081` ou restaurar backups para uma instalação normal. Se a porta `8080` já estiver ocupada por outra instalação, pare a aplicação anterior antes de iniciar a cópia — não execute as duas instâncias simultaneamente na mesma porta.
 
-### Opção B — Conferir uma cópia contra um backup local (homologação)
+**Testes automatizados:** com Java 17 e Maven instalados no computador, execute `mvn test` na raiz do projeto. Os testes também são verificados pelo GitHub Actions.
 
-**Somente para quem já possui um backup autorizado e privado do banco.** Não publique dumps de banco, arquivos `.env`, dados pessoais ou credenciais no GitHub. O exemplo abaixo presume um contêiner *separado* chamado `adotapet-banco-teste`, com PostgreSQL já inicializado, e o backup local em `Downloads\adotapet-backup.dump`.
+**Privacidade e persistência:** nunca publique seu `.env`, senhas, tokens ou backups no GitHub. Para parar os serviços mantendo os dados cadastrados, use `docker compose down`. **Evite `docker compose down -v`**, pois o parâmetro `-v` remove os volumes do banco.
 
-No PowerShell, confira o serviço e copie o arquivo para o contêiner de teste:
-
-~~~powershell
-docker exec adotapet-banco-teste pg_isready -U Adotapet -d adotapet
-docker cp "$env:USERPROFILE\Downloads\adotapet-backup.dump" adotapet-banco-teste:/tmp/adotapet-backup.dump
-~~~
-
-**Restaurar apenas num banco vazio e separado**, nunca sobre o banco original ou um banco com dados a preservar:
-
-~~~powershell
-docker exec adotapet-banco-teste pg_restore -U Adotapet -d adotapet --no-owner --no-acl --exit-on-error /tmp/adotapet-backup.dump
-~~~
-
-Para executar o código da cópia baixada com esse PostgreSQL, abra um **novo terminal PowerShell**, entre na pasta que contém `pom.xml` e configure as variáveis abaixo. O valor da senha deve corresponder à senha *já definida* no PostgreSQL de teste; os comandos não alteram a senha do banco:
-
-~~~powershell
-$env:DB_URL = "jdbc:postgresql://localhost:55432/adotapet"
-$env:DB_USER = "Adotapet"
-$env:DB_PASSWORD = Read-Host "Senha do PostgreSQL de teste"
-mvn spring-boot:run "-Dspring-boot.run.arguments=--server.port=8081"
-~~~
-
-Depois, visite `http://localhost:8081` e confira o catálogo, as ONGs, as imagens e o login no painel. **Os registros da conta administrativa podem ser restaurados com o backup**; as credenciais devem ser mantidas privadas. O exemplo usa portas e nome de banco específicos de um cenário de testes, não configurações obrigatórias para qualquer instalação.
-
-> **Não execute `docker compose down -v` se quiser manter os dados:** o sinalizador `-v` remove volumes. Nunca restaure dados de produção em uma instalação pública de demonstração.
+> **Distinção importante:** https://adotapet.pages.dev/ é uma demonstração pública estática com dados fictícios; o download do GitHub permite executar o sistema Java completo **localmente**, mediante a configuração do ambiente e do banco de dados. A aplicação ainda não está homologada para uso público com dados pessoais reais.
 
 ## 🖥️ Interface web e integração
 
@@ -212,7 +191,7 @@ Depois, visite `http://localhost:8081` e confira o catálogo, as ONGs, as imagen
 - **Painel da ONG:** http://localhost:8080/painel.html (gestão de animais, abrigos, vacinação, pedidos, visitas e relatórios).
 - **Swagger/OpenAPI:** http://localhost:8080/swagger-ui.html (somente em desenvolvimento).
 - A integração dos PRs #9, #14, #17, #10 e #15 foi incorporada à `main` pelo [PR #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20).
-- O catálogo **não é pré-preenchido na instalação padrão**. Para visualizar animais, cadastre dados pelo painel ou, exclusivamente no ambiente de desenvolvimento, habilite a carga fictícia opcional descrita acima.
+- O catálogo **não é pré-preenchido na instalação padrão**. Para visualizar animais no sistema local, cadastre dados fictícios pelo painel. A carga opcional de desenvolvimento existe no código, mas fica desativada por padrão.
 - Há testes automatizados Java, HTTP e de navegador. O funcionamento do ambiente original em `8080` foi confirmado em teste local; uma restauração de backup em banco isolado retornou **16 animais**. A validação visual comparativa completa, o login por perfil e a publicação em produção **não foram comprovados por essa restauração** e seguem pendentes de evidências adicionais.
 
 ## 📚 Documentação
