@@ -153,7 +153,7 @@ async function resumo() {
   ]);
   const aguardando=pedidos.filter(p=>["PENDENTE","EM_ANALISE"].includes(p.status));
   $("panel-content").innerHTML=
-    '<div class="metric-grid">'+stat(pendentes.totalElements||0,"Animais disponíveis","🐾")+
+    '<div class="metric-grid">'+stat(pendentes.totalElements||0,"Animais disponíveis","<svg class=\"icon\" aria-hidden=\"true\"><use href=\"#paw\"></use></svg>")+
     stat(abrigos.length,"Abrigos cadastrados","⌂")+
     stat(aguardando.length,"Solicitações em andamento","♡")+
     stat(vencidas.length,"Doses com data vencida","✚")+'</div>'+
@@ -309,7 +309,7 @@ async function aplicacoes() {
   const vencidas=await api(f("vacinacoes/vencidas"));
   action("+ Registrar vacinação",()=>formAplicacao());
   $("panel-content").innerHTML=sec("Doses vencidas",
-    '<p class="panel-muted">Considera registros com próxima dose anterior à data atual, conforme a API.</p>')+
+    '<p class="panel-muted"></p>')+
     table(["Animal","Vacina","Aplicação","Próxima dose"],
       vencidas.map(v=>row([
         "<b>"+esc(v.animal)+"</b><span class='sub'>ID "+Number(v.animalId)+"</span>",
@@ -446,7 +446,7 @@ async function relatorios() {
   const hoje=hojeISO();
   const primeiro=hoje.substring(0,7)+"-01";
   $("panel-content").innerHTML=
-    '<div class="metric-grid">'+stat(total,"Animais no sistema","🐾")+
+    '<div class="metric-grid">'+stat(total,"Animais no sistema","<svg class=\"icon\" aria-hidden=\"true\"><use href=\"#paw\"></use></svg>")+
     stat(statuses.ADOTADO||0,"Animais adotados","♡")+
     stat(vencidas.length,"Doses vencidas","✚")+'</div>'+
     sec("Distribuição dos animais por status",'<div class="panel-facts">'+barras+'</div>')+
@@ -582,9 +582,108 @@ $("year").textContent=new Date().getFullYear();
       return;
     }
     sessao.usuario=usuario;
+    
     sessionStorage.setItem("adotapet-sessao",JSON.stringify(sessao));
     $("current-user").textContent=usuario.nome+" · "+usuario.perfil;
     $("panel-nav").querySelectorAll("[data-admin-only]").forEach(e=>e.hidden=usuario.perfil!=="ADMIN");
     await render();
   }catch(err){error(err);await render();}
 })();
+
+
+// ADOTAPET_ONG_VACINA_GATO_V1: aprimoramentos administrativos.
+// A imagem é armazenada na vacina do PostgreSQL e não somente exibida no navegador.
+formVacina = async function(id) {
+  const vacinaAtual=id?await api(f("vacinas/"+id)):null;
+  openForm(id?"Editar vacina":"Cadastrar vacina",
+    field("nome","Nome da vacina","text",{required:true,maxlength:100,value:vacinaAtual?.nome})+
+    select("especieAlvo","Espécie-alvo",[["CAO","Cachorro"],["GATO","Gato"],["OUTRA","Outro"]],vacinaAtual?.especieAlvo)+
+    field("intervaloDias","Intervalo entre doses (dias, opcional)","number",{min:1,value:vacinaAtual?.intervaloDias})+
+    '<div class="panel-anexo-imagem"><label for="vacina-foto-arquivo">Anexar imagem da vacina (opcional)</label>'+
+    '<input type="file" id="vacina-foto-arquivo" name="foto" accept="image/png,image/jpeg,image/webp">'+
+    '<small>PNG, JPEG ou WebP, até 2 MB. Uma nova imagem substitui a anterior.</small></div>',
+    async d=>{
+      const arquivo=d.foto;
+      if(arquivo && arquivo.size>0){
+        if(arquivo.size>2*1024*1024) throw Error("A imagem deve ter até 2 MB.");
+        if(!["image/png","image/jpeg","image/webp"].includes(arquivo.type))
+          throw Error("Escolha uma imagem PNG, JPEG ou WebP.");
+      }
+      const salvo=await api(f("vacinas"+(id?"/"+id:"")),{
+        method:id?"PUT":"POST",body:JSON.stringify({
+          nome:d.nome.trim(),especieAlvo:d.especieAlvo,
+          intervaloDias:d.intervaloDias?Number(d.intervaloDias):null
+        })
+      });
+      if(arquivo && arquivo.size>0){
+        const fd=new FormData();fd.append("arquivo",arquivo,arquivo.name);
+        const resposta=await fetch(f("vacinas/"+salvo.id+"/imagem"),{
+          method:"PUT",headers:{Authorization:"Bearer "+sessao.token},body:fd
+        });
+        if(!resposta.ok){
+          const erro=await resposta.json().catch(()=>({}));
+          throw Error((erro.erro||"Falha ao anexar imagem")+". Os demais dados da vacina foram salvos.");
+        }
+      }
+      return salvo;
+    });
+};
+
+const __vacinasAntesDaFoto=views.vacinas;
+views.vacinas=async function(){
+  await __vacinasAntesDaFoto();
+  const tabela=$("panel-content").querySelector(".panel-table");
+  if(!tabela || !sessao?.token) return;
+  const lista=await api(f("vacinas"));
+  const coluna=document.createElement("th");coluna.scope="col";coluna.textContent="Imagem";
+  tabela.querySelector("thead tr")?.prepend(coluna);
+  const linhas=Array.from(tabela.querySelectorAll("tbody tr"));
+  lista.forEach(async (v,i)=>{
+    const linha=linhas[i];if(!linha)return;
+    const celula=linha.insertCell(0);
+    const estado=document.createElement("span");estado.className="vacina-foto-falta";estado.textContent="Sem imagem";
+    celula.append(estado);
+    try{
+      const resposta=await fetch(f("vacinas/"+v.id+"/imagem"),{
+        headers:{Authorization:"Bearer "+sessao.token}
+      });
+      if(!resposta.ok) return;
+      const blob=await resposta.blob();const url=URL.createObjectURL(blob);
+      const img=document.createElement("img");img.className="vacina-foto-mini";
+      img.alt="Imagem anexada a "+v.nome;img.onload=()=>URL.revokeObjectURL(url);
+      img.onerror=()=>URL.revokeObjectURL(url);img.src=url;
+      celula.replaceChildren(img);
+    }catch{}
+  });
+};
+
+const __aplicacoesAntesDoGato=views.aplicacoes;
+views.aplicacoes=async function(){
+  await __aplicacoesAntesDoGato();
+  const raiz=$("panel-content");
+  raiz.insertAdjacentHTML("afterbegin",
+    '<div class="panel-gato-destaque">'+
+    '<img src="/imagens-pets/nazare.webp" alt="Retrato da gata Nazaré">'+
+    '<div class="panel-gato-texto"><h2>Acompanhamento de vacinação felina</h2>'+
+    '<p>Consulte o histórico de um gato cadastrado ou registre uma nova dose com a vacina apropriada.</p>'+
+    '<button id="atalho-gato-vacina" class="btn btn-outline btn-small" type="button" hidden>Vacinar gato cadastrado</button>'+
+    '</div></div>');
+  try{
+    const pagina=await api(f("animais?especie=GATO&size=36"));
+    const gato=(pagina.content||[]).find(a=>a.nome==="Nazaré") || (pagina.content||[])[0];
+    const botao=$("atalho-gato-vacina");
+    if(gato && botao){botao.hidden=false;botao.addEventListener("click",()=>formAplicacao(gato.id));}
+  }catch{}
+};
+
+const __adocoesAntesDoGato=views.adocoes;
+views.adocoes=async function(){
+  await __adocoesAntesDoGato();
+  $("panel-content").insertAdjacentHTML("afterbegin",
+    '<div class="panel-gato-destaque">'+
+    '<img src="/imagens-pets/batmiau.webp" alt="Retrato do gato Batmiau">'+
+    '<div class="panel-gato-texto"><h2>Adoção responsável de gatos</h2>'+
+    '<p>Consulte processos formalizados e acompanhe solicitações para os gatos cadastrados.</p>'+
+    '<button class="btn btn-outline btn-small" type="button" data-go="solicitacoes">Ver solicitações de adoção</button>'+
+    '</div></div>');
+};

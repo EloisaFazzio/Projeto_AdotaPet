@@ -8,7 +8,7 @@ const labels = {
   PENDENTE:"Pendente",EM_ANALISE:"Em análise",APROVADA:"Aprovada",
   REJEITADA:"Rejeitada",CANCELADA:"Cancelada",DISPONIVEL:"Disponível"
 };
-const emoji = {CAO:"🐶",GATO:"🐱",OUTRA:"🐾"};
+const animalIcon = {CAO:"dog",GATO:"cat",OUTRA:"paw"};
 const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, c =>
   ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const capitalize = value => labels[value] || value || "—";
@@ -106,12 +106,12 @@ function idadeAnimal(dataNascimento) {
 }
 
 function cartaoPet(p) {
-  return '<article class="pet-card">' +
+  return '<article class="pet-card" data-abrigo="' + escapeHtml(p.abrigo || "") + '">' +
     '<div class="pet-portrait"><span class="pet-badge">♡ Disponível</span><span class="pet-emoji" aria-hidden="true">' +
-    (emoji[p.especie] || "🐾") + '</span></div>' +
+    ("<svg class=\"icon\" aria-hidden=\"true\"><use href=\"#" + (animalIcon[p.especie] || "paw") + "\"></use></svg>") + '</span></div>' +
     '<div class="pet-content"><h3>' + escapeHtml(p.nome) + '</h3>' +
     '<div class="small-line">' + escapeHtml(idadeAnimal(p.dataNascimento)) + ' · ' + escapeHtml(capitalize(p.sexo)) + '</div>' +
-    '<div class="row"><span class="chip">' + escapeHtml(capitalize(p.especie)) +
+    '<div class="row"><span class="chip">' + escapeHtml(p.especie === "OUTRA" && p.raca ? p.raca : capitalize(p.especie)) +
     '</span><span class="chip">' + escapeHtml(capitalize(p.porte)) + '</span></div>' +
     '<p class="desc">' + escapeHtml(p.descricao || "Conheça a história deste animal e converse com a equipe da ONG.") + '</p>' +
     '<div class="pet-footer"><span class="location">⌖ ' + escapeHtml(p.cidade || "Cidade não informada") +
@@ -140,14 +140,17 @@ async function carregarCatalogo() {
     totalPaginas = dados.totalPages || 0;
     $("count-animals").textContent = dados.totalElements ?? 0;
     if (animaisVisiveis.length === 0) {
-      feedback.innerHTML = '<strong>🐾 Nenhum animal disponível com estes filtros.</strong><p>Experimente mudar a busca ou volte mais tarde.</p>';
+      feedback.innerHTML = '<strong>Nenhum animal disponível com estes filtros.</strong><p>Experimente mudar a busca ou volte mais tarde.</p>';
       return;
     }
     feedback.hidden = true;
     $("pet-grid").innerHTML = animaisVisiveis.map(cartaoPet).join("");
     if (totalPaginas > 1) {
       $("pagination").hidden = false;
-      $("page-label").textContent = "Página " + (paginaAtual + 1) + " de " + totalPaginas;
+      /* adotapet-paginacao-numerada-v1 */
+      $("page-label").innerHTML = Array.from({length:totalPaginas}, (_, i) =>
+        '<button type="button" class="adotapet-numero-pagina" data-pagina="' + i + '" aria-label="Ir para a página ' + (i+1) + '"' +
+        (i===paginaAtual?' aria-current="page"':'') + '>'+(i+1)+'</button>').join('');
       $("prev-page").disabled = paginaAtual <= 0;
       $("next-page").disabled = paginaAtual >= totalPaginas - 1;
     }
@@ -275,7 +278,7 @@ function selectAbrigos() {
 async function modalEquipe() {
   if (!sessao || !["ADMIN","VOLUNTARIO"].includes(sessao.usuario.perfil)) return;
   await carregarAbrigos();
-  abrirModal(cabecalhoModal("Área da ONG", "Cadastre animais e gerencie solicitações de adoção.") +
+  abrirModal(cabecalhoModal("Administrador", "Cadastre animais e gerencie solicitações de adoção.") +
     (sessao.usuario.perfil === "ADMIN" ?
       '<details class="request-item"><summary><b>+ Cadastrar novo abrigo</b></summary><form id="shelter-form">' +
       '<div class="form-grid"><div class="form-field"><label for="s-name">Nome</label><input id="s-name" required maxlength="120"></div>' +
@@ -383,6 +386,15 @@ $("btn-clear").addEventListener("click", () => {
   $("filter-form").reset();
   paginaAtual = 0;
   carregarCatalogo();
+});
+$("page-label").addEventListener("click", event => {
+  const botao=event.target.closest("button[data-pagina]");
+  if(!botao)return;
+  const proxima=Number(botao.dataset.pagina);
+  if(Number.isInteger(proxima) && proxima>=0 && proxima<totalPaginas && proxima!==paginaAtual){
+    paginaAtual=proxima;
+    carregarCatalogo();
+  }
 });
 $("prev-page").addEventListener("click", () => {if (paginaAtual > 0) {paginaAtual--;carregarCatalogo();}});
 $("next-page").addEventListener("click", () => {if (paginaAtual < totalPaginas - 1) {paginaAtual++;carregarCatalogo();}});

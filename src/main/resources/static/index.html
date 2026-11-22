@@ -9,21 +9,42 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
-  <script src="/app.js" defer></script>
+  <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/etapa1.css"><link rel="stylesheet" href="/ajustes.css">
+  <script src="/app.js" defer></script><script src="/conteudo-publico.js" defer></script><script src="/ongs.js" defer></script><script src="/fotos-demonstracao.js" defer></script>
+  <link rel="stylesheet" href="/imagens-memes.css">
+  <link rel="stylesheet" href="/catalogo-corrigido.css">
+  <link rel="stylesheet" href="/ajustes-ongs-vacinas.css">
+
+<link rel="stylesheet" href="/fotos-pets-final.css?v=20261115b">
+  <script src="/fotos-pets-final.js?v=20261115b" defer></script>
+
 </head>
 <body>
-  <div class="announcement"><span>🐾</span> Um lar transforma uma história. A adoção é um compromisso para toda a vida.</div>
+<svg id="adotapet-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+<symbol id="paw" viewBox="0 0 24 24"><path d="M12 20c-2.2 0-2.5-1.5-5.1-1.5-3 0-3.9-2.7-2.1-4.5L8 11c2-1.9 6-1.9 8 0l3.2 3c1.8 1.8.9 4.5-2.1 4.5-2.6 0-2.9 1.5-5.1 1.5Z"/><ellipse cx="4.5" cy="9" rx="1.5" ry="2"/><ellipse cx="9" cy="5.5" rx="1.5" ry="2"/><ellipse cx="15" cy="5.5" rx="1.5" ry="2"/><ellipse cx="19.5" cy="9" rx="1.5" ry="2"/></symbol>
+<symbol id="dog" viewBox="0 0 24 24"><path d="M7 8 5 4 2 6v5l3 2v2a7 7 0 0 0 14 0v-2l3-2V6l-3-2-2 4M7 8q5-3 10 0M9 14h.01M15 14h.01M10 17q2 2 4 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="cat" viewBox="0 0 24 24"><path d="M4 11 3 3l6 4a12 12 0 0 1 6 0l6-4-1 8v4c0 4-3 6-8 6s-8-2-8-6v-4ZM9 14h.01M15 14h.01m-4 3 1 1 1-1M2 15l5 1m10 0 5-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10H3V11Zm6 10v-7h6v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="mail" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m3 7 9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="vaccine" viewBox="0 0 24 24"><path d="m12 4 8 8m-2-10 4 4M7 10l7 7m-8 1-4 4m4-4 10-10M2 22l5-1 10-10" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+<symbol id="users" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2 21v-2c0-4 3-6 7-6s7 2 7 6v2m0-15a3 3 0 0 1 0 6m2 2c3 1 4 3 4 6" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M4 21V3m0 18h17M8 17v-5m5 5V7m5 10V4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+</svg>
+
+  <div class="announcement"><span><svg class="icon" aria-hidden="true"><use href="#paw"></use></svg></span> Um lar transforma uma história. A adoção é um compromisso para toda a vida.</div>
   <header class="site-header">
     <div class="container navigation">
-      <a class="logo" href="#inicio" aria-label="AdotaPet, página inicial"><span class="logo-icon">🐾</span> adota<span>pet</span><span class="logo-dot">.</span></a>
+      <a class="logo" href="#inicio" aria-label="AdotaPet, página inicial"><span class="logo-icon"><svg class="icon" aria-hidden="true"><use href="#paw"></use></svg></span> adota<span>pet</span><span class="logo-dot">.</span></a>
       <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menu">☰</button>
       <nav class="main-menu" id="main-menu" aria-label="Navegação principal">
         <a href="#animais">Encontrar um pet</a>
         <a href="#como-funciona">Como funciona</a>
-        <a href="#sobre">Nossa missão</a>
+        <a href="#sobre">Nossa missão</a><a href="#ongs">ONGs e abrigos</a>
         <button class="nav-link" id="btn-requests" type="button" hidden>Meus pedidos</button>
-        <button class="nav-link" id="btn-staff" type="button" hidden>Área da ONG</button>
+        <button class="nav-link" id="btn-staff" type="button" hidden>Administrador</button>
       </nav>
       <div class="account-actions">
         <span id="account-name" class="account-name" hidden></span>
@@ -49,8 +70,8 @@
           <div class="hero-shape"></div>
           <img class="hero-photo" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Fotografia ilustrativa de cachorro. Não representa um animal cadastrado." loading="eager">
           <div class="floating-pill pill-top">♥ <strong>Lar com amor</strong></div>
-          <div class="floating-pill pill-bottom"><span>🐾</span> Seu próximo amigo pode estar aqui</div>
-          <div class="photo-credit">Foto ilustrativa</div>
+          <div class="floating-pill pill-bottom"><span><svg class="icon" aria-hidden="true"><use href="#paw"></use></svg></span> Seu próximo amigo pode estar aqui</div>
+          <div class="photo-credit"></div>
           <span class="decor star-one">✳</span>
         </div>
       </div>
@@ -75,42 +96,120 @@
           <label class="filter-city"><span>Cidade</span><input id="filter-city" type="search" placeholder="Ex.: Jaraguá do Sul" maxlength="80"></label>
           <button type="button" class="clear-filters" id="btn-clear">Limpar filtros ↺</button>
         </form>
-        <div id="catalog-feedback" class="feedback" role="status" aria-live="polite">Carregando animais disponíveis...</div>
+        <p class="catalogo-aviso-inicial" role="note"></p><div id="catalog-feedback" class="feedback" role="status" aria-live="polite">Carregando animais disponíveis...</div>
         <div id="pet-grid" class="pet-grid" aria-live="polite"></div>
         <div class="pagination" id="pagination" hidden>
           <button type="button" class="btn btn-outline" id="prev-page">← Anterior</button>
           <span id="page-label" aria-live="polite"></span>
           <button type="button" class="btn btn-outline" id="next-page">Próximo →</button>
         </div>
-        <p class="catalog-disclaimer">As ilustrações dos cartões indicam a espécie; fotos individuais serão disponibilizadas quando cadastradas pela ONG.</p>
       </div>
     </section>
 
-    <section class="section steps-section" id="como-funciona">
+    <section class="section ong-section" id="ongs"><div class="container">
+  <span class="eyebrow">NOSSA REDE</span><h2>Conheça os abrigos da plataforma</h2>
+  <p class="ong-lead">Conheça os espaços de acolhimento e iniciativas de proteção animal da região.</p>
+  <div class="ong-grid" id="rede-ongs" aria-live="polite">Carregando abrigos...</div>
+  
+</div></section>
+<section class="section steps-section" id="como-funciona">
       <div class="container">
         <div class="section-heading"><span class="eyebrow">SIMPLES, SEGURO E COM CARINHO</span><h2>Como funciona<br><span>a adoção?</span></h2><p>Da primeira conexão ao acompanhamento pós-adoção, cada passo importa.</p></div>
         <div class="steps-grid">
-          <article class="step"><span class="step-number">01</span><span class="step-icon">🔎</span><h3>Encontre seu amigo</h3><p>Explore os animais disponíveis e escolha aquele que combina com sua rotina.</p></article>
-          <article class="step"><span class="step-number">02</span><span class="step-icon">💌</span><h3>Envie sua solicitação</h3><p>Crie sua conta de adotante e conte por que deseja oferecer um lar.</p></article>
-          <article class="step"><span class="step-number">03</span><span class="step-icon">🫶</span><h3>Análise responsável</h3><p>A equipe da ONG avalia o pedido e registra o resultado com transparência.</p></article>
-          <article class="step"><span class="step-number">04</span><span class="step-icon">🏡</span><h3>Um novo começo</h3><p>Após a aprovação e formalização, o cuidado continua no acompanhamento.</p></article>
+          <article class="step"><span class="step-number">01</span><span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#search"></use></svg></span><h3>Encontre seu amigo</h3><p>Explore os animais disponíveis e escolha aquele que combina com sua rotina.</p></article>
+          <article class="step"><span class="step-number">02</span><span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#mail"></use></svg></span><h3>Envie sua solicitação</h3><p>Crie sua conta de adotante e conte por que deseja oferecer um lar.</p></article>
+          <article class="step"><span class="step-number">03</span><span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#heart"></use></svg></span><h3>Análise responsável</h3><p>A equipe da ONG avalia o pedido e registra o resultado com transparência.</p></article>
+          <article class="step"><span class="step-number">04</span><span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#home"></use></svg></span><h3>Um novo começo</h3><p>Após a aprovação e formalização, o cuidado continua no acompanhamento.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section mission-section" id="sobre">
       <div class="container mission-grid">
-        <div class="mission-visual"><img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Fotografia ilustrativa de cachorro" loading="lazy"><div class="mission-sticker">Cada patinha merece <b>um lar! ♡</b></div><span class="mission-credit">Foto ilustrativa</span></div>
+        <div class="mission-visual"><img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Fotografia ilustrativa de cachorro" loading="lazy"><div class="mission-sticker">Cada patinha merece <b>um lar! ♡</b></div><span class="mission-credit"></span></div>
         <div class="mission-copy"><span class="eyebrow">MAIS QUE UM SITE</span><h2>Acreditamos em<br><span>segundas chances.</span></h2><p>O AdotaPet ajuda organizações de proteção animal a organizar cadastros, pedidos, históricos de vacinação e o acompanhamento de animais adotados.</p><div class="mission-line"><span>✓</span><div><b>Informações organizadas</b><small>Mais transparência para a equipe da ONG e para quem quer adotar.</small></div></div><div class="mission-line"><span>✓</span><div><b>Adoção com responsabilidade</b><small>Solicitações acompanhadas e avaliadas por pessoas autorizadas.</small></div></div><div class="mission-line"><span>✓</span><div><b>Cuidado que continua</b><small>O bem-estar dos animais permanece importante após a adoção.</small></div></div><a class="btn btn-deep" href="#animais">Conhecer animais ↗</a></div>
       </div>
     </section>
 
     <section class="section cta-section">
-      <div class="container"><div class="cta-card"><div><span class="eyebrow eyebrow-light">JUNTOS PELO BEM-ESTAR ANIMAL</span><h2>Existe espaço para mais<br><em>amor</em> na sua história?</h2><p>Um gesto de cuidado pode transformar duas vidas.</p></div><a class="btn btn-lime" href="#animais">Encontre um amigo ↗</a><div class="cta-paw">🐾</div></div></div>
+      <div class="container"><div class="cta-card"><div><span class="eyebrow eyebrow-light">JUNTOS PELO BEM-ESTAR ANIMAL</span><h2>Existe espaço para mais<br><em>amor</em> na sua história?</h2><p>Um gesto de cuidado pode transformar duas vidas.</p></div><a class="btn btn-lime" href="#animais">Encontre um amigo ↗</a><div class="cta-paw"><svg class="icon" aria-hidden="true"><use href="#paw"></use></svg></div></div></div>
     </section>
-  </main>
-  <footer><div class="container footer-grid"><div><a class="logo footer-logo" href="#inicio"><span class="logo-icon">🐾</span> adota<span>pet</span><span class="logo-dot">.</span></a><p>Uma plataforma de adoção de animais desenvolvida para apoiar ONGs e a adoção responsável.</p></div><div><h3>Explore</h3><a href="#animais">Animais disponíveis</a><a href="#como-funciona">Etapas da adoção</a><a href="#sobre">Nossa missão</a></div><div><h3>Projeto acadêmico</h3><p>Engenharia de Software · Católica de Santa Catarina</p><a href="https://github.com/EloisaFazzio/Projeto_AdotaPet" target="_blank" rel="noopener noreferrer">Repositório no GitHub ↗</a></div></div><div class="container footer-bottom">© <span id="year"></span> AdotaPet · Com carinho, responsabilidade e respeito aos animais.</div></footer>
+</main>
+  <footer><div class="container footer-grid"><div><a class="logo footer-logo" href="#inicio"><span class="logo-icon"><svg class="icon" aria-hidden="true"><use href="#paw"></use></svg></span> adota<span>pet</span><span class="logo-dot">.</span></a><p>Conectando pessoas e animais com cuidado, transparência e responsabilidade.</p></div><div><h3>Explore</h3><a href="#animais">Animais disponíveis</a><a href="#como-funciona">Etapas da adoção</a><a href="#sobre">Nossa missão</a><a href="#ongs">ONGs e abrigos</a>
+</div><div><h3>Sobre o AdotaPet</h3><p>Cuidado, acolhimento e adoção responsável.</p><a href="https://github.com/EloisaFazzio/Projeto_AdotaPet" target="_blank" rel="noopener noreferrer">Repositório no GitHub ↗</a></div></div><section id="adotapet-redes-renovadas" class="adotapet-redes-renovadas container" aria-label="Redes sociais do AdotaPet">
+  <div class="adotapet-redes-intro">
+    <span class="adotapet-redes-kicker">PERTO DE QUEM AMA ANIMAIS</span>
+    <h3>Acompanhe cada nova história.</h3>
+    <p>Mais carinho, cuidado e boas histórias para compartilhar.</p>
+  </div>
+  <div class="adotapet-redes-links" aria-label="Canais sociais">
+    <span class="adotapet-rede" role="img" aria-label="Facebook; endereço oficial ainda não configurado">
+      <span class="adotapet-rede-icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.2 8h-2.1V6.5c0-.5.3-.7.8-.7h1.3V3.1c-.6-.1-1.5-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.8V8H6.8v3.2h2.3V21h4v-9.8h2.4l.4-3.2h-.7z" fill="currentColor"/></svg></span>
+      <span class="adotapet-rede-nome">Facebook</span>
+    </span>
+    <span class="adotapet-rede" role="img" aria-label="Instagram; endereço oficial ainda não configurado">
+      <span class="adotapet-rede-icone"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.7" r="1.15" fill="currentColor"/></svg></span>
+      <span class="adotapet-rede-nome">Instagram</span>
+    </span>
+    <span class="adotapet-rede" role="img" aria-label="WhatsApp; número oficial ainda não configurado">
+      <span class="adotapet-rede-icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 12a8.1 8.1 0 0 1-11.8 7.2L3 20.6l1.6-5.1A8.2 8.2 0 1 1 20.2 12z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.4 7.3c-.5-.1-1.1.5-1.3 1.4-.3 1.6 1.1 3.9 3 5.6 1.8 1.7 4.1 2.4 5.4 1.9.7-.3 1.4-1.1 1.1-1.6l-2.4-1.3c-.3-.1-.5.3-1.2 1-.4.4-1.2 0-2.2-.8-1-.8-1.7-1.7-1.5-2.1.3-.7.8-1 .6-1.4l-1.1-2c-.1-.1-.2-.2-.4-.2z" fill="currentColor"/></svg></span>
+      <span class="adotapet-rede-nome">WhatsApp</span>
+    </span>
+  </div>
+</section>
+<div class="container footer-bottom">© <span id="year"></span> AdotaPet · Com carinho, responsabilidade e respeito aos animais.</div></footer>
   <dialog id="app-dialog" class="app-dialog" aria-labelledby="dialog-title"><button type="button" class="dialog-close" id="dialog-close" aria-label="Fechar janela">×</button><div id="dialog-content"></div></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script id="adotapet-limpar-aviso-ilustrativo">
+(function(){
+ const padrao=/^\s*Perfis ilustrativos em prepara(?:ç|c)(?:ã|a)o\s*[:\-–]?/i;
+ function limpar(){
+  const area=document.getElementById('animais')||document.body;
+  for(const el of area.querySelectorAll('p,small,aside,span,div')){
+   if(el.children.length>0)continue;
+   const t=(el.textContent||'').trim();
+   if(t.length<300&&padrao.test(t))el.remove();
+  }
+ }
+ function iniciar(){limpar();const area=document.getElementById('animais')||document.body;
+  new MutationObserver(limpar).observe(area,{childList:true,subtree:true});
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar,{once:true});else iniciar();
+})();
+</script>
+<!-- ADOTAPET-IDENTIDADES-CONFERIDAS-2026: inicio -->
+<script>
+(function () {
+  'use strict';
+  const nomes = new Map([[2,'Zé do Caixão'],[5,'Credosvaldo'],[10,'Batmiau']]);
+  const grade = document.getElementById('pet-grid');
+  if (!grade) return;
+  function corrigir() {
+    for (const cartao of grade.querySelectorAll('.pet-card')) {
+      const acao = cartao.querySelector('[data-adopt]');
+      if (!acao) continue;
+      const id = Number(acao.dataset.adopt);
+      if (!nomes.has(id)) continue;
+      const titulo = cartao.querySelector('.pet-content h3');
+      if (titulo && titulo.textContent.trim() !== nomes.get(id)) titulo.textContent = nomes.get(id);
+      const area = cartao.querySelector('.pet-portrait');
+      if (!area || area.querySelector('img.foto-identidade-confirmada') || area.dataset.fotoConferida === 'erro') continue;
+      const foto = document.createElement('img');
+      foto.className = 'foto-identidade-confirmada';
+      foto.alt = 'Fotografia de ' + nomes.get(id);
+      foto.loading = 'lazy';
+      foto.addEventListener('error', function () {
+        area.dataset.fotoConferida = 'erro';
+        foto.remove();
+      }, {once:true});
+      foto.src = '/api/animais/' + id + '/imagem?versao=confirmada-20261116';
+      area.appendChild(foto);
+    }
+  }
+  new MutationObserver(corrigir).observe(grade, {childList:true,subtree:true});
+  corrigir();
+})();
+</script>
+<!-- ADOTAPET-IDENTIDADES-CONFERIDAS-2026: fim -->
 </body>
 </html>

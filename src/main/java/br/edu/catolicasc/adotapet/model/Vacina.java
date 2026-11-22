@@ -1,6 +1,8 @@
 package br.edu.catolicasc.adotapet.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import jakarta.validation.constraints.*;
 import java.time.*;
 import java.util.*;
@@ -27,6 +29,14 @@ public class Vacina {
     /** Intervalo recomendado entre doses, em dias (nulo para dose única). */
     @Column(name = "intervalo_dias")
     private Integer intervaloDias;
+
+    /** Imagem de apresentação associada ao cadastro da vacina, armazenada no PostgreSQL. */
+    @JdbcTypeCode(SqlTypes.VARBINARY)
+    @Column(name = "imagem_dados", columnDefinition = "bytea")
+    private byte[] imagemDados;
+
+    @Column(name = "imagem_mime", length = 24)
+    private String imagemMime;
 
     @OneToMany(mappedBy = "vacina")
     private List<VacinacaoAnimal> aplicacoes = new ArrayList<>();
@@ -70,6 +80,11 @@ public class Vacina {
     public void setIntervaloDias(Integer intervaloDias) {
         this.intervaloDias = intervaloDias;
     }
+
+    public byte[] getImagemDados() { return imagemDados == null ? null : imagemDados.clone(); }
+    public void setImagemDados(byte[] dados) { this.imagemDados = dados == null ? null : dados.clone(); }
+    public String getImagemMime() { return imagemMime; }
+    public void setImagemMime(String mime) { this.imagemMime = mime; }
 
     public List<VacinacaoAnimal> getAplicacoes() {
         return aplicacoes;

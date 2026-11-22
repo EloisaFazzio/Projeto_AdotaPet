@@ -22,9 +22,9 @@ public class SecurityConfig {
             .exceptionHandling(e -> e.authenticationEntryPoint(
                 (request, response, ex) -> response.sendError(401, "Autenticação necessária")))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/index.html", "/styles.css", "/app.js", "/painel.html", "/painel.css", "/painel.js", "/favicon.ico", "/error").permitAll()
+                .requestMatchers("/", "/index.html", "/styles.css", "/app.js", "/painel.html", "/painel.css", "/painel.js", "/favicon.ico", "/imagens-pets/**", "/imagens-memes.css", "/catalogo-corrigido.css", "/imagens-ongs/**", "/imagens-pets/**", "/ajustes-ongs-vacinas.css", "/fotos-ongs/**", "/imagens-pets/**", "/fotos-pets-final.js", "/galeria-final.js", "/painel-final.js", "/fotos-pets-final.css", "/imagens-pets/**", "/error", "/icons.svg", "/etapa1.css", "/conteudo.html", "/conteudo.js", "/conteudo-publico.js", "/ongs.js", "/ajustes.css", "/fotos-demonstracao.js").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/login", "/api/auth/registrar").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/animais", "/api/animais/**", "/api/abrigos").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/animais", "/api/animais/**", "/api/abrigos", "/api/conteudo").permitAll()
                 .anyRequest().authenticated())
             .addFilterBefore(jwt, UsernamePasswordAuthenticationFilter.class);
         return http.build();

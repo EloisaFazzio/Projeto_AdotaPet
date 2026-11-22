@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><path d="M12 20c-2.2 0-2.5-1.5-5.1-1.5-3 0-3.9-2.7-2.1-4.5L8 11c2-1.9 6-1.9 8 0l3.2 3c1.8 1.8.9 4.5-2.1 4.5-2.6 0-2.9 1.5-5.1 1.5Z"/><ellipse cx="4.5" cy="9" rx="1.5" ry="2"/><ellipse cx="9" cy="5.5" rx="1.5" ry="2"/><ellipse cx="15" cy="5.5" rx="1.5" ry="2"/><ellipse cx="19.5" cy="9" rx="1.5" ry="2"/></symbol>
+<symbol id="dog" viewBox="0 0 24 24"><path d="M7 8 5 4 2 6v5l3 2v2a7 7 0 0 0 14 0v-2l3-2V6l-3-2-2 4M7 8q5-3 10 0M9 14h.01M15 14h.01M10 17q2 2 4 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="cat" viewBox="0 0 24 24"><path d="M4 11 3 3l6 4a12 12 0 0 1 6 0l6-4-1 8v4c0 4-3 6-8 6s-8-2-8-6v-4ZM9 14h.01M15 14h.01m-4 3 1 1 1-1M2 15l5 1m10 0 5-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10H3V11Zm6 10v-7h6v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="mail" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m3 7 9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="vaccine" viewBox="0 0 24 24"><path d="m12 4 8 8m-2-10 4 4M7 10l7 7m-8 1-4 4m4-4 10-10M2 22l5-1 10-10" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+<symbol id="users" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2 21v-2c0-4 3-6 7-6s7 2 7 6v2m0-15a3 3 0 0 1 0 6m2 2c3 1 4 3 4 6" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M4 21V3m0 18h17M8 17v-5m5 5V7m5 10V4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+</svg>

@@ -5,3 +5,47 @@
 @media(max-width:650px){.container{width:calc(100% - 30px)}.announcement{font-size:.69rem}.navigation{gap:9px}.logo{font-size:1.32rem}.logo-icon{width:36px;height:36px;margin-right:6px}.account-actions .btn{font-size:.72rem;padding:8px 10px;min-height:36px}.hero{padding:44px 0 56px}.hero-grid{grid-template-columns:1fr}.hero h1{font-size:clamp(2.85rem,10.5vw,4.45rem)}.hero-copy p{font-size:1rem}.hero-art{min-height:390px;margin-top:24px}.hero-photo{width:73%;height:85%;right:12%}.hero-shape{width:81%;height:90%;right:9%}.pill-top{right:0}.pill-bottom{left:0}.impact{padding:32px 0}.impact-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.impact-intro{grid-column:1/-1}.impact-intro h2{font-size:1.65rem}.impact-stat{padding-left:15px}.impact-value{font-size:3rem}.section{padding:66px 0}.section-heading h2{font-size:2.5rem}.filters{display:grid;grid-template-columns:1fr 1fr;padding:12px;gap:10px}.filters label{min-width:0}.filters .filter-city{grid-column:1/-1}.clear-filters{grid-column:1/-1}.pet-grid{grid-template-columns:1fr 1fr;gap:11px}.pet-portrait{height:145px}.pet-portrait .pet-emoji{font-size:3.9rem}.pet-content{padding:12px}.pet-content h3{font-size:1.14rem}.pet-content .pet-footer{display:grid}.pet-content .pet-footer .btn{width:100%}.pet-content .desc{font-size:.8rem}.steps-grid{gap:10px}.step{padding:17px}.step h3{font-size:1.15rem;margin-top:12px}.step p{font-size:.82rem}.mission-grid{grid-template-columns:1fr}.mission-visual{height:350px}.mission-sticker{right:0}.cta-card{display:block;padding:34px 25px}.cta-card h2{font-size:2.3rem}.cta-card .btn{margin-top:24px}.footer-grid{grid-template-columns:1fr 1fr;gap:24px}.footer-grid>div:first-child{grid-column:1/-1}.app-dialog{padding:26px 18px}.form-grid{grid-template-columns:1fr;gap:0}}
 @media(max-width:420px){.pet-grid{grid-template-columns:1fr}.pet-portrait{height:205px}.pet-content .pet-footer{display:flex}.hero-art{min-height:335px}.floating-pill{font-size:.73rem}.pill-bottom{max-width:170px}.pagination{gap:8px}.pagination .btn{padding:8px 12px;font-size:.76rem}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+
+/* ADOTAPET-IMAGENS-SEM-FAIXAS E REDES SOCIAIS */
+#pet-grid .pet-portrait { overflow:hidden; position:relative; isolation:isolate; }
+#pet-grid .pet-portrait .foto-animal-final,
+#pet-grid .pet-portrait img.foto-catalogo,
+#pet-grid .pet-portrait img.foto-animal-v2,
+#pet-grid .pet-portrait img.foto-animal-v3 { width:100%!important; height:100%!important; inset:0; display:block; position:absolute; object-fit:cover!important; object-position:center center!important; border-radius:0; }
+#pet-grid .pet-portrait .pet-badge {position:absolute; z-index:6;}
+.adotapet-social{display:flex;align-items:center;gap:12px;margin-top:19px;}
+.adotapet-social-item{display:inline-flex;align-items:center;justify-content:center;width:43px;height:43px;flex:0 0 43px;border:1px solid #527c6a;border-radius:13px;color:#ddf2e6;background:rgba(210,245,220,.06);}
+.adotapet-social-item svg{display:block;width:23px;height:23px;}
+.meme-gallery{display:none!important;}
+/* FIM ADOTAPET-IMAGENS-SEM-FAIXAS */
+/* AdotaPet: rodape renovado e mais espaco para canais sociais */
+.adotapet-social{display:none!important}
+footer .adotapet-redes-renovadas{display:grid;grid-template-columns:minmax(220px,1fr) minmax(360px,1.45fr);gap:30px;align-items:center;margin:38px auto 4px;padding:28px 32px;background:linear-gradient(115deg,rgba(146,209,156,.15),rgba(51,114,90,.09));border:1px solid rgba(178,219,192,.18);border-radius:24px;box-shadow:0 14px 38px rgba(0,0,0,.08)}
+.adotapet-redes-kicker{font-size:.71rem;letter-spacing:.17em;color:#b8e6c4;font-weight:800}
+footer .adotapet-redes-intro h3{font-family:Outfit,Arial,sans-serif;font-weight:750;color:#f6fff7;font-size:1.65rem;letter-spacing:-.025em;margin:7px 0 5px}
+footer .adotapet-redes-intro p{color:#b2d4c0;font-size:.83rem;line-height:1.5;margin:0;max-width:360px}
+.adotapet-redes-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:19px;width:100%}
+.adotapet-rede{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:11px;border:1px solid rgba(191,236,200,.28);border-radius:19px;min-height:116px;padding:15px 7px;background:rgba(255,255,255,.035);color:#edfff1;text-align:center}
+.adotapet-rede-icone{height:49px;width:49px;display:grid;place-items:center;border-radius:15px;background:rgba(144,226,154,.14);border:1px solid rgba(144,226,154,.22)}
+.adotapet-rede svg{height:25px;width:25px;display:block}
+.adotapet-rede-nome{font-family:Outfit,Arial,sans-serif;font-size:.91rem;font-weight:700}
+@media(max-width:780px){footer .adotapet-redes-renovadas{grid-template-columns:1fr;padding:23px;gap:23px}.adotapet-redes-links{gap:11px}}
+@media(max-width:450px){.adotapet-rede{min-height:94px;padding:11px 3px}.adotapet-rede-icone{width:39px;height:39px}.adotapet-rede-nome{font-size:.76rem}footer .adotapet-redes-renovadas{padding:15px}}
+
+/* AdotaPet - paginacao em duas partes com numeros e setas */
+#pagination:not([hidden]){display:flex!important;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:32px;padding:10px 0}
+#pagination #page-label{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700}
+#pagination .adotapet-numero-pagina{display:inline-flex;justify-content:center;align-items:center;min-width:42px;min-height:42px;background:#fff;border:1px solid #bcd7c0;border-radius:14px;color:#0c3e35;cursor:pointer;font-weight:800;font-size:.94rem;transition:background .15s,color .15s}
+#pagination .adotapet-numero-pagina:hover{background:#edf7e9}
+#pagination .adotapet-numero-pagina[aria-current=page]{color:#fff;background:#0c3e35;border-color:#0c3e35}
+#pagination .adotapet-numero-pagina:focus-visible{outline:3px solid #95d07d;outline-offset:2px}
+@media(max-width:550px){#pagination:not([hidden]){gap:7px}#pagination .btn{min-height:39px;padding:7px 12px}#pagination .adotapet-numero-pagina{min-width:37px;min-height:37px}}
+
+/* ADOTAPET-IDENTIDADES-CONFERIDAS-2026 */
+#pet-grid .pet-card .pet-portrait { position:relative; overflow:hidden; isolation:isolate; }
+#pet-grid .pet-card .pet-portrait img.foto-identidade-confirmada {
+  position:absolute; inset:0; display:block; width:100%; height:100%;
+  object-fit:cover; object-position:center; z-index:20;
+}
+#pet-grid .pet-card .pet-portrait .pet-badge { position:absolute; z-index:21; }
