@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0d4638"><meta name="description" content="AdotaPet: demonstração acadêmica gratuita com animais fictícios.">
+<title>AdotaPet | Demonstração acadêmica</title>
+<style>
+:root{--ink:#173a31;--forest:#0b4538;--mint:#a8e390;--cream:#f8f6ef;--paper:#fffdf7;--soft:#e9f2e5;--gray:#65796f;--stroke:#dce6db;--shadow:0 20px 56px rgba(11,69,56,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.6}button,select,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.wrap{width:min(1150px,calc(100% - 36px));margin-inline:auto}.notice{padding:10px 18px;text-align:center;color:#fff;background:var(--forest);font-size:.8rem}.notice strong{color:var(--mint)}header{background:var(--paper);border-bottom:1px solid var(--stroke)}nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:12px}.logo{font-size:1.65rem;font-weight:900;letter-spacing:-.07em}.logo span{color:#63a65f}.navright{display:flex;align-items:center;gap:22px;font-size:.88rem;font-weight:700}.navright a:hover{color:#398e55}.pill{display:inline-block;padding:9px 16px;border:1px solid var(--stroke);border-radius:99px}.hero{padding:64px 0 70px}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}.kicker{font-weight:900;letter-spacing:.13em;color:#367e4b;text-transform:uppercase;font-size:.78rem}.hero h1{font-size:clamp(2.8rem,6vw,5.4rem);line-height:1.04;letter-spacing:-.06em;margin:15px 0 20px}.hero h1 em{font-style:normal;color:#63a65f}.hero p{max-width:530px;font-size:1.1rem;color:#50695c}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0 20px}.btn{border:0;border-radius:99px;background:var(--forest);color:#fff;font-weight:750;padding:12px 24px;min-height:46px}.btn.alt{color:var(--forest);border:1px solid #a8c7b0;background:#fff}.hero-art{background:radial-gradient(circle at 63% 37%,#e9f8db 0 26%,transparent 27%),linear-gradient(145deg,#b7e993,#dff3c4);border-radius:46% 54% 38% 48%;height:380px;display:grid;place-items:center;position:relative;box-shadow:var(--shadow)}.hero-art .big{font-size:9rem;filter:drop-shadow(0 12px 12px #39644125)}.float{position:absolute;background:white;box-shadow:var(--shadow);padding:14px 19px;border-radius:18px;font-weight:800}.float.a{top:25px;right:-8px;transform:rotate(8deg)}.float.b{bottom:32px;left:-10px;transform:rotate(-7deg)}.box-stats{display:flex;gap:20px;flex-wrap:wrap;font-size:.9rem;color:#5d6f64}.box-stats b{font-size:1.25rem;color:var(--forest)}section.catalog{background:#fffdf8;border-top:1px solid var(--stroke);padding:62px 0 74px}h2{font-size:clamp(2rem,4vw,3rem);line-height:1.12;letter-spacing:-.04em;margin:10px 0}.lead{color:var(--gray);max-width:670px}.filter{display:flex;flex-wrap:wrap;gap:12px;background:var(--soft);border:1px solid var(--stroke);padding:16px;margin:30px 0;border-radius:18px}label{font-size:.87rem;font-weight:750;display:grid;gap:5px;flex:1 1 170px}select,input{border:1px solid #cddccd;border-radius:12px;padding:10px 12px;min-height:44px;background:#fff;color:var(--ink)}.pets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.pet{background:white;overflow:hidden;border-radius:22px;border:1px solid var(--stroke);box-shadow:0 10px 24px #0b45380d}.portrait{height:170px;display:grid;place-items:center;font-size:5rem;background:linear-gradient(140deg,#e0f2d9,#c4ebbb);position:relative}.pet:nth-child(3n+2) .portrait{background:linear-gradient(145deg,#f9ebd3,#f4dcc1)}.pet:nth-child(3n) .portrait{background:linear-gradient(145deg,#d7ecf2,#cee5d7)}.flag{position:absolute;top:13px;left:13px;font-size:.72rem;font-weight:800;border-radius:99px;background:white;padding:4px 10px}.petcontent{padding:18px}.pet h3{margin:0;font-size:1.35rem}.small{font-size:.78rem;color:var(--gray)}.desc{font-size:.88rem;color:#546b5e;min-height:72px}.chips{display:flex;gap:5px;flex-wrap:wrap;margin:9px 0}.chip{background:#eef5e9;color:#315b40;font-size:.7rem;font-weight:800;border-radius:20px;padding:4px 9px}.pet .btn{width:100%;margin-top:8px;font-size:.86rem;padding:9px 11px}.empty{padding:28px;background:var(--soft);border-radius:14px}.info{padding:64px 0}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}.step{padding:25px;background:white;border:1px solid var(--stroke);border-radius:20px}.step strong{font-size:1.15rem}.step p{color:var(--gray);font-size:.9rem}footer{background:var(--forest);color:white;padding:30px 0}footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}footer small{opacity:.85}dialog{border:0;border-radius:22px;padding:28px;width:min(460px,calc(100% - 32px));box-shadow:0 25px 90px #0006;color:var(--ink)}dialog::backdrop{background:#112d2499}dialog h2{font-size:1.65rem}.close{float:right;background:#eaf3e7;border:0;padding:7px 12px;border-radius:50%;font-size:1.2rem}dialog p{color:#526d5d}
+@media(max-width:900px){.pets{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-grid{gap:20px}.hero-art{height:300px}.hero-art .big{font-size:7rem}}@media(max-width:680px){.hero-grid{grid-template-columns:1fr}.hero-art{margin:14px;height:245px}.hero-art .big{font-size:6rem}.navright a:first-child{display:none}.pets{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.hero{padding:42px 0}.hero h1{font-size:3.25rem}.portrait{height:190px}}
+</style>
+</head>
+<body>
+<div class="notice"><strong>DEMONSTRAÇÃO ACADÊMICA</strong> — Os animais e abrigos nesta página são fictícios. Nenhuma adoção ou cadastro real é realizado.</div>
+<header><nav class="wrap"><a class="logo" href="#inicio">🐾 adota<span>pet</span>.</a><div class="navright"><a href="#animais">Conheça os pets</a><a class="pill" href="#sobre">Sobre o projeto</a></div></nav></header>
+<main>
+<section class="hero" id="inicio"><div class="wrap hero-grid"><div><span class="kicker">Adoção responsável • Projeto acadêmico</span><h1>Um encontro pode <em>mudar duas vidas.</em></h1><p>Conheça o propósito do AdotaPet, uma plataforma criada para aproximar pessoas e ONGs, organizar informações sobre animais e apoiar cada etapa da adoção responsável.</p><div class="actions"><a class="btn" href="#animais">Conhecer os pets ↓</a><a class="btn alt" href="#sobre">Como funciona</a></div><div class="box-stats"><span><b>16</b> animais fictícios</span><span><b>4</b> abrigos fictícios</span><span>💚 Desenvolvido com cuidado</span></div></div><div class="hero-art" aria-label="Ilustração decorativa de animais"><span class="big" aria-hidden="true">🐶🐱</span><span class="float a">💚 Adoção responsável</span><span class="float b">🐾 Um lar cheio de amor</span></div></div></section>
+<section class="catalog" id="animais"><div class="wrap"><span class="kicker">Conheça nossa proposta</span><h2>Amiguinhos esperando uma história</h2><p class="lead">Explore um catálogo de exemplo com registros <strong>100% fictícios</strong>. Esta demonstração visual não está conectada ao banco de dados e não recebe pedidos de adoção.</p><div class="filter"><label>Pesquisar por nome<input id="busca" type="search" placeholder="Ex.: Luna, Thor..." autocomplete="off"></label><label>Espécie<select id="especie"><option value="">Todos os animais</option><option value="Cachorro">Cachorros</option><option value="Gato">Gatos</option><option value="Outro">Outros</option></select></label><label>Porte<select id="porte"><option value="">Todos os portes</option><option>Pequeno</option><option>Médio</option><option>Grande</option></select></label></div><div id="pets" class="pets" aria-live="polite"></div><div id="vazio" class="empty" hidden>Nenhum animal fictício corresponde aos filtros selecionados.</div></div></section>
+<section id="sobre" class="info"><div class="wrap"><span class="kicker">Engenharia de Software • 2026</span><h2>Como o AdotaPet foi planejado?</h2><p class="lead">O sistema completo é desenvolvido em Java 17, Spring Boot e PostgreSQL. Esta página estática é uma vitrine demonstrativa gratuita e não substitui as funcionalidades do backend.</p><div class="steps"><article class="step"><strong>1. Cadastro e cuidado</strong><p>ONGs organizam informações dos abrigos, animais e vacinação.</p></article><article class="step"><strong>2. Adoção consciente</strong><p>O sistema completo prevê solicitações, análise e formalização responsável.</p></article><article class="step"><strong>3. Acompanhamento</strong><p>Visitas, registros e relatórios ajudam a manter a rastreabilidade.</p></article></div><p style="margin-top:26px"><a href="https://github.com/EloisaFazzio/Projeto_AdotaPet" rel="noopener noreferrer" target="_blank"><strong>Ver o projeto completo no GitHub ↗</strong></a></p></div></section>
+</main>
+<footer><div class="wrap"><div><strong>🐾 AdotaPet</strong><br><small>Projeto acadêmico — Centro Universitário Católica de Santa Catarina.</small></div><small>Protótipo gratuito · Dados fictícios · Sem coleta de informações pessoais</small></div></footer>
+<dialog id="detalhe" aria-labelledby="detalhe-titulo"><button class="close" id="fechar" aria-label="Fechar">×</button><span class="kicker">Exemplo fictício</span><h2 id="detalhe-titulo"></h2><p id="detalhe-texto"></p><p><strong>Esta é somente uma demonstração visual.</strong> Para solicitar uma adoção de verdade, seria necessário o sistema backend funcionando e a ONG responsável.</p><button class="btn" id="ok">Entendi</button></dialog>
+<script>
+"use strict";
+const abrigos=["Lar Amigo Jaraguá","Patas de Schroeder","Rede Animal Guaramirim","Cuidado em Corupá"];
+const raw=[
+["Luna","Cachorro","Pequeno","Fêmea",0,"Carinhosa e tranquila, gosta de companhia."],
+["Thor","Cachorro","Grande","Macho",1,"Brincalhão e cheio de energia."],
+["Mimi","Gato","Pequeno","Fêmea",2,"Curiosa e acostumada a ambientes internos."],
+["Bento","Gato","Médio","Macho",3,"Gosta de carinho e de lugares confortáveis."],
+["Nina","Cachorro","Médio","Fêmea",1,"Adora caminhadas e brincadeiras."],
+["Tobias","Cachorro","Pequeno","Macho",2,"Companheiro e sociável."],
+["Amora","Gato","Pequeno","Fêmea",3,"Gatinha dócil e curiosa."],
+["Pipoca","Outro","Pequeno","Fêmea",0,"Coelhinha calma, precisa de ambiente seguro."],
+["Mel","Cachorro","Grande","Fêmea",2,"Muito afetuosa e ativa."],
+["Batmiau","Gato","Médio","Macho",0,"Sociável e atento ao ambiente."],
+["Fred","Cachorro","Médio","Macho",3,"Amigável e curioso."],
+["Sol","Outro","Pequeno","Macho",1,"Porquinho-da-índia delicado, requer cuidados específicos."],
+["Bela","Cachorro","Pequeno","Fêmea",0,"Gosta de colo e carinho."],
+["Chico","Gato","Pequeno","Macho",1,"Brinca bastante e gosta de explorar."],
+["Dora","Cachorro","Médio","Fêmea",2,"Esperta e muito companheira."],
+["Oliver","Gato","Pequeno","Macho",3,"Tranquilo, procura um lar acolhedor."]];
+const pets=raw.map(([nome,especie,porte,sexo,abrigo,descricao])=>({nome,especie,porte,sexo,abrigo:abrigos[abrigo],descricao}));
+const ico={Cachorro:"🐶",Gato:"🐱",Outro:"🐰"};
+const $=id=>document.getElementById(id);
+function render(){
+ const q=$("busca").value.trim().toLocaleLowerCase("pt-BR"),s=$("especie").value,p=$("porte").value;
+ const lista=pets.filter(x=>(!q||x.nome.toLocaleLowerCase("pt-BR").includes(q))&&(!s||x.especie===s)&&(!p||x.porte===p));
+ $("pets").replaceChildren();
+ $("vazio").hidden=lista.length>0;
+ for(const pet of lista){
+  const el=document.createElement("article");el.className="pet";
+  const portrait=document.createElement("div");portrait.className="portrait";portrait.textContent=ico[pet.especie]||"🐾";
+  const flag=document.createElement("span");flag.className="flag";flag.textContent="Exemplo fictício";portrait.append(flag);
+  const content=document.createElement("div");content.className="petcontent";
+  const h=document.createElement("h3");h.textContent=pet.nome;
+  const meta=document.createElement("div");meta.className="small";meta.textContent=pet.sexo+" · "+pet.abrigo;
+  const chips=document.createElement("div");chips.className="chips";
+  for(const value of [pet.especie,pet.porte]){const chip=document.createElement("span");chip.className="chip";chip.textContent=value;chips.append(chip)}
+  const desc=document.createElement("p");desc.className="desc";desc.textContent=pet.descricao;
+  const button=document.createElement("button");button.className="btn";button.type="button";button.textContent="Conhecer história";
+  button.addEventListener("click",()=>{ $("detalhe-titulo").textContent=pet.nome+" 🐾";$("detalhe-texto").textContent=pet.descricao+" · "+pet.abrigo+" (abrigo fictício).";$("detalhe").showModal()});
+  content.append(h,meta,chips,desc,button);el.append(portrait,content);$("pets").append(el);
+ }
+}
+for(const id of ["busca","especie","porte"])$(id).addEventListener("input",render);
+$("fechar").addEventListener("click",()=>$("detalhe").close());$("ok").addEventListener("click",()=>$("detalhe").close());
+render();
+</script>
+</body></html>
