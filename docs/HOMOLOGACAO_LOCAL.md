@@ -1,30 +1,29 @@
 # AdotaPet — Guia de homologação local (Windows)
 
-O site público, o backend e o painel administrativo estão combinados na branch **feat/integracao-homologacao-adotapet** (PR #20). A branch **main** continua inalterada até a aprovação da integração.
+O frontend, o backend e o painel administrativo já estão integrados à branch **`main`** (PR #20 mesclada). Para avaliar a entrega final, baixe o ZIP da `main` ou faça clone do repositório. O endereço https://adotapet.pages.dev/ é somente a demonstração estática, sem backend Java ou banco de dados.
 
 Este ambiente é apenas para **testes acadêmicos com dados fictícios**. Não use dados pessoais reais, fotos privadas ou senhas reutilizadas.
 
 ## 1. Requisitos
 
-- Git
-- Docker Desktop no Windows (com o comando docker compose)
+- Docker Desktop no Windows (com o comando `docker compose`)
+- Git **opcional**, somente se optar por `git clone` em vez de baixar o ZIP
 - Navegador atualizado
 
-A configuração local usa **Java 17**, Spring Boot e **PostgreSQL 16** em contêineres.
+A configuração local usa **Java 17**, Spring Boot e **PostgreSQL 16** em contêineres. Não instale Java/Maven separadamente quando estiver apenas executando via Docker Compose.
 
 ## 2. Baixar e preparar o projeto
 
-Abra o PowerShell:
+**Opção mais simples — baixar ZIP:** acesse https://github.com/EloisaFazzio/Projeto_AdotaPet, confira a branch **`main`**, clique em **Code → Download ZIP**, extraia o arquivo e abra a pasta extraída `Projeto_AdotaPet-main` (a pasta que contém `pom.xml` e `compose.yaml`).
+
+Abra o PowerShell **dentro dessa pasta** e execute:
 
 ~~~powershell
-git clone https://github.com/EloisaFazzio/Projeto_AdotaPet.git
-cd Projeto_AdotaPet
-git checkout feat/integracao-homologacao-adotapet
 Copy-Item .env.example .env
 notepad .env
 ~~~
 
-Se você já possui o repositório local, faça git fetch e selecione a branch de integração, em vez de executar git clone novamente.
+**Alternativa com Git (opcional):** `git clone https://github.com/EloisaFazzio/Projeto_AdotaPet.git` e `cd Projeto_AdotaPet`. Use sempre a branch `main` para esta entrega.
 
 No arquivo **.env**, substitua os campos vazios:
 
@@ -62,6 +61,8 @@ Quando o servidor terminar de inicializar, acesse no navegador:
 
 Faça login com as credenciais administrativas definidas no .env. Em seguida, clique em **Área da ONG** para abrir o painel.
 
+**Primeira execução:** um banco PostgreSQL novo começa sem os registros do ambiente original. Não interprete o catálogo vazio como falha de download: cadastre abrigos e animais fictícios pelo painel ou utilize a carga demonstrativa de desenvolvimento conforme o README. Não restaure backups privados durante a avaliação.
+
 ## 4. Sequência sugerida de testes
 
 1. **Abrigos:** com ADMIN, cadastre um abrigo fictício com sua capacidade.
@@ -98,7 +99,7 @@ O exemplo de e-mail e a senha acima devem ser substituídos por valores exclusiv
 
 ## 7. Testes automáticos
 
-Na branch de integração, execute:
+Na branch `main`, execute:
 
 ~~~powershell
 mvn test
@@ -111,7 +112,7 @@ No GitHub Actions, a pipeline de homologação realiza os testes Maven e JavaScr
 
 ## 8. Testes automatizados de navegador
 
-A branch de homologação possui testes end-to-end com Playwright e Chromium. Eles verificam a página inicial, a navegação em tela pequena, o bloqueio do painel para visitantes e o fluxo de cadastro, solicitação e formalização de adoção pela interface.
+O repositório na `main` possui testes end-to-end com Playwright e Chromium. Eles verificam a página inicial, a navegação em tela pequena, o bloqueio do painel para visitantes e o fluxo de cadastro, solicitação e formalização de adoção pela interface.
 
 Para executar no Windows, instale Node.js e npm, inicie o servidor Java e execute:
 
@@ -123,7 +124,7 @@ npm run test:e2e
 
 O teste completo de gestão usa as mesmas variáveis de ambiente do administrador de homologação (`ADOTAPET_ADMIN_EMAIL` e `ADOTAPET_ADMIN_PASSWORD`). Se essas variáveis não estiverem configuradas no terminal, apenas o cenário de gestão será ignorado; não use contas reais ou de produção.
 
-**Capturas do design:** após uma homologação bem-sucedida no GitHub, acesse **Actions → AdotaPet — homologação full stack → última execução aprovada → Artifacts → adotapet-capturas-navegador**. O pacote contém screenshots do site desktop, do site mobile e da tela de animais do painel. Os cadastros usados são fictícios, gerados pelo teste.
+**Observação:** anexos e capturas de tela não são exigidos nesta rodada de entrega, por decisão da responsável. Se forem solicitados futuramente, os testes automatizados de navegador podem gerar arquivos locais.
 
 ## 9. Limitações importantes
 
