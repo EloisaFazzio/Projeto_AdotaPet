@@ -1,0 +1,18 @@
+/* Ajustes: fotos das instituições e cards felinos no painel. */
+#rede-ongs .ong-card-com-foto{display:flex;flex-direction:column;padding:0;overflow:hidden;border-radius:20px;background:#fff;border:1px solid #dce6d9}
+#rede-ongs .ong-card-com-foto .ong-imagem{width:100%;height:200px;object-fit:cover;display:block}
+#rede-ongs .ong-card-com-foto .ong-informacoes{padding:18px 20px 24px}
+#rede-ongs .ong-card-com-foto .ong-informacoes h3{margin:0 0 8px;font-size:1.23rem}
+#rede-ongs .ong-card-com-foto .ong-informacoes p{margin:0 0 7px}
+.ong-fotos-nota{font-size:.74rem;color:#61776c;margin:18px 0 0}
+.panel-gato-destaque{display:grid;grid-template-columns:minmax(145px,235px) 1fr;gap:24px;align-items:center;background:var(--paper);border:1px solid #deeadc;border-radius:21px;overflow:hidden;margin:0 0 20px}
+.panel-gato-destaque img{width:100%;height:185px;object-fit:cover;display:block}
+.panel-gato-destaque .panel-gato-texto{padding:18px 24px 18px 0}
+.panel-gato-destaque .panel-gato-texto h2{font-size:1.55rem;margin:0 0 8px}
+.panel-gato-destaque .panel-gato-texto p{font-size:.91rem;color:var(--sub);margin:0 0 12px}
+.vacina-foto-mini{width:64px;height:52px;object-fit:cover;border-radius:9px;display:block}
+.vacina-foto-falta{font-size:.75rem;color:var(--sub)}
+.panel-anexo-imagem{padding:14px;margin-top:14px;background:#f1f6ed;border-radius:13px}
+.panel-anexo-imagem input[type=file]{display:block;width:100%;padding:9px 0}
+.panel-anexo-imagem small{font-size:.76rem;color:var(--sub)}
+@media(max-width:650px){.panel-gato-destaque{grid-template-columns:1fr}.panel-gato-destaque img{height:190px}.panel-gato-destaque .panel-gato-texto{padding:0 20px 18px}#rede-ongs .ong-card-com-foto .ong-imagem{height:170px}}

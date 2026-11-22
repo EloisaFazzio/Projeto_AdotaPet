@@ -1,0 +1,14 @@
+/* AdotaPet - fotos para todos os perfis cadastrados da rede de apresentacao. */
+.pet-portrait{position:relative;overflow:hidden;isolation:isolate}
+.pet-portrait img.foto-catalogo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1;display:block;border-radius:inherit}
+.pet-portrait img.foto-catalogo[hidden]{display:none}
+.pet-portrait .pet-badge{position:absolute;z-index:3}
+.pet-portrait .pet-emoji[hidden]{display:none}
+.ong-card-com-foto{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.ong-card-com-foto img.ong-imagem{width:100%;height:180px;object-fit:cover;display:block;border-bottom:1px solid #e1e8dd}
+.ong-card-com-foto .ong-informacoes{padding:19px 22px 23px}
+.ong-card-com-foto .ong-informacoes h3{margin-bottom:9px;font-size:1.18rem}
+.ong-transparencia,.catalogo-transparencia{font-size:.78rem;color:#5a7167;margin:23px 0 0;line-height:1.55}
+@media(max-width:600px){.ong-card-com-foto img.ong-imagem{height:150px}.ong-card-com-foto .ong-informacoes{padding:16px}}
+
+.catalogo-aviso-inicial{margin:5px 0 22px;padding:11px 17px;border-left:3px solid #91c989;border-radius:8px;background:#edf5e9;color:#315f4b;font-size:.82rem}
