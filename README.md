@@ -6,9 +6,17 @@ O **AdotaPet** é um projeto acadêmico de Engenharia de Software desenvolvido p
 
 ## 📌 Status do projeto
 
-**Etapa atual:** homologação da versão integrada no **[Pull Request #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20)**; os PRs funcionais permanecem independentes e a branch `main` não foi alterada.
+**Versão:** entrega acadêmica integrada (2026). O código completo foi incorporado à branch **`main`** por meio do [Pull Request #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20).
 
-A branch `feat/integracao-homologacao-adotapet` reúne **site responsivo, painel da ONG, API Java, autenticação, cadastro de animais, vacinação, fluxo de adoção e relatórios**. Possui 19 testes Java e CI de integração HTTP com H2; consulte o [guia de homologação local](docs/HOMOLOGACAO_LOCAL.md). O código ainda requer revisão e testes manuais antes de produção.
+### 🌐 Demonstração online gratuita
+
+**[Abrir o AdotaPet no GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)**
+
+A versão hospedada gratuitamente publica o **frontend visual original** com dados fictícios, sem banco de dados, login, cadastros ou solicitações reais. Os arquivos de publicação ficam em [`site-demo/`](site-demo/); os arquivos do sistema completo continuam em `src/main/resources/static/`.
+
+### 🖥️ Sistema completo local
+
+O **Spring Boot 3.3.5 + Java 17 + PostgreSQL/H2** está disponível na `main`: site responsivo, painel administrativo, API REST, autenticação, cadastro de animais, vacinação, adoção e relatórios. Execute localmente seguindo o [guia de homologação](docs/HOMOLOGACAO_LOCAL.md). A CI cobre testes Java e integração HTTP, mas o sistema **não foi liberado para produção pública com dados pessoais**. Antes disso, faltam revisões de segurança, LGPD, migrações de banco e testes E2E completos (ver [Issue #13](https://github.com/EloisaFazzio/Projeto_AdotaPet/issues/13)).
 
 ## 🎯 Objetivos
 
@@ -92,11 +100,11 @@ Para facilitar a leitura, o diagrama agrupa visualmente as responsabilidades em 
 - A próxima dose, quando informada, deve ser posterior à data de aplicação.
 - O acesso a dados pessoais deve respeitar os princípios de privacidade e a LGPD.
 
-> A branch de homologação implementa os principais fluxos e verifica os cenários centrais na CI; permanecem pendentes os testes completos em navegador, migrações versionadas, políticas de privacidade e hardening para produção.
+> A versão integrada está na `main`. Testes completos em navegador, migrações versionadas, políticas de privacidade e endurecimento de segurança são necessários antes de qualquer uso público com dados reais.
 
 ## 🚀 Como executar localmente
 
-**Recomendado no Windows:** [Guia com Docker Compose, PostgreSQL e conta administradora](docs/HOMOLOGACAO_LOCAL.md). Para começar, crie seu arquivo `.env` a partir de `.env.example`, configure credenciais privadas e execute `docker compose up --build -d` na branch de homologação.
+**Recomendado no Windows:** [Guia com Docker Compose, PostgreSQL e conta administradora](docs/HOMOLOGACAO_LOCAL.md). Para começar, crie seu arquivo `.env` a partir de `.env.example`, configure credenciais privadas e execute `docker compose up --build -d` na branch `main`.
 
 ### Pré-requisitos
 
@@ -145,7 +153,7 @@ Este projeto já foi testado localmente com **Docker, PostgreSQL 16, Java 17 e M
 
 ### Opção A — Instalação independente (recomendada para novos avaliadores)
 
-1. Faça checkout da branch `feat/integracao-homologacao-adotapet`, que contém a integração em homologação.
+1. Faça checkout da branch `main`, que contém a versão integrada.
 2. Na raiz, copie `.env.example` para `.env` e preencha `DB_USER`, `DB_PASSWORD`, `JWT_SECRET`, `ADOTAPET_ADMIN_EMAIL` e `ADOTAPET_ADMIN_PASSWORD` com **valores novos e privados**. Veja as exigências e como gerar o segredo JWT em [Homologação local](docs/HOMOLOGACAO_LOCAL.md).
 3. Com o Docker Desktop aberto, execute `docker compose up --build -d` e consulte `docker compose logs -f aplicacao`.
 4. Abra `http://localhost:8080` e acesse `http://localhost:8080/painel.html` para cadastrar os abrigos e os animais de teste. Se as portas já estiverem ocupadas, não inicie outra cópia do Compose sem ajustar o mapeamento.
@@ -195,10 +203,11 @@ Depois, visite `http://localhost:8081` e confira o catálogo, as ONGs, as imagen
 
 ## 🖥️ Interface web e integração
 
+- **Demonstração pública gratuita (somente frontend):** https://eloisafazzio.github.io/Projeto_AdotaPet/
 - **Site público:** http://localhost:8080 (animais disponíveis, filtros, login e solicitações).
 - **Painel da ONG:** http://localhost:8080/painel.html (gestão de animais, abrigos, vacinação, pedidos, visitas e relatórios).
 - **Swagger/OpenAPI:** http://localhost:8080/swagger-ui.html (somente em desenvolvimento).
-- A integração dos PRs #9, #14, #17, #10 e #15 foi reunida para homologação no [PR #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20); a branch `main` continua separada.
+- A integração dos PRs #9, #14, #17, #10 e #15 foi incorporada à `main` pelo [PR #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20).
 - O catálogo **não é pré-preenchido na instalação padrão**. Para visualizar animais, cadastre dados pelo painel ou, exclusivamente no ambiente de desenvolvimento, habilite a carga fictícia opcional descrita acima.
 - Há testes automatizados Java, HTTP e de navegador. O funcionamento do ambiente original em `8080` foi confirmado em teste local; uma restauração de backup em banco isolado retornou **16 animais**. A validação visual comparativa completa, o login por perfil e a publicação em produção **não foram comprovados por essa restauração** e seguem pendentes de evidências adicionais.
 
@@ -213,7 +222,8 @@ A documentação acadêmica da Etapa 1 está organizada na pasta [`docs/`](docs/
 - **[Implementação full stack](docs/IMPLEMENTACAO_FULLSTACK.md)** — endpoints e etapas da API.
 - **[Painel da ONG](docs/PAINEL_ONG.md)** — operações administrativas e limitações.
 - **[Rastreabilidade e Swagger](docs/API_RASTREABILIDADE_E_SWAGGER.md)** — endpoints adicionais da matriz.
-- **[Homologação local](docs/HOMOLOGACAO_LOCAL.md)** — como iniciar o site completo com Docker Compose no Windows. O PDF acadêmico da Etapa 1 foi entregue separadamente e ainda não está versionado neste repositório.
+- **[Homologação local](docs/HOMOLOGACAO_LOCAL.md)** — como iniciar o site completo com Docker Compose no Windows.
+- **[Auditoria de arquivos e entrega](docs/AUDITORIA_FINAL.md)** — classificação de arquivos ativos, redundantes e possíveis resíduos. O PDF acadêmico da Etapa 1 foi entregue separadamente e ainda não está versionado neste repositório.
 
 ## 👩‍💻 Equipe
 
