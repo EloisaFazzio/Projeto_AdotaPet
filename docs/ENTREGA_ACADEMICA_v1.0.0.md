@@ -5,7 +5,8 @@
 ## Links oficiais
 
 - [Código-fonte completo (main)](https://github.com/EloisaFazzio/Projeto_AdotaPet)
-- [Demonstração pública gratuita](https://eloisafazzio.github.io/Projeto_AdotaPet/)
+- [Demonstração pública oficial — Cloudflare Pages](https://adotapet.pages.dev/)
+- [Espelho gratuito — GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)
 - [Guia de execução local](HOMOLOGACAO_LOCAL.md)
 - [Auditoria de arquivos e limpeza](AUDITORIA_FINAL.md)
 - [Pull Request de integração #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20)
@@ -17,12 +18,12 @@
 2. Frontend original responsivo, com páginas do catálogo e painel, arquivos CSS/JS e fotografias estáticas.
 3. Integração na branch principal e documentação técnica em `docs/`.
 4. Testes automatizados de backend, frontend e homologação full stack; as três verificações da PR #23 concluíram com sucesso.
-5. Site demonstrativo gratuito publicado via GitHub Pages, usando o frontend do projeto e registros **fictícios**.
+5. Site demonstrativo gratuito disponibilizado no Cloudflare Pages em **https://adotapet.pages.dev/**, com o frontend do projeto e registros **fictícios**. O GitHub Pages permanece como espelho alternativo.
 6. README atualizado e auditoria de recursos não referenciados; 18 arquivos estáticos redundantes removidos com histórico preservado no Git.
 
 ## O que a demonstração NÃO faz
 
-GitHub Pages serve arquivos estáticos. O endereço público **não executa** Spring Boot nem PostgreSQL. Não permite login, cadastro real, solicitações reais de adoção ou administração. Não apresentar o site como plataforma real de adoções em operação.
+Cloudflare Pages e GitHub Pages, nesta configuração, servem arquivos estáticos. O endereço público **não executa** Spring Boot nem PostgreSQL. Não permite login, cadastro real, solicitações reais de adoção ou administração. Não apresentar o site como plataforma real de adoções em operação.
 
 ## Pendências honestamente preservadas
 
@@ -33,7 +34,15 @@ GitHub Pages serve arquivos estáticos. O endereço público **não executa** Sp
 
 ## Política de custos
 
-A equipe optou por **não gerar cobranças**. O domínio `adotapet.com.br` não foi contratado; o Railway não hospeda o backend, e o endereço gratuito do GitHub Pages permanece como destino de demonstração.
+A equipe optou por **não gerar cobranças**. O domínio `adotapet.com.br` não foi contratado; o Railway não hospeda o backend, e o **Cloudflare Pages** é o endereço público principal da demonstração gratuita; o GitHub Pages permanece como espelho.
+
+## Revisão final para apresentação
+
+- Link público principal: **https://adotapet.pages.dev/** (informado como funcionando pela responsável; conferir acessibilidade e recursos visuais no navegador antes da apresentação).
+- Código-fonte completo, documentação e testes automatizados mantidos no GitHub.
+- Pendências reais de segurança, privacidade e validação do backend continuam registradas em Issues abertas, sem divulgação indevida como produção.
+- Conferir no navegador desktop e celular se fotos, fontes, filtros, navegação e avisos de demonstração são apresentados corretamente.
+- Não compartilhar credenciais, banco de dados real ou links locais `localhost` como se fossem públicos.
 
 ## Identificação de versão
 
