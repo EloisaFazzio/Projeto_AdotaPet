@@ -10,9 +10,9 @@ O **AdotaPet** é um projeto acadêmico de Engenharia de Software desenvolvido p
 
 ### 🌐 Demonstração online gratuita
 
-**[Abrir o AdotaPet no GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)**
+**🌐 [Acessar o AdotaPet — site público](https://adotapet.pages.dev/)**
 
-A versão hospedada gratuitamente publica o **frontend visual original** com dados fictícios, sem banco de dados, login, cadastros ou solicitações reais. Os arquivos de publicação ficam em [`site-demo/`](site-demo/); os arquivos do sistema completo continuam em `src/main/resources/static/`.
+O endereço público oficial da demonstração acadêmica é **https://adotapet.pages.dev/**, hospedado gratuitamente no **Cloudflare Pages** e conectado ao GitHub. A versão publicada usa o **frontend visual original** com dados fictícios, sem banco de dados, login, cadastros ou solicitações reais. Os arquivos de publicação ficam em [`site-demo/`](site-demo/); os arquivos do sistema completo continuam em `src/main/resources/static/`.
 
 ### 🖥️ Sistema completo local
 
@@ -37,6 +37,9 @@ O **Spring Boot 3.3.5 + Java 17 + PostgreSQL/H2** está disponível na `main`: s
 | **Adotante (ADOTANTE)** | Consultar animais disponíveis e solicitar adoção. |
 
 ## 🧰 Tecnologias
+
+**Publicação da demonstração:** Cloudflare Pages (plano gratuito, HTTPS e integração com o repositório GitHub). Os arquivos estáticos estão em [`site-demo/`](site-demo/). O GitHub Pages é mantido como espelho/alternativa, não como endereço principal.
+
 
 - **Java 17**
 - **Spring Boot 3.3.5**
@@ -203,7 +206,8 @@ Depois, visite `http://localhost:8081` e confira o catálogo, as ONGs, as imagen
 
 ## 🖥️ Interface web e integração
 
-- **Demonstração pública gratuita (somente frontend):** https://eloisafazzio.github.io/Projeto_AdotaPet/
+- **Demonstração pública oficial (somente frontend):** https://adotapet.pages.dev/
+- **Espelho gratuito (GitHub Pages, mantido como alternativa):** https://eloisafazzio.github.io/Projeto_AdotaPet/
 - **Site público:** http://localhost:8080 (animais disponíveis, filtros, login e solicitações).
 - **Painel da ONG:** http://localhost:8080/painel.html (gestão de animais, abrigos, vacinação, pedidos, visitas e relatórios).
 - **Swagger/OpenAPI:** http://localhost:8080/swagger-ui.html (somente em desenvolvimento).
@@ -212,6 +216,9 @@ Depois, visite `http://localhost:8081` e confira o catálogo, as ONGs, as imagen
 - Há testes automatizados Java, HTTP e de navegador. O funcionamento do ambiente original em `8080` foi confirmado em teste local; uma restauração de backup em banco isolado retornou **16 animais**. A validação visual comparativa completa, o login por perfil e a publicação em produção **não foram comprovados por essa restauração** e seguem pendentes de evidências adicionais.
 
 ## 📚 Documentação
+
+**Para avaliação:** acesse [o site público](https://adotapet.pages.dev/), consulte a [entrega acadêmica](docs/ENTREGA_ACADEMICA_v1.0.0.md) e execute o backend local usando o [guia de homologação](docs/HOMOLOGACAO_LOCAL.md). O ambiente online não executa Java nem permite adoções reais.
+
 
 A documentação acadêmica da Etapa 1 está organizada na pasta [`docs/`](docs/).
 
