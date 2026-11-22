@@ -6,7 +6,7 @@ O **AdotaPet** é um projeto acadêmico de Engenharia de Software desenvolvido p
 
 ## 📌 Status do projeto
 
-**Versão:** entrega acadêmica integrada (2026). O código completo foi incorporado à branch **`main`** por meio do [Pull Request #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20).
+**Versão:** [v1.0.0-academica — Release oficial da entrega](https://github.com/EloisaFazzio/Projeto_AdotaPet/releases/tag/v1.0.0-academica) (2026). O código completo foi incorporado à branch **`main`** por meio do [Pull Request #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20).
 
 ### 🌐 Demonstração online gratuita
 
