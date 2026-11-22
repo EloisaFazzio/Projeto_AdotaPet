@@ -107,7 +107,7 @@ function idadeAnimal(dataNascimento) {
 
 function cartaoPet(p) {
   return '<article class="pet-card" data-abrigo="' + escapeHtml(p.abrigo || "") + '">' +
-    '<div class="pet-portrait"><span class="pet-badge">♡ Disponível</span><span class="pet-emoji" aria-hidden="true">' +
+    '<div class="pet-portrait"><span class="pet-badge">♡︎ Disponível</span><span class="pet-emoji" aria-hidden="true">' +
     ("<svg class=\"icon\" aria-hidden=\"true\"><use href=\"#" + (animalIcon[p.especie] || "paw") + "\"></use></svg>") + '</span></div>' +
     '<div class="pet-content"><h3>' + escapeHtml(p.nome) + '</h3>' +
     '<div class="small-line">' + escapeHtml(idadeAnimal(p.dataNascimento)) + ' · ' + escapeHtml(capitalize(p.sexo)) + '</div>' +
@@ -217,7 +217,7 @@ function modalAdocao(pet) {
     avisar("Apenas contas do perfil adotante podem solicitar adoção.");
     return;
   }
-  abrirModal(cabecalhoModal("Quero adotar " + pet.nome + " ♡",
+  abrirModal(cabecalhoModal("Quero adotar " + pet.nome + " ♡︎",
     "A equipe da ONG analisará sua justificativa antes da adoção ser formalizada.") +
     '<div class="request-item"><h3>' + escapeHtml(pet.nome) + '</h3><p>' +
     escapeHtml(capitalize(pet.especie)) + ' · ' + escapeHtml(capitalize(pet.porte)) + ' · ' +
@@ -411,13 +411,13 @@ $("app-dialog").addEventListener("click", event => { if (event.target === $("app
 $("menu-toggle").addEventListener("click", () => {
   const aberto = $("main-menu").classList.toggle("open");
   $("menu-toggle").setAttribute("aria-expanded", String(aberto));
-  $("menu-toggle").textContent = aberto ? "×" : "☰";
+  $("menu-toggle").textContent = aberto ? "×" : "☰︎";
 });
 $("main-menu").addEventListener("click", event => {
   if (event.target.closest("a")) {
     $("main-menu").classList.remove("open");
     $("menu-toggle").setAttribute("aria-expanded","false");
-    $("menu-toggle").textContent = "☰";
+    $("menu-toggle").textContent = "☰︎";
   }
 });
 $("year").textContent = new Date().getFullYear();
