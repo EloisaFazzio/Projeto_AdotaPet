@@ -29,3 +29,7 @@ O agrupamento é apenas visual/conceitual. Ele não elimina nem funde as entidad
 As classes `Vacina` e `VacinacaoAnimal` permanecem distintas porque o histórico precisa registrar várias aplicações de uma mesma vacina, com datas e informações próprias. Da mesma forma, `SolicitacaoAdocao` e `Adocao` representam etapas diferentes: pedido e formalização.
 
 Consulte também o [Mapeamento de Entidades JPA](Mapeamento%20de%20Entidades%20JPA.md) e o [Dicionário de Dados](Dicion%C3%A1rio%20de%20Dados.md) para obter o detalhamento técnico dos campos e relacionamentos.
+
+## Complemento de consistência — 22/11/2026
+
+As entidades `Animal` e `Vacina` possuem, além dos atributos resumidos no diagrama, campos opcionais para imagens (`imagemDados` e `imagemMime`). Essas propriedades não acrescentam classes ao modelo e estão registradas no [Dicionário de Dados](Dicion%C3%A1rio%20de%20Dados.md) e no [Mapeamento JPA](Mapeamento%20de%20Entidades%20JPA.md). A diferença entre diagrama conceitual e implementação detalhada é deliberada.
