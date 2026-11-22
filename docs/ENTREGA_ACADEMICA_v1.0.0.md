@@ -1,6 +1,6 @@
 # AdotaPet — Marco da entrega acadêmica v1.0.0-academica
 
-**Situação:** versão acadêmica integrada, com demonstração visual pública gratuita. Este documento identifica um **marco de entrega**, não uma versão de produção nem uma tag Git já criada.
+**Situação:** versão acadêmica integrada, com demonstração visual pública gratuita. Este documento identifica um **marco de entrega**, não uma versão de produção. A tag e a Release no GitHub são verificadas separadamente.
 
 ## Links oficiais
 
@@ -56,4 +56,4 @@ A equipe optou por **não gerar cobranças**. O domínio `adotapet.com.br` não 
 
 **Identificador documental:** `v1.0.0-academica`.
 
-A tag Git formal e uma Release do GitHub não são criadas automaticamente por este documento. Se necessárias para entrega, o responsável pelo repositório deve criar a tag no commit final aprovado. Não confundir o documento com um registro de tag.
+A tag e a Release, quando publicadas, podem ser consultadas em [Releases do projeto](https://github.com/EloisaFazzio/Projeto_AdotaPet/releases/tag/v1.0.0-academica). A automação de publicação realiza testes Java antes de criar esse marco. **A versão acadêmica não é uma declaração de que o backend está pronto para produção.** Caso a automação falhe, esse endereço não deve ser apresentado como release existente.
