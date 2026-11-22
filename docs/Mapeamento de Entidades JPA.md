@@ -59,3 +59,7 @@
 1. A tabela `voluntario_abrigo` é criada pela configuração `@JoinTable`; não existe uma entidade Java separada para ela.
 2. As entidades não definem nomes explícitos para todas as colunas simples. Nesses casos, o nome físico depende da estratégia de nomenclatura do Hibernate.
 3. Este documento descreve o mapeamento atual do código, não substitui migrações versionadas nem uma inspeção do esquema real do banco.
+
+## 6. Campos de imagem já implementados
+
+As classes `Animal` e `Vacina` incluem `imagemDados` (`byte[]`, coluna `imagem_dados` com `columnDefinition = "bytea"`) e `imagemMime` (`String`, coluna `imagem_mime`, tamanho máximo 24). São campos **opcionais**. Os controladores `AnimalImagemController` e `VacinaImagemController` definem endpoints de mídia no backend. Esses campos não constituem entidades JPA adicionais, preservando a contagem de oito entidades e a organização do diagrama conceitual. A implementação deve ser validada conforme a configuração de banco, principalmente H2 e PostgreSQL; o site estático gratuito não serve imagens do banco.
