@@ -34,6 +34,8 @@ A branch `feat/integracao-homologacao-adotapet` reúne **site responsivo, painel
 - **Spring Boot 3.3.5**
 - **Spring Data JPA / Hibernate**
 - **Maven**
+- **Docker Desktop / Docker Compose** para homologação com PostgreSQL
+- **HTML, CSS e JavaScript** no site público e no painel da ONG
 - **H2** para execução local por padrão
 - **PostgreSQL** para ambiente configurado, incluindo Supabase
 - **Bean Validation**
@@ -99,7 +101,8 @@ Para facilitar a leitura, o diagrama agrupa visualmente as responsabilidades em 
 ### Pré-requisitos
 
 - JDK **17**
-- Maven **3.9 ou superior**
+- Maven **3.9 ou superior** (para execução fora dos contêineres)
+- Docker Desktop com Docker Compose (para a instalação recomendada com PostgreSQL)
 
 Confira as instalações:
 
@@ -108,13 +111,13 @@ java -version
 mvn -version
 ```
 
-Na raiz do projeto, execute:
+Na raiz do projeto, para executar **sem Docker**, use:
 
-```bash
+```powershell
 mvn spring-boot:run
 ```
 
-Por padrão, a aplicação utiliza um banco **H2 em memória** no modo de compatibilidade com PostgreSQL. A configuração é definida em `src/main/resources/application.properties`.
+Por padrão, a aplicação utiliza um banco **H2 em memória** no modo de compatibilidade com PostgreSQL. A configuração é definida em `src/main/resources/application.properties`. Nesse modo, os cadastros não são preservados após encerrar a aplicação. Para testar com dados persistentes e conta administradora, utilize o procedimento com Docker Compose e `.env` descrito no [guia de homologação](docs/HOMOLOGACAO_LOCAL.md).
 
 ### Usar PostgreSQL ou Supabase
 
@@ -146,9 +149,19 @@ Este projeto já foi testado localmente com **Docker, PostgreSQL 16, Java 17 e M
 2. Na raiz, copie `.env.example` para `.env` e preencha `DB_USER`, `DB_PASSWORD`, `JWT_SECRET`, `ADOTAPET_ADMIN_EMAIL` e `ADOTAPET_ADMIN_PASSWORD` com **valores novos e privados**. Veja as exigências e como gerar o segredo JWT em [Homologação local](docs/HOMOLOGACAO_LOCAL.md).
 3. Com o Docker Desktop aberto, execute `docker compose up --build -d` e consulte `docker compose logs -f aplicacao`.
 4. Abra `http://localhost:8080` e acesse `http://localhost:8080/painel.html` para cadastrar os abrigos e os animais de teste. Se as portas já estiverem ocupadas, não inicie outra cópia do Compose sem ajustar o mapeamento.
-5. Execute `mvn test` para verificar os testes automatizados Java.
+5. Execute `mvn test` para verificar os testes automatizados Java, se tiver o JDK e o Maven instalados.
 
 O provisionamento administrativo é **explícito**: quando as variáveis de administrador estão configuradas, a aplicação cria a conta **somente se o e-mail ainda não existir**. Não há senha administrativa universal no repositório. Alterar a variável de senha não redefine automaticamente a senha de uma conta existente.
+
+### Dados demonstrativos opcionais (somente desenvolvimento)
+
+O código já possui a classe `DemoDataBootstrap`, que pode cadastrar **4 abrigos fictícios e 16 animais fictícios**, além de exemplos de vacinação e solicitações. A carga é **desativada por padrão**; só é habilitada quando o perfil `dev` está ativo **e** a propriedade `adotapet.demo.seed=true` é informada. Para experimentar sem os dados pessoais do banco original, execute em uma instância H2 separada:
+
+```powershell
+mvn spring-boot:run "-Dspring-boot.run.arguments=--server.port=8081 --spring.profiles.active=dev --adotapet.demo.seed=true"
+```
+
+Não habilite essa carga em produção nem em bancos que contenham registros reais. Os tutores de demonstração recebem senhas aleatórias, **não** uma senha pública de acesso. A carga demonstrativa também **não cria uma conta ADMIN**: para configurar uma conta administrativa, utilize as variáveis `ADOTAPET_ADMIN_EMAIL` e `ADOTAPET_ADMIN_PASSWORD` conforme o guia de homologação. A presença dos registros fictícios não garante fotografias individuais, pois dados de animais e arquivos de mídia são recursos diferentes.
 
 ### Opção B — Conferir uma cópia contra um backup local (homologação)
 
@@ -185,8 +198,9 @@ Depois, visite `http://localhost:8081` e confira o catálogo, as ONGs, as imagen
 - **Site público:** http://localhost:8080 (animais disponíveis, filtros, login e solicitações).
 - **Painel da ONG:** http://localhost:8080/painel.html (gestão de animais, abrigos, vacinação, pedidos, visitas e relatórios).
 - **Swagger/OpenAPI:** http://localhost:8080/swagger-ui.html (somente em desenvolvimento).
-- A integração dos PRs #9, #14, #17, #10 e #15 foi consolidada no PR #20. O catálogo não usa registros fictícios por padrão; a equipe precisa cadastrar animais e abrigos.
-- Os testes de API e de HTTP foram automatizados. A revisão visual em navegador e os requisitos de produção ainda estão pendentes.
+- A integração dos PRs #9, #14, #17, #10 e #15 foi reunida para homologação no [PR #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20); a branch `main` continua separada.
+- O catálogo **não é pré-preenchido na instalação padrão**. Para visualizar animais, cadastre dados pelo painel ou, exclusivamente no ambiente de desenvolvimento, habilite a carga fictícia opcional descrita acima.
+- Há testes automatizados Java, HTTP e de navegador. O funcionamento do ambiente original em `8080` foi confirmado em teste local; uma restauração de backup em banco isolado retornou **16 animais**. A validação visual comparativa completa, o login por perfil e a publicação em produção **não foram comprovados por essa restauração** e seguem pendentes de evidências adicionais.
 
 ## 📚 Documentação
 
