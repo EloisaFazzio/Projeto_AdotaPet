@@ -56,3 +56,11 @@ Os arquivos de fotos utilizados pela aplicação (por exemplo `batmiau.webp`, `b
 ## Histórico e manutenção
 
 Não remover arquivos de imagens, migrations ou Java por suspeita apenas nominal. Para qualquer limpeza futura, verificar referências dinâmicas, endpoints, CSS e testes, abrir PR e confirmar execução da CI. Arquivos excluídos permanecem recuperáveis em commits anteriores.
+
+## Complemento da revisão de consistência — 22/11/2026
+
+- Confirmadas oito classes `@Entity` e seis grupos conceituais do `Diagrama de Classe.svg`.
+- Corrigida omissão documental dos campos binários opcionais `imagem_dados` e de seus tipos MIME em `Animal` e `Vacina`, sem alterar o código ou remover recursos.
+- Conferidos os controladores e testes de rastreabilidade; pendências de produção e de homologação manual permanecem identificadas nas Issues.
+- A responsável informou que a apresentação em computador e celular está correta após a substituição das setas Unicode por SVGs (commit `6a52b7f`).
+- Capturas de tela e relatórios de evidências não fazem parte do escopo solicitado para esta revisão.
