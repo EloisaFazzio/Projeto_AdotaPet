@@ -36,6 +36,8 @@
 | `castrado` | boolean / BOOLEAN | Sim | Indica se o animal é castrado; padrão Java `false` |
 | `status` | Enum / VARCHAR(25) | Sim | `DISPONIVEL`, `EM_TRATAMENTO`, `EM_PROCESSO_ADOCAO` ou `ADOTADO`; padrão inicial `DISPONIVEL` |
 | `abrigo_id` | Long / BIGINT | Sim | FK para `abrigo.id` |
+| `imagem_dados` | byte[] / BYTEA (PostgreSQL) | Não | Conteúdo binário da foto do animal, persistido no backend; não confundir com imagens estáticas da demonstração |
+| `imagem_mime` | String / VARCHAR(24) | Não | Tipo MIME registrado da imagem do animal |
 
 **Relacionamentos:** pertence a um abrigo; pode ter várias vacinações e solicitações de adoção.
 
@@ -47,6 +49,8 @@
 | `nome` | String / VARCHAR(100) | Sim | Nome da vacina; único |
 | `especie_alvo` | Enum / VARCHAR(20) | Sim | Espécie à qual a vacina se destina; persistida como texto |
 | `intervalo_dias` | Integer / INTEGER | Não | Intervalo recomendado em dias; nulo pode representar dose única |
+| `imagem_dados` | byte[] / BYTEA (PostgreSQL) | Não | Dados binários opcionais da imagem ilustrativa da vacina |
+| `imagem_mime` | String / VARCHAR(24) | Não | Tipo MIME registrado da imagem da vacina |
 
 **Relacionamentos:** pode estar vinculada a vários registros de vacinação.
 
@@ -139,7 +143,11 @@ O diagrama mostra valores de referência para facilitar a leitura. A tabela abai
 | `StatusAnimal` | `DISPONIVEL`, `EM_TRATAMENTO`, `EM_PROCESSO_ADOCAO`, `ADOTADO` |
 | `StatusSolicitacao` | `PENDENTE`, `EM_ANALISE`, `APROVADA`, `REJEITADA`, `CANCELADA` |
 
-## 9. Segurança e qualidade dos dados
+## 9. Nota de compatibilidade com a implementação de imagens
+
+As entidades `Animal` e `Vacina` possuem atualmente os campos opcionais `imagemDados` e `imagemMime`, além de controladores para o envio/consulta das imagens pela API Java. **O diagrama de classe continua conceitual**, sem detalhar esses atributos adicionais. A versão gratuita em `site-demo/` exibe arquivos ilustrativos versionados e **não** utiliza banco de dados nem realiza upload de imagens. A segurança, o consentimento/licença das fotografias e os testes de mídia para uso real continuam sujeitos à [Issue #18](https://github.com/EloisaFazzio/Projeto_AdotaPet/issues/18) e à [Issue #13](https://github.com/EloisaFazzio/Projeto_AdotaPet/issues/13).
+
+## 10. Segurança e qualidade dos dados
 
 - O campo `senha_hash` deve armazenar somente o hash da senha, nunca a senha original.
 - Dados pessoais devem ser acessados somente por perfis autorizados e tratados de acordo com a LGPD.
