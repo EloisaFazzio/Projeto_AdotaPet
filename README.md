@@ -231,6 +231,7 @@ A documentação acadêmica da Etapa 1 está organizada na pasta [`docs/`](docs/
 - **[Rastreabilidade e Swagger](docs/API_RASTREABILIDADE_E_SWAGGER.md)** — endpoints adicionais da matriz.
 - **[Homologação local](docs/HOMOLOGACAO_LOCAL.md)** — como iniciar o site completo com Docker Compose no Windows.
 - **[Auditoria de arquivos e entrega](docs/AUDITORIA_FINAL.md)** — classificação de arquivos ativos, redundantes e possíveis resíduos.
+- **[Triagem das Issues da entrega](docs/TRIAGEM_ISSUES_ENTREGA.md)** — o que foi verificado, o que permanece aberto e os limites do protótipo acadêmico.
 - **[Marco da entrega acadêmica v1.0.0](docs/ENTREGA_ACADEMICA_v1.0.0.md)** — resumo da versão, critérios atendidos e limitações. O PDF acadêmico da Etapa 1 foi entregue separadamente e ainda não está versionado neste repositório.
 
 ## 👩‍💻 Equipe
