@@ -1,0 +1,14 @@
+/* Cartoes e galeria dos animais: fotos locais, corte consistente e layout responsivo. */
+.pet-portrait .pet-photo {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1;border-radius:inherit}
+.pet-portrait .pet-badge {z-index:3}
+.pet-portrait .pet-photo-credit {position:absolute;right:9px;bottom:9px;z-index:3;padding:2px 7px;border-radius:8px;font-size:.67rem;font-weight:700;color:#18372e;background:rgba(255,255,255,.9)}
+.meme-gallery {background:#eef4e9;padding:70px 0}
+.meme-gallery .section-heading {margin-bottom:27px}
+.meme-gallery .meme-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.meme-gallery figure {min-width:0;margin:0;background:#fffcf7;border:1px solid #d8e8d8;border-radius:22px;overflow:hidden;box-shadow:0 7px 18px #17382a12}
+.meme-gallery figure img {display:block;width:100%;height:250px;object-fit:cover;object-position:center}
+.meme-gallery figcaption {padding:14px 17px 17px;color:#15372e;font-weight:750;font-size:1.03rem}
+.meme-gallery figcaption small {display:block;font-weight:450;color:#65756d;font-size:.77rem;margin-top:2px}
+.meme-gallery .meme-note {margin:22px 0 0;color:#627469;font-size:.8rem;max-width:800px}
+@media(max-width:900px){.meme-gallery .meme-grid {grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){.meme-gallery {padding:48px 0}.meme-gallery .meme-grid {gap:12px}.meme-gallery figure img {height:150px}.meme-gallery figcaption{padding:10px;font-size:.88rem}}

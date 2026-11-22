@@ -12,5 +12,7 @@ public interface VacinacaoAnimalRepository extends JpaRepository<VacinacaoAnimal
 
     List<VacinacaoAnimal> findByAnimalIdOrderByDataAplicacaoDesc(Long animalId);
 
+    boolean existsByAnimalId(Long animalId);
+
     List<VacinacaoAnimal> findByProximaDoseBefore(LocalDate data);
 }

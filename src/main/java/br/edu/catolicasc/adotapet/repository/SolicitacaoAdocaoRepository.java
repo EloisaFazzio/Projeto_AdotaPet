@@ -14,6 +14,8 @@ public interface SolicitacaoAdocaoRepository extends JpaRepository<SolicitacaoAd
 
     List<SolicitacaoAdocao> findByAnimalId(Long animalId);
 
+    boolean existsByAnimalId(Long animalId);
+
     List<SolicitacaoAdocao> findByStatus(StatusSolicitacao status);
 
     boolean existsByAdotanteIdAndAnimalIdAndStatusIn(Long adotanteId, Long animalId, Collection<StatusSolicitacao> status);

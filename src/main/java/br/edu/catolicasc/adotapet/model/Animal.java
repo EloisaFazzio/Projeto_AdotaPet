@@ -1,6 +1,8 @@
 package br.edu.catolicasc.adotapet.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import jakarta.validation.constraints.*;
 import java.time.*;
 import java.util.*;
@@ -110,6 +112,15 @@ public class Animal {
 
     // ---- getters e setters ----
 
+    @JdbcTypeCode(SqlTypes.VARBINARY)
+    @Column(name = "imagem_dados", columnDefinition = "bytea")
+    private byte[] imagemDados;
+    @Column(name = "imagem_mime", length = 24)
+    private String imagemMime;
+    public byte[] getImagemDados() { return imagemDados; }
+    public void setImagemDados(byte[] bytes) { this.imagemDados = bytes; }
+    public String getImagemMime() { return imagemMime; }
+    public void setImagemMime(String mime) { this.imagemMime = mime; }
     public Long getId() {
         return id;
     }

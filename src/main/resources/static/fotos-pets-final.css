@@ -1,0 +1,16 @@
+/* Fotografias únicas em todas as vitrines. */
+.pet-portrait{position:relative;overflow:hidden;isolation:isolate}
+.pet-portrait .foto-animal-final{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:3}
+.pet-portrait .pet-badge{z-index:4}
+.meme-gallery .meme-grid figure img{display:block;width:100%;height:230px;object-fit:cover}
+.photo-credit,.mission-credit,.pet-photo-credit,#ong-fotos-nota,.ong-transparencia{display:none!important}
+.animal-foto-form{background:#f2f7ef;border:1px solid #dbe7d8;border-radius:14px;padding:12px 15px;margin:12px 0}
+.animal-foto-form label{display:block;font-weight:700;margin-bottom:7px}
+.animal-foto-form input{max-width:100%}
+.animal-foto-form small{display:block;color:var(--sub);margin-top:6px}
+.animal-foto-mini{height:48px;width:56px;object-fit:cover;vertical-align:middle;border-radius:8px;margin-right:10px}
+
+/* Todos os cartões adotam exatamente a mesma área de foto. */
+.pet-portrait .foto-animal-final{display:block;width:100%;height:100%;object-fit:cover;object-position:center center;border-radius:0}
+.pet-portrait .pet-badge{position:absolute;z-index:5}
+.meme-gallery .meme-grid figure img{aspect-ratio:1080/730;object-fit:cover;object-position:center}
