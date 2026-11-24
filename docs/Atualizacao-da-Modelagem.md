@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-O diagrama foi reorganizado para apresentar as responsabilidades principais do sistema de forma mais objetiva, agrupando visualmente conceitos relacionados. O título foi padronizado para **Diagrama de Classe**, sem indicação de versão.
+Reorganizei o diagrama para apresentar as principais responsabilidades do sistema de forma mais objetiva e agrupar conceitos relacionados. Padronizei o título como **Diagrama de Classe**, sem indicação de versão.
 
 ## Grupos apresentados no diagrama
 
@@ -28,7 +28,7 @@ O agrupamento é apenas visual/conceitual. Ele não elimina nem funde as entidad
 
 As classes `Vacina` e `VacinacaoAnimal` permanecem distintas porque o histórico precisa registrar várias aplicações de uma mesma vacina, com datas e informações próprias. Da mesma forma, `SolicitacaoAdocao` e `Adocao` representam etapas diferentes: pedido e formalização.
 
-Consulte também o [Mapeamento de Entidades JPA](Mapeamento%20de%20Entidades%20JPA.md) e o [Dicionário de Dados](Dicion%C3%A1rio%20de%20Dados.md) para obter o detalhamento técnico dos campos e relacionamentos.
+Para detalhar a implementação, apresento também o [Mapeamento de Entidades JPA](Mapeamento%20de%20Entidades%20JPA.md) e o [Dicionário de Dados](Dicion%C3%A1rio%20de%20Dados.md) para obter o detalhamento técnico dos campos e relacionamentos.
 
 ## Complemento de consistência — 22/11/2026
 

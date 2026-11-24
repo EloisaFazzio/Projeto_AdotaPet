@@ -2,11 +2,11 @@
 
 **Projeto:** AdotaPet  
 **Tecnologia:** Java 17, Jakarta Persistence (JPA), Spring Data JPA e Hibernate  
-**Objetivo:** documentar como as entidades do domínio são mapeadas para tabelas e relacionamentos relacionais.
+**Objetivo:** documentar o mapeamento das entidades do domínio para tabelas e relacionamentos no banco de dados.
 
-> Este documento foi elaborado a partir das anotações JPA presentes nas classes do repositório. O esquema físico final pode variar conforme o banco utilizado e a estratégia de geração de DDL do Hibernate.
+Elaborei este mapeamento a partir das anotações JPA presentes nas classes do repositório. O esquema físico final pode variar conforme o banco utilizado e a estratégia de geração de DDL do Hibernate.
 
-> **Compatibilidade com o diagrama:** o diagrama apresenta uma visão conceitual agrupada para facilitar a leitura. Isso não significa que as classes persistentes foram fundidas no código. O mapeamento JPA continua contendo oito entidades independentes: `Usuario`, `Abrigo`, `Animal`, `Vacina`, `VacinacaoAnimal`, `SolicitacaoAdocao`, `Adocao` e `VisitaAcompanhamento`. Em especial, `Vacina` e `VacinacaoAnimal` permanecem separadas porque uma vacina pode ter várias aplicações; da mesma forma, a solicitação e a adoção formalizada são etapas distintas.
+**Compatibilidade com o diagrama:** utilizei uma visão conceitual agrupada no diagrama, que apresenta uma visão conceitual agrupada para facilitar a leitura. Isso não significa que as classes persistentes foram fundidas no código. O mapeamento JPA continua contendo oito entidades independentes: `Usuario`, `Abrigo`, `Animal`, `Vacina`, `VacinacaoAnimal`, `SolicitacaoAdocao`, `Adocao` e `VisitaAcompanhamento`. Em especial, `Vacina` e `VacinacaoAnimal` permanecem separadas porque uma vacina pode ter várias aplicações; da mesma forma, a solicitação e a adoção formalizada são etapas distintas.
 
 ## 1. Convenções gerais
 

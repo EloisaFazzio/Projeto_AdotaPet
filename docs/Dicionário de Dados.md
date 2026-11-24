@@ -4,7 +4,7 @@
 **Escopo:** entidades persistentes do domínio e tabelas relacionadas  
 **Tipos:** tipos Java e tipos SQL abaixo são indicativos; o tipo SQL exato pode variar entre H2 e PostgreSQL e conforme o Hibernate.
 
-> **Organização conforme o diagrama de classes:** o conteúdo está organizado pelos seis grupos conceituais apresentados no diagrama: Abrigo, Animal, Vacinação do Animal, Usuário, Processo de Adoção e Acompanhamento Pós-Adoção. Quando um grupo reúne mais de uma entidade no desenho, as entidades e suas tabelas continuam descritas separadamente para preservar todos os campos e relacionamentos do modelo JPA. Os atributos exibidos no diagrama são uma visão resumida, portanto este dicionário detalha os campos persistidos e os valores completos usados pela aplicação.
+**Organização:** organizei o dicionário segundo os seis grupos conceituais apresentados no diagrama: Abrigo, Animal, Vacinação do Animal, Usuário, Processo de Adoção e Acompanhamento Pós-Adoção. Quando um grupo reúne mais de uma entidade no desenho, as entidades e suas tabelas continuam descritas separadamente para preservar todos os campos e relacionamentos do modelo JPA. Os atributos exibidos no diagrama são uma visão resumida, e aqui detalho os campos persistidos e os valores utilizados pela aplicação.
 
 ## 1. Abrigo — tabela `abrigo`
 

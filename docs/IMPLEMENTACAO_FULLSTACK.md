@@ -1,11 +1,11 @@
 # AdotaPet — desenvolvimento full stack (incremental)
 
-Este incremento parte da documentação acadêmica da Etapa 1 e do diagrama UML de oito entidades. As funcionalidades **já codificadas neste PR** são diferentes das funcionalidades **planejadas** nas Issues.
+Desenvolvi esta etapa do AdotaPet a partir da documentação acadêmica e do diagrama UML de oito entidades. Apresento abaixo a implementação full stack integrada ao projeto.
 
 ## Tecnologias
 - Backend Java 17, Spring Boot 3.3.5, Spring Data JPA, H2 local, PostgreSQL/Supabase.
 - Spring Security stateless, BCrypt para senhas, JWT HS256 (8 horas).
-- Frontend independente em HTML/CSS/JavaScript, servido por Spring Boot após merge do PR da interface, consumindo a API no mesmo domínio.
+- Frontend em HTML, CSS e JavaScript, integrado ao Spring Boot e à API no mesmo domínio.
 
 ## Executar localmente
 1. Instalar Java 17 e Maven.
