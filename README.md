@@ -12,7 +12,7 @@ O **AdotaPet** é um projeto acadêmico de Engenharia de Software desenvolvido p
 
 **🌐 [Acessar a demonstração do AdotaPet — GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)**
 
-Disponibilizamos a demonstração do AdotaPet no **[GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)**. Para executar o sistema completo, utilizamos o [guia de homologação local](docs/HOMOLOGACAO_LOCAL.md).
+A demonstração apresenta a interface do projeto para avaliação acadêmica. Para executar o sistema completo, com API Java e banco de dados, disponibilizamos o [guia de homologação local](docs/HOMOLOGACAO_LOCAL.md).
 
 ### 🖥️ Sistema completo local
 
