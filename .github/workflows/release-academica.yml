@@ -38,9 +38,9 @@ jobs:
 
           **Site demonstrativo:** https://eloisafazzio.github.io/Projeto_AdotaPet/
 
-          Nesta entrega, apresento o AdotaPet, projeto acadêmico de Engenharia de Software desenvolvido com Java 17, Spring Boot, JPA, API REST e interface responsiva.
+          Nesta entrega, apresentamos o AdotaPet, projeto acadêmico de Engenharia de Software desenvolvido com Java 17, Spring Boot, JPA, API REST e interface responsiva.
 
-          O repositório reúne o código-fonte, o painel operacional, os testes e a documentação. O site demonstrativo usa dados fictícios; para executar o backend completo, disponibilizo as instruções de instalação local no README.
+          O repositório reúne o código-fonte, o painel operacional, os testes e a documentação. O site demonstrativo usa dados fictícios; para executar o backend completo, disponibilizamos as instruções de instalação local no README.
 
           **Documentação:** [README](https://github.com/EloisaFazzio/Projeto_AdotaPet/blob/main/README.md), [entrega acadêmica](https://github.com/EloisaFazzio/Projeto_AdotaPet/blob/main/docs/ENTREGA_ACADEMICA_v1.0.0.md) e [triagem das Issues](https://github.com/EloisaFazzio/Projeto_AdotaPet/blob/main/docs/TRIAGEM_ISSUES_ENTREGA.md).
           NOTAS
