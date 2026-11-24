@@ -1,6 +1,6 @@
 # AdotaPet — desenvolvimento full stack (incremental)
 
-Desenvolvi esta etapa do AdotaPet a partir da documentação acadêmica e do diagrama UML de oito entidades. Apresento abaixo a implementação full stack integrada ao projeto.
+Desenvolvemos esta etapa do AdotaPet a partir da documentação acadêmica e do diagrama UML de oito entidades. Apresentamos abaixo a implementação full stack integrada ao projeto.
 
 ## Tecnologias
 - Backend Java 17, Spring Boot 3.3.5, Spring Data JPA, H2 local, PostgreSQL/Supabase.
