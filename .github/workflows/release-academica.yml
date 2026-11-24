@@ -26,28 +26,31 @@ jobs:
           node --check site-demo/app.js
           node --check src/main/resources/static/app.js
           node --check src/main/resources/static/painel.js
-      - name: Publicar tag e release academica uma unica vez
+      - name: Atualizar descricao da release academica
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         shell: bash
         run: |
           set -euo pipefail
-          if gh release view v1.0.0-academica >/dev/null 2>&1; then
-            echo "Release academica ja existe; nenhuma alteracao necessaria."
-            exit 0
-          fi
           cat > /tmp/notas-academicas.md <<'NOTAS'
           ## AdotaPet — entrega acadêmica 2026
 
-          **Site público:** https://adotapet.pages.dev/
+          **Site demonstrativo:** https://eloisafazzio.github.io/Projeto_AdotaPet/
 
-          Versão integrada para avaliação acadêmica com catálogo demonstrativo, interface responsiva, Java 17, Spring Boot, JPA, API REST, testes e documentação do modelo. A demonstração hospedada usa dados fictícios e **não** permite login, cadastros ou adoções reais.
+          Nesta entrega, apresento o AdotaPet, projeto acadêmico de Engenharia de Software desenvolvido com Java 17, Spring Boot, JPA, API REST e interface responsiva.
 
-          **Documentação:** README, docs/ENTREGA_ACADEMICA_v1.0.0.md e docs/TRIAGEM_ISSUES_ENTREGA.md.
+          O repositório reúne o código-fonte, o painel operacional, os testes e a documentação. O site demonstrativo usa dados fictícios; para executar o backend completo, disponibilizo as instruções de instalação local no README.
 
-          **Importante:** este marco não indica prontidão para produção. Segurança, privacidade/LGPD, migrações de banco e homologação do backend para uso real permanecem pendentes.
+          **Documentação:** [README](https://github.com/EloisaFazzio/Projeto_AdotaPet/blob/main/README.md), [entrega acadêmica](https://github.com/EloisaFazzio/Projeto_AdotaPet/blob/main/docs/ENTREGA_ACADEMICA_v1.0.0.md) e [triagem das Issues](https://github.com/EloisaFazzio/Projeto_AdotaPet/blob/main/docs/TRIAGEM_ISSUES_ENTREGA.md).
           NOTAS
+          if gh release view v1.0.0-academica >/dev/null 2>&1; then
+            gh release edit v1.0.0-academica \
+              --title "AdotaPet v1.0.0 — Entrega acadêmica" \
+              --notes-file /tmp/notas-academicas.md
+            echo "Descricao da release academica atualizada."
+            exit 0
+          fi
           gh release create v1.0.0-academica \
             --target "$GITHUB_SHA" \
             --title "AdotaPet v1.0.0 — Entrega acadêmica" \
