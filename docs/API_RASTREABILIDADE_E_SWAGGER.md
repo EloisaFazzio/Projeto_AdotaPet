@@ -1,6 +1,6 @@
 # API AdotaPet — complemento da matriz de rastreabilidade
 
-Ampliei a API do AdotaPet com os endpoints previstos na matriz de rastreabilidade RF x endpoint x entidade (seção 2.3 do trabalho acadêmico), seguindo o modelo UML de oito entidades e as regras de acesso.
+Ampliamos a API do AdotaPet com os endpoints previstos na matriz de rastreabilidade RF x endpoint x entidade (seção 2.3 do trabalho acadêmico), seguindo o modelo UML de oito entidades e as regras de acesso.
 
 ## Endpoints adicionados
 
