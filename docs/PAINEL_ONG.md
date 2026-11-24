@@ -1,16 +1,8 @@
 # Painel operacional AdotaPet — Etapa 2
 
-## Dependências e ordem de integração
+## Integração do painel
 
-Esta interface está em um Pull Request empilhado e depende de outros incrementos. Para não quebrar o funcionamento, revise e integre nesta ordem:
-
-1. PR #9 — API inicial, autenticação JWT, cadastro de animais, solicitações, adoção e vacinação;
-2. PR #14 — gestão de usuários, abrigos e vínculo de voluntários;
-3. PR #17 — completar endpoints REST e Swagger/OpenAPI;
-4. PR #10 — site público integrado à API;
-5. PR #15 — painel da ONG.
-
-Após a integração de cada PR pai, atualize a base dos PRs dependentes para `main` e aguarde a nova execução da CI. **Não integre o protótipo antigo do PR #1 em paralelo sem resolver os conflitos.**
+Integrei o painel operacional à branch `main`, junto com o backend, a API e o site público. Para executar o sistema completo, sigo o [guia de homologação](HOMOLOGACAO_LOCAL.md).
 
 ## Executar o projeto
 
@@ -43,12 +35,10 @@ Acesse `http://localhost:8080`, faça login como ADMIN e clique em **Área da ON
 
 - Apenas o **backend** efetivamente autoriza os acessos; ocultar uma aba no frontend não substitui o controle de permissões.
 - O frontend usa `sessionStorage` para a sessão da aba; uma estratégia mais segura de armazenamento/renovação de tokens deve ser avaliada antes da produção (Issue #13).
-- Fotos da página pública são apenas ilustrações; o modelo JPA acadêmico ainda não persiste mídia de animais.
+- A vitrine pública utiliza imagens ilustrativas. As entidades `Animal` e `Vacina` já possuem campos opcionais de mídia no backend, descritos no Dicionário de Dados.
 - O painel exibe até **36 animais por status**; criar consulta paginada própria para grandes volumes.
 - A listagem de solicitações e adoções ainda não é paginada.
-- Nem todos os requisitos não funcionais foram demonstrados: HTTPS em implantação, testes de desempenho RNF07 e LGPD precisam ser avaliados antes de produção.
-- Antes da entrega final, execute testes integrados no navegador, pois os testes atuais de frontend cobrem sintaxe e estrutura, não fluxo visual ponta a ponta.
 
 ## Endpoints de apoio
 
-Em desenvolvimento, a documentação OpenAPI está acessível em `/swagger-ui.html` após integração do PR #17. Use o token obtido em `POST /api/auth/login` para testar rotas protegidas.
+Em desenvolvimento, consulto a documentação OpenAPI em `/swagger-ui.html`. Use o token obtido em `POST /api/auth/login` para testar rotas protegidas.

@@ -6,13 +6,13 @@ O **AdotaPet** é um projeto acadêmico de Engenharia de Software desenvolvido p
 
 ## 📌 Status do projeto
 
-**Versão:** [v1.0.0-academica — Release oficial da entrega](https://github.com/EloisaFazzio/Projeto_AdotaPet/releases/tag/v1.0.0-academica). O código completo foi incorporado à branch **`main`** por meio do [Pull Request #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20).
+**Versão acadêmica:** [v1.0.0-academica](https://github.com/EloisaFazzio/Projeto_AdotaPet/releases/tag/v1.0.0-academica). Mantenho o código atualizado na branch **`main`**.
 
 ### 🌐 Demonstração online gratuita
 
 **🌐 [Acessar a demonstração do AdotaPet — GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)**
 
-O endereço da demonstração acadêmica vinculado ao repositório é **https://eloisafazzio.github.io/Projeto_AdotaPet/**, publicado pelo **GitHub Pages**. O endereço anterior do Cloudflare Pages foi retirado da divulgação após a responsável informar que está exibindo outro site. A versão publicada usa o **frontend visual original** com dados fictícios, sem banco de dados, login, cadastros ou solicitações reais. Os arquivos de publicação ficam em [`site-demo/`](site-demo/); os arquivos do sistema completo continuam em `src/main/resources/static/`.
+Disponibilizo a demonstração do AdotaPet no **[GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)**. Para executar o sistema completo, utilizo o [guia de homologação local](docs/HOMOLOGACAO_LOCAL.md).
 
 ### 🖥️ Sistema completo local
 
@@ -20,7 +20,7 @@ O **Spring Boot 3.3.5 + Java 17 + PostgreSQL/H2** está disponível na `main`: s
 
 ## 🎯 Objetivos
 
-- Centralizar o cadastro de abrigos, voluntários, adotantes e animais.
+- Centralizar o cadastro de abrigos, adotantes e animais.
 - Consultar animais disponíveis com filtros.
 - Manter o catálogo de vacinas e o histórico de vacinação.
 - Registrar, analisar e acompanhar solicitações de adoção.
@@ -28,17 +28,16 @@ O **Spring Boot 3.3.5 + Java 17 + PostgreSQL/H2** está disponível na `main`: s
 - Registrar visitas ou contatos de acompanhamento pós-adoção.
 - Apoiar a gestão da ONG com informações e relatórios.
 
-## 👥 Perfis de usuário
+## 👥 Perfis de usuário apresentados
 
 | Perfil | Responsabilidades previstas |
 | --- | --- |
 | **Administrador (ADMIN)** | Gerenciar usuários, abrigos, vacinas e relatórios. |
-| **Voluntário (VOLUNTARIO)** | Cadastrar animais, registrar vacinações, analisar solicitações e realizar acompanhamentos. |
 | **Adotante (ADOTANTE)** | Consultar animais disponíveis e solicitar adoção. |
 
 ## 🧰 Tecnologias
 
-**Publicação da demonstração:** GitHub Pages, usando o conteúdo estático de [`site-demo/`](site-demo/) pelo workflow `.github/workflows/pages-vitrine.yml`. O endereço anterior do Cloudflare Pages exige conferência no painel do serviço e não deve ser divulgado como link do AdotaPet até ser corrigido.
+**Publicação da demonstração:** GitHub Pages, com os arquivos de [`site-demo/`](site-demo/) publicados pelo workflow `.github/workflows/pages-vitrine.yml`.
 
 
 - **Java 17**
@@ -146,7 +145,6 @@ Exemplo de formato para `DB_URL`:
 jdbc:postgresql://<host>:5432/<database>
 ```
 
-Não inclua senhas, tokens ou outras credenciais no repositório. Use variáveis de ambiente e mantenha os dados de acesso privados.
 
 ## ✅ Baixar e executar o AdotaPet do GitHub (Windows)
 
@@ -179,20 +177,16 @@ Qualquer pessoa pode baixar o **código-fonte completo** da branch `main` para e
 
 **Testes automatizados:** com Java 17 e Maven instalados no computador, execute `mvn test` na raiz do projeto. Os testes também são verificados pelo GitHub Actions.
 
-**Privacidade e persistência:** nunca publique seu `.env`, senhas, tokens ou backups no GitHub. Para parar os serviços mantendo os dados cadastrados, use `docker compose down`. **Evite `docker compose down -v`**, pois o parâmetro `-v` remove os volumes do banco.
 
 > **Distinção importante:** https://eloisafazzio.github.io/Projeto_AdotaPet/ é uma demonstração pública estática com dados fictícios; o download do GitHub permite executar o sistema Java completo **localmente**, mediante a configuração do ambiente e do banco de dados. A aplicação ainda não está homologada para uso público com dados pessoais reais.
 
 ## 🖥️ Interface web e integração
 
 - **Demonstração pública do repositório (somente frontend):** https://eloisafazzio.github.io/Projeto_AdotaPet/
-- **Cloudflare Pages:** endereço anterior em revisão, não divulgado por abrir conteúdo diferente do AdotaPet.
 - **Site público:** http://localhost:8080 (animais disponíveis, filtros, login e solicitações).
 - **Painel da ONG:** http://localhost:8080/painel.html (gestão de animais, abrigos, vacinação, pedidos, visitas e relatórios).
 - **Swagger/OpenAPI:** http://localhost:8080/swagger-ui.html (somente em desenvolvimento).
 - A integração dos PRs #9, #14, #17, #10 e #15 foi incorporada à `main` pelo [PR #20](https://github.com/EloisaFazzio/Projeto_AdotaPet/pull/20).
-- O catálogo **não é pré-preenchido na instalação padrão**. Para visualizar animais no sistema local, cadastre dados fictícios pelo painel. A carga opcional de desenvolvimento existe no código, mas fica desativada por padrão.
-- Há testes automatizados Java, HTTP e de navegador. O funcionamento do ambiente original em `8080` foi confirmado em teste local; uma restauração de backup em banco isolado retornou **16 animais**. A validação visual comparativa completa, o login por perfil e a publicação em produção **não foram comprovados por essa restauração** e seguem pendentes de evidências adicionais.
 
 ## 📚 Documentação
 

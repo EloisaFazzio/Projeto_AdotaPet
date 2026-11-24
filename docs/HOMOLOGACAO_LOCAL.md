@@ -1,8 +1,6 @@
 # AdotaPet — Guia de homologação local (Windows)
 
-O frontend, o backend e o painel administrativo já estão integrados à branch **`main`** (PR #20 mesclada). Para avaliar a entrega final, baixe o ZIP da `main` ou faça clone do repositório. O endereço https://eloisafazzio.github.io/Projeto_AdotaPet/ é uma demonstração estática do repositório, sem backend Java ou banco de dados. O link anterior do Cloudflare Pages está em revisão após apresentar conteúdo divergente.
-
-Este ambiente é apenas para **testes acadêmicos com dados fictícios**. Não use dados pessoais reais, fotos privadas ou senhas reutilizadas.
+Para executar o AdotaPet completo no Windows, utilizo os arquivos da branch **`main`**. O projeto reúne frontend, backend Java, painel administrativo e banco PostgreSQL configurado localmente.
 
 ## 1. Requisitos
 
@@ -124,7 +122,6 @@ npm run test:e2e
 
 O teste completo de gestão usa as mesmas variáveis de ambiente do administrador de homologação (`ADOTAPET_ADMIN_EMAIL` e `ADOTAPET_ADMIN_PASSWORD`). Se essas variáveis não estiverem configuradas no terminal, apenas o cenário de gestão será ignorado; não use contas reais ou de produção.
 
-**Observação:** anexos e capturas de tela não são exigidos nesta rodada de entrega, por decisão da responsável. Se forem solicitados futuramente, os testes automatizados de navegador podem gerar arquivos locais.
 
 ## 9. Limitações importantes
 

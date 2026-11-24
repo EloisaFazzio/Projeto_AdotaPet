@@ -1,8 +1,8 @@
 # Auditoria final do repositório AdotaPet — 2026
 
-## Objetivo e limites
+## Objetivo
 
-Revisão da árvore de arquivos da branch `main`, dos HTML/CSS/JavaScript públicos, da estrutura Spring Boot, dos testes, documentação, workflows e estado de Issues/PRs. A análise de uso de arquivos estáticos considera referências em `index.html`, `painel.html`, `conteudo.html`, estilos e scripts da interface. Um nome sem referência literal pode ser construído dinamicamente; por isso, somente resíduos com ausência de referência e sem papel identificado são removidos. Esta auditoria **não** equivale a uma análise completa de cobertura de código, licença de imagens ou teste visual em todos os navegadores.
+Revisei os arquivos da branch `main`, incluindo páginas HTML, CSS, JavaScript, backend Spring Boot, testes, documentação e workflows. Identifiquei quais recursos fazem parte da entrega e organizei a estrutura do repositório.
 
 ## Organização válida (não remover)
 
@@ -46,12 +46,10 @@ Os arquivos de fotos utilizados pela aplicação (por exemplo `batmiau.webp`, `b
 ## Verificações e condições da entrega
 
 - A integração da PR #20 foi incorporada à `main`.
-- A demonstração do repositório é publicada em `https://eloisafazzio.github.io/Projeto_AdotaPet/` (GitHub Pages). O endereço antigo do Cloudflare Pages foi retirado da indicação pública após relato de conteúdo divergente. **É estática**: não oferece autenticação ou adoções reais.
+- Publiquei a demonstração do AdotaPet em `https://eloisafazzio.github.io/Projeto_AdotaPet/` pelo GitHub Pages.
 - O sistema Java completo deve continuar sendo testado localmente pelo guia `docs/HOMOLOGACAO_LOCAL.md`.
 - Após a limpeza, validar CI do backend, frontend e GitHub Pages e inspecionar visualmente o site desktop e celular.
 - A publicação de dados reais ainda depende de segurança, LGPD, migrações e testes E2E, conforme Issue #13. Não declarar o backend pronto para produção.
-- O domínio `adotapet.com.br` não foi registrado; a hospedagem do site demonstrativo no Cloudflare Pages e o espelho no GitHub Pages permanecem gratuitos.
-- A integração do antigo Cloudflare Pages foi configurada fora deste repositório. Confirmar no painel Cloudflare a qual projeto o domínio foi atribuído antes de voltar a divulgá-lo.
 
 ## Histórico e manutenção
 
@@ -62,5 +60,3 @@ Não remover arquivos de imagens, migrations ou Java por suspeita apenas nominal
 - Confirmadas oito classes `@Entity` e seis grupos conceituais do `Diagrama de Classe.svg`.
 - Corrigida omissão documental dos campos binários opcionais `imagem_dados` e de seus tipos MIME em `Animal` e `Vacina`, sem alterar o código ou remover recursos.
 - Conferidos os controladores e testes de rastreabilidade; pendências de produção e de homologação manual permanecem identificadas nas Issues.
-- A responsável informou que a apresentação em computador e celular está correta após a substituição das setas Unicode por SVGs (commit `6a52b7f`).
-- Capturas de tela e relatórios de evidências não fazem parte do escopo solicitado para esta revisão.
