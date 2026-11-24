@@ -2,7 +2,7 @@
 
 ## Integração do painel
 
-Integrei o painel operacional à branch `main`, junto com o backend, a API e o site público. Para executar o sistema completo, sigo o [guia de homologação](HOMOLOGACAO_LOCAL.md).
+Integramos o painel operacional à branch `main`, junto com o backend, a API e o site público. Para executar o sistema completo, seguimos o [guia de homologação](HOMOLOGACAO_LOCAL.md).
 
 ## Executar o projeto
 
@@ -41,4 +41,4 @@ Acesse `http://localhost:8080`, faça login como ADMIN e clique em **Área da ON
 
 ## Endpoints de apoio
 
-Em desenvolvimento, consulto a documentação OpenAPI em `/swagger-ui.html`. Use o token obtido em `POST /api/auth/login` para testar rotas protegidas.
+Em desenvolvimento, consultamos a documentação OpenAPI em `/swagger-ui.html`. Use o token obtido em `POST /api/auth/login` para testar rotas protegidas.
