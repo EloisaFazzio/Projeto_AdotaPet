@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Revisei os arquivos da branch `main`, incluindo páginas HTML, CSS, JavaScript, backend Spring Boot, testes, documentação e workflows. Identifiquei quais recursos fazem parte da entrega e organizei a estrutura do repositório.
+Revisamos os arquivos da branch `main`, incluindo páginas HTML, CSS, JavaScript, backend Spring Boot, testes, documentação e workflows. Identificamos quais recursos fazem parte da entrega e organizamos a estrutura do repositório.
 
 ## Organização válida (não remover)
 
@@ -46,7 +46,7 @@ Os arquivos de fotos utilizados pela aplicação (por exemplo `batmiau.webp`, `b
 ## Verificações e condições da entrega
 
 - A integração da PR #20 foi incorporada à `main`.
-- Publiquei a demonstração do AdotaPet em `https://eloisafazzio.github.io/Projeto_AdotaPet/` pelo GitHub Pages.
+- Publicamos a demonstração do AdotaPet em `https://eloisafazzio.github.io/Projeto_AdotaPet/` pelo GitHub Pages.
 - O sistema Java completo deve continuar sendo testado localmente pelo guia `docs/HOMOLOGACAO_LOCAL.md`.
 - Após a limpeza, validar CI do backend, frontend e GitHub Pages e inspecionar visualmente o site desktop e celular.
 - A publicação de dados reais ainda depende de segurança, LGPD, migrações e testes E2E, conforme Issue #13. Não declarar o backend pronto para produção.
