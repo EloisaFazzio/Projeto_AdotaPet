@@ -6,13 +6,13 @@ O **AdotaPet** é um projeto acadêmico de Engenharia de Software desenvolvido p
 
 ## 📌 Status do projeto
 
-**Versão acadêmica:** [v1.0.0-academica](https://github.com/EloisaFazzio/Projeto_AdotaPet/releases/tag/v1.0.0-academica). Mantenho o código atualizado na branch **`main`**.
+**Versão acadêmica:** [v1.0.0-academica](https://github.com/EloisaFazzio/Projeto_AdotaPet/releases/tag/v1.0.0-academica). Mantemos o código atualizado na branch **`main`**.
 
 ### 🌐 Demonstração online gratuita
 
 **🌐 [Acessar a demonstração do AdotaPet — GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)**
 
-Disponibilizo a demonstração do AdotaPet no **[GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)**. Para executar o sistema completo, utilizo o [guia de homologação local](docs/HOMOLOGACAO_LOCAL.md).
+Disponibilizamos a demonstração do AdotaPet no **[GitHub Pages](https://eloisafazzio.github.io/Projeto_AdotaPet/)**. Para executar o sistema completo, utilizamos o [guia de homologação local](docs/HOMOLOGACAO_LOCAL.md).
 
 ### 🖥️ Sistema completo local
 
