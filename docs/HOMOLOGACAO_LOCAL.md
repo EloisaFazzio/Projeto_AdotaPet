@@ -1,6 +1,6 @@
 # AdotaPet — Guia de homologação local (Windows)
 
-Para executar o AdotaPet completo no Windows, utilizo os arquivos da branch **`main`**. O projeto reúne frontend, backend Java, painel administrativo e banco PostgreSQL configurado localmente.
+Para executar o AdotaPet completo no Windows, utilizamos os arquivos da branch **`main`**. O projeto reúne frontend, backend Java, painel administrativo e banco PostgreSQL configurado localmente.
 
 ## 1. Requisitos
 
